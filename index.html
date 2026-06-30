@@ -46,8 +46,8 @@
     nav.scrolled .logo-img { height: 52px; }
     .logo-fallback { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); display: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: #fff; }
     .nav-book { border: 1px solid rgba(201,168,76,0.35) !important; color: var(--gold) !important; padding: 0.55rem 1.4rem; transition: all 0.3s !important; }
     .nav-book:hover { background: var(--gold) !important; color: var(--black) !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
@@ -105,41 +105,43 @@
     .artists-header p { font-size: 0.8rem; color: var(--muted); max-width: 340px; line-height: 1.85; }
 
     /* Artist block: portfolio grid LEFT, info RIGHT */
-    .artist-block { display: grid; grid-template-columns: 420px 1fr; border-bottom: 1px solid var(--border); min-height: 520px; }
-    .artist-block.flip { grid-template-columns: 1fr 420px; }
+    .artist-block { display: grid; grid-template-columns: 1fr 320px; border-bottom: 1px solid var(--border); min-height: 480px; }
+    .artist-block.flip { grid-template-columns: 320px 1fr; }
     .artist-block.flip .artist-portfolio { order: 2; }
     .artist-block.flip .artist-info { order: 1; }
 
-    /* Portfolio grid — the showcase */
-    .artist-portfolio { background: var(--black); }
-    .artist-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; height: 100%; }
-    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.72); transition: filter 0.35s, transform 0.5s; cursor: pointer; display: block; }
-    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
+    /* Portfolio grid — 3-column showcase */
+    .artist-portfolio { background: var(--black); overflow: hidden; }
+    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; height: 100%; min-height: 460px; }
+    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
+    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.05); }
 
-    /* Info panel */
-    .artist-info { background: var(--panel); padding: 3rem 3.5rem; display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+    /* Info panel — tighter */
+    .artist-info { background: var(--panel); padding: 2.5rem 2.25rem; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
 
-    /* Artist header: headshot + name/title side by side */
-    .artist-header { display: flex; align-items: flex-start; gap: 1.75rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-    .artist-headshot { width: 120px; height: 120px; object-fit: cover; object-position: center top; filter: grayscale(10%); flex-shrink: 0; transition: filter 0.4s; }
-    .artist-block:hover .artist-headshot { filter: grayscale(0%); }
-    .artist-header-text { display: flex; flex-direction: column; justify-content: center; gap: 0.4rem; }
-    .artist-header-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
-    .artist-header-text .title { font-size: 0.54rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); }
+    /* Artist header: round headshot + name stacked */
+    .artist-header { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .artist-headshot { width: 96px; height: 96px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid rgba(201,168,76,0.35); filter: grayscale(15%); flex-shrink: 0; transition: filter 0.4s, border-color 0.4s; }
+    .artist-block:hover .artist-headshot { filter: grayscale(0%); border-color: var(--gold); }
+    .artist-header-text { display: flex; flex-direction: column; gap: 0.35rem; }
+    .artist-header-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: #fff; line-height: 1.1; }
+    .artist-header-text .title { font-size: 0.5rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); }
 
     /* Bio */
-    .artist-bio { font-size: 0.84rem; line-height: 2.05; color: var(--muted); }
+    .artist-bio { font-size: 0.78rem; line-height: 1.95; color: var(--muted); }
 
     /* Credentials */
-    .artist-creds { display: flex; flex-direction: column; gap: 0.5rem; }
-    .cred { display: flex; align-items: center; gap: 0.85rem; font-size: 0.75rem; color: var(--muted); }
-    .cred::before { content: ''; display: block; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .artist-creds { display: flex; flex-direction: column; gap: 0.45rem; }
+    .cred { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
+    .cred::before { content: ''; display: block; width: 12px; height: 1px; background: var(--gold); flex-shrink: 0; margin-top: 0.55em; }
 
-    /* Book / IG links */
-    .artist-links { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-    .artist-links .book { color: var(--gold); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; transition: border-color 0.3s; }
+    /* Links — stacked for narrow panel */
+    .artist-links { display: flex; flex-direction: column; gap: 0.65rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .artist-links .book { color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; transition: border-color 0.3s; width: fit-content; }
     .artist-links .book:hover { border-color: var(--gold); }
-    .artist-links .ig { color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+    .artist-links .portfolio-link { color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; width: fit-content; }
+    .artist-links .portfolio-link:hover { color: var(--gold); }
+    .artist-links .ig { color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; width: fit-content; }
     .artist-links .ig:hover { color: var(--gold); }
 
     /* LIGHTBOX */
@@ -276,8 +278,9 @@
       .artist-block, .artist-block.flip { grid-template-columns: 1fr; }
       .artist-block.flip .artist-portfolio { order: 0; }
       .artist-block.flip .artist-info { order: 0; }
-      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 260px; }
-      .artist-info { padding: 2rem 1.5rem; }
+      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 220px; }
+      .artist-info { padding: 2rem 1.5rem; text-align: left; }
+      .artist-header { flex-direction: row; text-align: left; align-items: center; }
       .reviews { padding: 5rem 1.5rem; }
       .reviews-grid { grid-template-columns: 1fr; }
       .faq { padding: 5rem 1.5rem; }
@@ -429,7 +432,8 @@
       </div>
       <div class="artist-links">
         <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Adam →</a>
-        <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="ig">@adam_zimmer_tattoos</a>
+        <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="portfolio-link">Full Portfolio → @adam_zimmer_tattoos</a>
+        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="ig">Studio → @redemptiontenfold</a>
       </div>
     </div>
   </div>
@@ -466,7 +470,8 @@
       </div>
       <div class="artist-links">
         <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Eric →</a>
-        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="ig">@redemptiontenfold</a>
+        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="portfolio-link">Full Portfolio → @redemptiontenfold</a>
+        <a href="mailto:Ebboleeric1@gmail.com" class="ig">Ebboleeric1@gmail.com</a>
       </div>
     </div>
   </div>
