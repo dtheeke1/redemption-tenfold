@@ -104,45 +104,38 @@
     .artists-header h2 em { font-style: italic; color: var(--gold); }
     .artists-header p { font-size: 0.8rem; color: var(--muted); max-width: 340px; line-height: 1.85; }
 
-    /* Artist block: portfolio grid LEFT, info RIGHT */
-    .artist-block { display: grid; grid-template-columns: 1fr 320px; border-bottom: 1px solid var(--border); min-height: 480px; }
-    .artist-block.flip { grid-template-columns: 320px 1fr; }
-    .artist-block.flip .artist-portfolio { order: 2; }
-    .artist-block.flip .artist-info { order: 1; }
+    /* ── Artist card: 3 zones stacked ── */
+    .artist-card { border-bottom: 1px solid var(--border); }
 
-    /* Portfolio grid — 3-column showcase */
-    .artist-portfolio { background: var(--black); overflow: hidden; }
-    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; height: 100%; min-height: 460px; }
-    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
+    /* Zone 1 — Identity bar */
+    .artist-identity { display: flex; align-items: center; gap: 2rem; padding: 2rem 4rem; background: var(--panel); border-bottom: 1px solid var(--border); }
+    .artist-headshot { width: 88px; height: 88px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid rgba(201,168,76,0.4); filter: grayscale(15%); flex-shrink: 0; transition: filter 0.4s, border-color 0.4s; }
+    .artist-card:hover .artist-headshot { filter: grayscale(0%); border-color: var(--gold); }
+    .artist-id-text { flex: 1; }
+    .artist-id-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
+    .artist-id-text .artist-title { font-size: 0.56rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; display: block; }
+    .artist-identity .book-btn { border: 1px solid rgba(201,168,76,0.4); color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 0.7rem 1.75rem; white-space: nowrap; transition: all 0.3s; flex-shrink: 0; }
+    .artist-identity .book-btn:hover { background: var(--gold); color: var(--black); }
+
+    /* Zone 2 — Bio + Gallery */
+    .artist-body { display: grid; grid-template-columns: 1fr 420px; border-bottom: 1px solid var(--border); }
+    .artist-bio-section { padding: 3.5rem 4rem; background: var(--black); border-right: 1px solid var(--border); }
+    .artist-bio-section p { font-size: 0.86rem; line-height: 2.1; color: var(--muted); margin-bottom: 1.4rem; }
+    .artist-bio-section p:last-child { margin-bottom: 0; }
+    .artist-gallery-wrap { background: var(--black); overflow: hidden; }
+    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3px; height: 100%; }
+    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
     .artist-gallery img:hover { filter: brightness(1); transform: scale(1.05); }
 
-    /* Info panel — tighter */
-    .artist-info { background: var(--panel); padding: 2.5rem 2.25rem; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
-
-    /* Artist header: round headshot + name stacked */
-    .artist-header { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
-    .artist-headshot { width: 96px; height: 96px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid rgba(201,168,76,0.35); filter: grayscale(15%); flex-shrink: 0; transition: filter 0.4s, border-color 0.4s; }
-    .artist-block:hover .artist-headshot { filter: grayscale(0%); border-color: var(--gold); }
-    .artist-header-text { display: flex; flex-direction: column; gap: 0.35rem; }
-    .artist-header-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: #fff; line-height: 1.1; }
-    .artist-header-text .title { font-size: 0.5rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); }
-
-    /* Bio */
-    .artist-bio { font-size: 0.78rem; line-height: 1.95; color: var(--muted); }
-
-    /* Credentials */
-    .artist-creds { display: flex; flex-direction: column; gap: 0.45rem; }
-    .cred { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
-    .cred::before { content: ''; display: block; width: 12px; height: 1px; background: var(--gold); flex-shrink: 0; margin-top: 0.55em; }
-
-    /* Links — stacked for narrow panel */
-    .artist-links { display: flex; flex-direction: column; gap: 0.65rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-    .artist-links .book { color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; transition: border-color 0.3s; width: fit-content; }
-    .artist-links .book:hover { border-color: var(--gold); }
-    .artist-links .portfolio-link { color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; width: fit-content; }
-    .artist-links .portfolio-link:hover { color: var(--gold); }
-    .artist-links .ig { color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; width: fit-content; }
-    .artist-links .ig:hover { color: var(--gold); }
+    /* Zone 3 — Credentials + links footer */
+    .artist-footer { display: flex; align-items: flex-start; gap: 3rem; padding: 1.75rem 4rem; background: var(--panel); flex-wrap: wrap; }
+    .artist-creds { display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; flex: 1; }
+    .cred { display: flex; align-items: center; gap: 0.65rem; font-size: 0.68rem; color: var(--muted); }
+    .cred::before { content: ''; display: block; width: 14px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .artist-links { display: flex; gap: 1.75rem; align-items: center; flex-shrink: 0; }
+    .artist-links a { color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.3s; }
+    .artist-links a:hover { color: var(--gold); }
+    .artist-links .portfolio-link { color: var(--gold); }
 
     /* LIGHTBOX */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.97); z-index: 1000; align-items: center; justify-content: center; }
@@ -275,12 +268,13 @@
       .hero-scroll { display: none; }
       .philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
       .artists-header { flex-direction: column; padding: 4rem 1.5rem 3rem; }
-      .artist-block, .artist-block.flip { grid-template-columns: 1fr; }
-      .artist-block.flip .artist-portfolio { order: 0; }
-      .artist-block.flip .artist-info { order: 0; }
-      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 220px; }
-      .artist-info { padding: 2rem 1.5rem; text-align: left; }
-      .artist-header { flex-direction: row; text-align: left; align-items: center; }
+      .artist-identity { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+      .artist-identity .book-btn { width: 100%; text-align: center; }
+      .artist-body { grid-template-columns: 1fr; }
+      .artist-bio-section { padding: 2rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 200px; }
+      .artist-footer { padding: 1.5rem; flex-direction: column; gap: 1.5rem; }
+      .artist-links { flex-wrap: wrap; gap: 1rem; }
       .reviews { padding: 5rem 1.5rem; }
       .reviews-grid { grid-template-columns: 1fr; }
       .faq { padding: 5rem 1.5rem; }
@@ -399,81 +393,113 @@
     </div>
   </div>
 
-  <!-- ADAM ZIMMERMAN — portfolio left, info right -->
-  <div class="artist-block reveal">
-    <div class="artist-portfolio">
-      <div class="artist-gallery" data-artist="adam">
-        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Adam's work"/>
+  <!-- ADAM ZIMMERMAN -->
+  <div class="artist-card reveal">
+
+    <!-- Zone 1: Identity -->
+    <div class="artist-identity">
+      <img class="artist-headshot"
+           src="images/adam-zimmerman.jpg"
+           alt="Adam Zimmerman"
+           onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85'"/>
+      <div class="artist-id-text">
+        <h3>Adam Zimmerman</h3>
+        <span class="artist-title">Owner &amp; Lead Artist · Ink Wars 1v1 Champion</span>
       </div>
+      <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Adam →</a>
     </div>
-    <div class="artist-info">
-      <div class="artist-header">
-        <img class="artist-headshot"
-             src="images/adam-zimmerman.jpg"
-             alt="Adam Zimmerman"
-             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85'"/>
-        <div class="artist-header-text">
-          <h3>Adam Zimmerman</h3>
-          <span class="title">Lead Artist · Ink Wars 1v1 Champion</span>
+
+    <!-- Zone 2: Bio + Gallery -->
+    <div class="artist-body">
+      <div class="artist-bio-section">
+        <p>Adam Zimmerman is the owner and lead artist of Redemption Tenfold Tattoo in Menominee, Michigan. Known for his versatility, Adam has built a reputation for creating custom tattoos that balance technical precision with bold artistic vision. Whether he's producing highly detailed black and grey realism, striking illustrative pieces, blackwork, horror-inspired imagery, portraits, or large-scale custom projects, his focus remains the same — creating tattoos that are built to last and designed specifically for the individual wearing them.</p>
+        <p>Tattooing has always been more than simply applying ink to skin. For Adam, every project begins with understanding the client's story, ideas, and goals before transforming them into artwork that is both visually powerful and personally meaningful. His ability to work comfortably across multiple styles allows each tattoo to be approached on its own merits rather than forcing every client into a single artistic niche.</p>
+        <p>Adam is also experienced in tattooing over scars and trauma-affected skin, helping clients reclaim confidence through thoughtful, customized artwork. These projects require patience, technical knowledge, and careful planning — qualities that have become a defining part of his work.</p>
+        <p>His dedication to the craft has earned recognition throughout the tattoo community. Adam is an award-winning tattoo artist whose work has been featured in <strong style="color:var(--text);font-weight:500;">CCI Magazine</strong> and <strong style="color:var(--text);font-weight:500;">Carnival of Ink Magazine</strong>, and he regularly tattoos at nationally recognized conventions, including events hosted by <strong style="color:var(--text);font-weight:500;">Villain Arts</strong>. He has also been selected to represent several respected professional teams and industry sponsors, reflecting the quality of both his artwork and professionalism.</p>
+        <p>At Redemption Tenfold Tattoo, Adam has created a studio built around craftsmanship, creativity, and client experience. Every tattoo is designed with longevity, readability, and strong composition in mind, ensuring that each piece not only looks impressive when it leaves the studio but continues to age well for years to come.</p>
+        <p>Whether you're planning your first tattoo, a full sleeve, a realism portrait, a scar cover-up, or a large custom project, Adam approaches every appointment with the same commitment to quality, collaboration, and creating artwork that clients are proud to wear for a lifetime.</p>
+      </div>
+      <div class="artist-gallery-wrap">
+        <div class="artist-gallery" data-artist="adam">
+          <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Adam's work"/>
+          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Adam's work"/>
+          <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Adam's work"/>
+          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Adam's work"/>
+          <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Adam's work"/>
+          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Adam's work"/>
         </div>
       </div>
-      <p class="artist-bio">Adam Zimmerman is the owner and lead artist of Redemption Tenfold Tattoo in Menominee, Michigan. Known for his versatility, Adam has built a reputation for creating custom tattoos that balance technical precision with bold artistic vision. Whether he's producing highly detailed black and grey realism, striking illustrative pieces, blackwork, horror-inspired imagery, portraits, or large-scale custom projects, his focus remains the same — creating tattoos that are built to last and designed specifically for the individual wearing them.<br><br>Adam is also experienced in tattooing over scars and trauma-affected skin, helping clients reclaim confidence through thoughtful, customized artwork. His dedication to the craft has earned recognition throughout the tattoo community — featured in CCI Magazine and Carnival of Ink Magazine, and a regular presence at nationally recognized conventions including events hosted by Villain Arts.</p>
+    </div>
+
+    <!-- Zone 3: Credentials + Links -->
+    <div class="artist-footer">
       <div class="artist-creds">
         <div class="cred">Featured in CCI Magazine &amp; Carnival of Ink Magazine</div>
         <div class="cred">Ink Wars 1v1 Champion</div>
         <div class="cred">Villain Arts Convention Artist</div>
-        <div class="cred">Papillon Pro Team · The Squad Pro Team · Proper Aftercare Pro Team</div>
+        <div class="cred">Papillon · The Squad · Proper Aftercare Pro Teams</div>
         <div class="cred">Scar &amp; trauma skin specialist</div>
       </div>
       <div class="artist-links">
-        <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Adam →</a>
-        <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="portfolio-link">Full Portfolio → @adam_zimmer_tattoos</a>
-        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="ig">Studio → @redemptiontenfold</a>
+        <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="portfolio-link">Portfolio → @adam_zimmer_tattoos</a>
+        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank">Studio IG</a>
       </div>
     </div>
+
   </div>
 
-  <!-- ERIC EBBOLE — info left, portfolio right -->
-  <div class="artist-block flip reveal">
-    <div class="artist-portfolio">
-      <div class="artist-gallery" data-artist="eric">
-        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Eric's work"/>
-        <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Eric's work"/>
-        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Eric's work"/>
-        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Eric's work"/>
-        <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Eric's work"/>
-        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Eric's work"/>
+  <!-- ERIC EBBOLE -->
+  <div class="artist-card reveal">
+
+    <!-- Zone 1: Identity -->
+    <div class="artist-identity">
+      <img class="artist-headshot"
+           src="images/eric-ebbole.jpg"
+           alt="Eric Ebbole"
+           onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=85'"/>
+      <div class="artist-id-text">
+        <h3>Eric Ebbole</h3>
+        <span class="artist-title">Master Artist · 38+ Years in the Industry</span>
       </div>
+      <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Eric →</a>
     </div>
-    <div class="artist-info">
-      <div class="artist-header">
-        <img class="artist-headshot"
-             src="images/eric-ebbole.jpg"
-             alt="Eric Ebbole"
-             onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=85'"/>
-        <div class="artist-header-text">
-          <h3>Eric Ebbole</h3>
-          <span class="title">Master Artist · 38+ Years Experience</span>
+
+    <!-- Zone 2: Bio + Gallery -->
+    <div class="artist-body">
+      <div class="artist-bio-section">
+        <p>Eric Ebbole was introduced to tattooing by his father, Electric Ed Ebbole, learning the craft at an early age before launching his professional career in the fall of 1986 at Gulf Coast Tattoos in Mobile, Alabama. What began as a family trade quickly became a lifelong calling — and nearly four decades later, Eric stands as one of the most traveled, most respected, and most technically complete tattoo artists working today.</p>
+        <p>His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Along the way he built relationships with some of the most influential figures in the industry, including Paul Rogers, Jack Armstrong, Don Nolan, Mike Dorsey, Shaun Anderson, and Kore Flatmoe. That depth of exposure — different markets, different styles, different schools of thought — shaped an artist with genuine range and no blind spots.</p>
+        <p>Eric works confidently in black and grey and full color across all sizes and genres. Whether the piece calls for sweeping realism, tightly executed traditional work, or something entirely custom, he approaches it with the same calm precision that comes only from four decades of doing this at a high level. His fluency across styles means clients aren't forced into a box — he works with the vision, not against it.</p>
+        <p>In 1995, Eric co-founded Artrageous Ink alongside David Theeke and Rob Jensen, helping build a studio that became one of the most respected shops in the region. His presence at Redemption TenFold brings that same founding-artist energy — a master of the craft who still shows up every day to push himself and the people around him.</p>
+        <p>If you're looking for an artist with the kind of experience that can't be faked, the kind that comes from tattooing through every trend and outlasting every wave, Eric Ebbole is that artist. Book early. He's worth the wait.</p>
+      </div>
+      <div class="artist-gallery-wrap">
+        <div class="artist-gallery" data-artist="eric">
+          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Eric's work"/>
+          <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Eric's work"/>
+          <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Eric's work"/>
+          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Eric's work"/>
+          <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Eric's work"/>
+          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Eric's work"/>
         </div>
       </div>
-      <p class="artist-bio">Eric Ebbole was taught to tattoo at a very early age by his father, Electric Ed Ebbole, and in the fall of 1986 began his career at Gulf Coast Tattoos in Mobile, Alabama. Nearly four decades later, he is one of the most well-traveled and widely respected artists in the industry. His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Growing up alongside legends like Paul Rogers, Jack Armstrong, and Don Nolan gave Eric a foundation few artists ever get — and he's spent his career building on it. He excels in black and grey work and color tattooing across all sizes and genres, with a fluency that comes only from decades of doing this at the highest level.</p>
+    </div>
+
+    <!-- Zone 3: Credentials + Links -->
+    <div class="artist-footer">
       <div class="artist-creds">
         <div class="cred">38+ years tattooing professionally</div>
+        <div class="cred">Co-founder, Artrageous Ink (1995)</div>
         <div class="cred">Trained alongside Paul Rogers, Jack Armstrong &amp; Don Nolan</div>
-        <div class="cred">Worked with Mike Dorsey, Shaun Anderson &amp; Kore Flatmoe</div>
-        <div class="cred">International convention experience — US, Amsterdam &amp; Germany</div>
+        <div class="cred">International experience — US, Amsterdam &amp; Germany</div>
+        <div class="cred">Black &amp; grey · Color · All styles</div>
       </div>
       <div class="artist-links">
-        <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Eric →</a>
-        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="portfolio-link">Full Portfolio → @redemptiontenfold</a>
-        <a href="mailto:Ebboleeric1@gmail.com" class="ig">Ebboleeric1@gmail.com</a>
+        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="portfolio-link">Portfolio → @redemptiontenfold</a>
+        <a href="mailto:Ebboleeric1@gmail.com">Ebboleeric1@gmail.com</a>
       </div>
     </div>
+
   </div>
 
 </section>
