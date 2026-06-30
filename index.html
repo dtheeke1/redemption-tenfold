@@ -97,6 +97,29 @@
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
     .stat-lbl { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
 
+    /* ABOUT */
+    .about { background: var(--panel); border-top: 1px solid var(--border); padding: 8rem 5rem; }
+    .about-inner { max-width: 1100px; margin: 0 auto; }
+    .about-eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
+    .about-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    .about-intro { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 300; line-height: 1.55; color: var(--text); margin-bottom: 3.5rem; max-width: 820px; }
+    .about-intro em { font-style: italic; color: var(--gold); }
+    .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 5rem; margin-bottom: 3.5rem; }
+    .about-body p { font-size: 0.86rem; line-height: 2.1; color: var(--muted); }
+    .about-styles { margin-bottom: 3.5rem; }
+    .about-styles h4 { font-size: 0.56rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .style-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .style-tag { border: 1px solid var(--border); color: var(--muted); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.45rem 1rem; transition: all 0.3s; }
+    .style-tag:hover { border-color: var(--gold); color: var(--gold); }
+    .about-closing { border-top: 1px solid var(--border); padding-top: 3rem; }
+    .about-closing blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.2vw, 1.85rem); font-style: italic; font-weight: 300; line-height: 1.5; color: var(--text); margin-bottom: 0.75rem; }
+    .about-closing blockquote em { color: var(--gold); font-style: normal; }
+    .about-closing p { font-size: 0.82rem; color: var(--muted); line-height: 1.9; }
+    @media (max-width: 960px) {
+      .about { padding: 5rem 1.5rem; }
+      .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
     /* ── ARTIST SECTION ── */
     .artists { background: var(--dark); border-top: 1px solid var(--border); }
     .artists-header { padding: 6rem 5rem 4rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
@@ -305,6 +328,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">×</button>
+  <a href="#about" onclick="closeMobile()">About</a>
   <a href="#artists" onclick="closeMobile()">Artists</a>
   <a href="#reviews" onclick="closeMobile()">Reviews</a>
   <a href="#faq" onclick="closeMobile()">FAQ</a>
@@ -321,6 +345,7 @@
     <span class="logo-fallback">Redemption TenFold</span>
   </a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#artists">Artists</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -381,6 +406,41 @@
     <div class="stat-cell reveal reveal-delay-2"><div class="stat-num counter" data-target="2">0</div><div class="stat-lbl">Published artists</div></div>
     <div class="stat-cell reveal reveal-delay-3"><div class="stat-num">All</div><div class="stat-lbl">Styles covered</div></div>
     <div class="stat-cell reveal reveal-delay-4"><div class="stat-num" style="font-size:2rem;">1v1</div><div class="stat-lbl">Ink Wars Champion</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="about-eyebrow reveal">About the Studio</p>
+    <p class="about-intro reveal">At <em>Redemption Tenfold Tattoo</em>, we believe a tattoo should be more than something that looks good — it should be something that <em>means</em> something.</p>
+    <div class="about-body">
+      <p class="reveal reveal-delay-1">Located in Menominee, Michigan, Redemption Tenfold was built around one simple idea: create a studio where artistry, professionalism, and client experience matter just as much as the finished tattoo. From your first consultation to your final session, our goal is to provide an experience that's comfortable, collaborative, and focused entirely on creating artwork you'll be proud to wear for the rest of your life.</p>
+      <p class="reveal reveal-delay-2">We specialize in custom tattooing, not cookie-cutter designs. Every project begins with a conversation. Whether you arrive with a fully developed concept or only a rough idea, we work alongside you to create artwork that's unique to you, your story, and your vision.</p>
+      <p class="reveal reveal-delay-1">We also understand that tattoos can represent healing as much as self-expression. Whether you're covering scars, honoring someone you've lost, celebrating a milestone, or marking the beginning of a new chapter, we're honored to create artwork that carries lasting personal meaning.</p>
+      <p class="reveal reveal-delay-2">Cleanliness, safety, and professionalism are the foundation of everything we do. We maintain strict health standards, use high-quality equipment and materials, and take the time to educate every client on proper aftercare so their tattoo heals as beautifully as it was created.</p>
+    </div>
+    <div class="about-styles reveal">
+      <h4>Styles We Work In</h4>
+      <div class="style-tags">
+        <span class="style-tag">Black &amp; Grey Realism</span>
+        <span class="style-tag">Color Realism</span>
+        <span class="style-tag">Illustrative</span>
+        <span class="style-tag">Portraits</span>
+        <span class="style-tag">Blackwork</span>
+        <span class="style-tag">Fine Line</span>
+        <span class="style-tag">Chicano</span>
+        <span class="style-tag">Horror</span>
+        <span class="style-tag">Japanese</span>
+        <span class="style-tag">Large-Scale Sleeves</span>
+        <span class="style-tag">Custom Compositions</span>
+        <span class="style-tag">Scar Cover-Ups</span>
+      </div>
+    </div>
+    <div class="about-closing reveal">
+      <blockquote>"Because great tattoos aren't just applied.<br>They're <em>earned</em>, designed with intention, and crafted to last."</blockquote>
+      <p>Redemption Tenfold is home to award-winning artists whose work has been recognized through industry publications, convention appearances, and professional sponsorships. But while we're proud of those accomplishments, they're not what define us. What matters most is the trust our clients place in us and the relationships we build one tattoo at a time.</p>
+    </div>
   </div>
 </section>
 
