@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Redemption TenFold — Award-Winning Tattoo Collective · Menominee, MI</title>
+  <title>Redemption TenFold Tattoo — Award-Winning Collective · Menominee, MI</title>
   <meta name="description" content="Redemption TenFold is a collective of award-winning tattoo artists in Menominee, Michigan. Black &amp; Grey Realism, Portraiture, Blackwork, Color, and Fine Line."/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
@@ -22,10 +22,9 @@
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
 
-    /* CUSTOM CURSOR */
-    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.08s, width 0.3s, height 0.3s, opacity 0.3s; }
-    body:hover .cursor { opacity: 1; }
+    /* CURSOR */
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.3s, height 0.3s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
 
     /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
@@ -40,21 +39,19 @@
     .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.75rem 5rem;
-      transition: background 0.4s, padding 0.4s;
-    }
-    nav.scrolled { background: rgba(8,8,8,0.97); padding: 1.2rem 5rem; border-bottom: 1px solid var(--border); }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1rem 4rem; transition: background 0.4s, padding 0.4s; }
+    nav.scrolled { background: rgba(8,8,8,0.97); padding: 0.75rem 4rem; border-bottom: 1px solid var(--border); }
+    .logo-wrap { display: flex; align-items: center; text-decoration: none; }
+    .logo-img { height: 70px; width: auto; object-fit: contain; transition: height 0.4s; }
+    nav.scrolled .logo-img { height: 52px; }
+    .logo-fallback { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); display: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover { color: var(--gold); }
     .nav-book { border: 1px solid rgba(201,168,76,0.35) !important; color: var(--gold) !important; padding: 0.55rem 1.4rem; transition: all 0.3s !important; }
     .nav-book:hover { background: var(--gold) !important; color: var(--black) !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 24px; height: 1px; background: var(--text); transition: all 0.3s; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--text); }
     .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.98); z-index: 490; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { color: var(--text); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.08em; transition: color 0.3s; }
@@ -63,8 +60,8 @@
 
     /* HERO */
     .hero { height: 100vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1800&q=90') center/cover no-repeat; transform-origin: center; }
-    .hero-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.92) 40%, rgba(8,8,8,0.3) 100%), linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 50%); }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1800&q=90') center/cover no-repeat; }
+    .hero-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.93) 40%, rgba(8,8,8,0.3) 100%), linear-gradient(to top, rgba(8,8,8,0.65) 0%, transparent 50%); }
     .hero-content { position: relative; z-index: 1; padding: 0 5rem 7rem; max-width: 700px; }
     .hero-overline { font-size: 0.58rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 1.25rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
     .hero-overline::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
@@ -79,7 +76,7 @@
     .hero-scroll { position: absolute; bottom: 3rem; right: 5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; z-index: 1; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
     .hero-scroll span { font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
     .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-    @keyframes scrollPulse { 0%,100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
     /* MARQUEE */
@@ -100,33 +97,46 @@
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
     .stat-lbl { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
 
-    /* ARTISTS */
+    /* ── ARTIST SECTION ── */
     .artists { background: var(--dark); border-top: 1px solid var(--border); }
-    .artists-header { padding: 6rem 5rem 4rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+    .artists-header { padding: 6rem 5rem 4rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
     .artists-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
     .artists-header h2 em { font-style: italic; color: var(--gold); }
     .artists-header p { font-size: 0.8rem; color: var(--muted); max-width: 340px; line-height: 1.85; }
 
-    .artist-block { display: grid; grid-template-columns: 380px 1fr; border-bottom: 1px solid var(--border); }
-    .artist-block:nth-child(even) { grid-template-columns: 1fr 380px; direction: rtl; }
-    .artist-block:nth-child(even) > * { direction: ltr; }
+    /* Artist block: portfolio grid LEFT, info RIGHT */
+    .artist-block { display: grid; grid-template-columns: 420px 1fr; border-bottom: 1px solid var(--border); min-height: 520px; }
+    .artist-block.flip { grid-template-columns: 1fr 420px; }
+    .artist-block.flip .artist-portfolio { order: 2; }
+    .artist-block.flip .artist-info { order: 1; }
 
-    .artist-portrait { position: relative; overflow: hidden; }
-    .artist-portrait img { width: 100%; height: 100%; min-height: 540px; object-fit: cover; object-position: center top; filter: grayscale(15%); transition: filter 0.6s, transform 0.8s; }
-    .artist-block:hover .artist-portrait img { filter: grayscale(0%); transform: scale(1.03); }
-    .artist-id-plate { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, transparent 100%); }
-    .artist-id-plate h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: #fff; }
-    .artist-id-plate .title { font-size: 0.56rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
+    /* Portfolio grid — the showcase */
+    .artist-portfolio { background: var(--black); }
+    .artist-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; height: 100%; }
+    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.72); transition: filter 0.35s, transform 0.5s; cursor: pointer; display: block; }
+    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
 
-    .artist-body { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; background: var(--panel); }
+    /* Info panel */
+    .artist-info { background: var(--panel); padding: 3rem 3.5rem; display: flex; flex-direction: column; gap: 2rem; justify-content: center; }
+
+    /* Artist header: headshot + name/title side by side */
+    .artist-header { display: flex; align-items: flex-start; gap: 1.75rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .artist-headshot { width: 120px; height: 120px; object-fit: cover; object-position: center top; filter: grayscale(10%); flex-shrink: 0; transition: filter 0.4s; }
+    .artist-block:hover .artist-headshot { filter: grayscale(0%); }
+    .artist-header-text { display: flex; flex-direction: column; justify-content: center; gap: 0.4rem; }
+    .artist-header-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
+    .artist-header-text .title { font-size: 0.54rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); }
+
+    /* Bio */
     .artist-bio { font-size: 0.84rem; line-height: 2.05; color: var(--muted); }
-    .artist-creds { display: flex; flex-direction: column; gap: 0.55rem; }
-    .cred { display: flex; align-items: center; gap: 0.85rem; font-size: 0.76rem; color: var(--muted); }
-    .cred::before { content: ''; display: block; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0; }
-    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-    .artist-gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: brightness(0.8); transition: filter 0.3s; cursor: pointer; }
-    .artist-gallery img:hover { filter: brightness(1); }
-    .artist-links { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); }
+
+    /* Credentials */
+    .artist-creds { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cred { display: flex; align-items: center; gap: 0.85rem; font-size: 0.75rem; color: var(--muted); }
+    .cred::before { content: ''; display: block; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+    /* Book / IG links */
+    .artist-links { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border); }
     .artist-links .book { color: var(--gold); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; transition: border-color 0.3s; }
     .artist-links .book:hover { border-color: var(--gold); }
     .artist-links .ig { color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
@@ -145,7 +155,7 @@
 
     /* REVIEWS */
     .reviews { padding: 8rem 5rem; background: var(--black); border-top: 1px solid var(--border); }
-    .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+    .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; }
     .reviews-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
     .reviews-header h2 em { font-style: italic; color: var(--gold); }
     .reviews-meta { text-align: right; }
@@ -178,7 +188,7 @@
     .faq-item.open .faq-q h4 { color: var(--gold); }
     .faq-icon { width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; color: var(--muted); font-size: 1rem; line-height: 1; }
     .faq-item.open .faq-icon { background: var(--gold); border-color: var(--gold); color: var(--black); transform: rotate(45deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .faq-item.open .faq-a { max-height: 300px; }
     .faq-a p { font-size: 0.84rem; line-height: 2; color: var(--muted); padding-bottom: 2rem; }
 
@@ -197,7 +207,7 @@
     .aftercare-warning p { font-size: 0.82rem; line-height: 1.9; color: var(--muted); }
     .aftercare-warning p strong { color: var(--gold); font-weight: 500; }
 
-    /* MAP + LOCATION */
+    /* LOCATION */
     .location { background: var(--dark); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
     .location-map { position: relative; min-height: 480px; }
     .location-map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; filter: grayscale(60%) invert(90%) contrast(0.85); }
@@ -205,11 +215,11 @@
     .location-info .eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); }
     .location-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; line-height: 1.2; }
     .location-info h2 em { font-style: italic; color: var(--gold); }
-    .location-details { display: flex; flex-direction: column; gap: 0; }
+    .location-details { display: flex; flex-direction: column; }
     .loc-row { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
     .loc-row:first-child { border-top: 1px solid var(--border); }
     .loc-row .k { font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
-    .loc-row .v { font-size: 0.82rem; color: var(--text); text-align: right; }
+    .loc-row .v { font-size: 0.82rem; color: var(--text); text-align: right; line-height: 1.65; }
     .loc-row a { color: var(--gold); text-decoration: none; }
     .directions-btn { display: inline-block; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.85rem 2rem; transition: all 0.3s; width: fit-content; }
     .directions-btn:hover { border-color: var(--gold); color: var(--gold); }
@@ -219,7 +229,6 @@
     .booking h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
     .booking h2 em { font-style: italic; color: var(--gold); }
     .booking > div:first-child p { font-size: 0.84rem; line-height: 2; color: var(--muted); margin-bottom: 2.5rem; }
-    .booking-rows {}
     .b-row { display: flex; justify-content: space-between; padding: 1.3rem 0; border-bottom: 1px solid var(--border); }
     .b-row:first-child { border-top: 1px solid var(--border); }
     .b-row .k { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
@@ -241,17 +250,21 @@
     .footer-social a:hover { color: var(--gold); }
 
     @media (max-width: 960px) {
-      nav { padding: 1.5rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: 0.75rem 1.5rem; }
+      .logo-img { height: 52px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-content { padding: 0 1.5rem 5rem; }
       .hero-scroll { display: none; }
       .philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
-      .artists-header { flex-direction: column; gap: 1.5rem; padding: 4rem 1.5rem 3rem; }
-      .artist-block { grid-template-columns: 1fr !important; direction: ltr !important; }
-      .artist-body { padding: 2rem 1.5rem; }
+      .artists-header { flex-direction: column; padding: 4rem 1.5rem 3rem; }
+      .artist-block, .artist-block.flip { grid-template-columns: 1fr; }
+      .artist-block.flip .artist-portfolio { order: 0; }
+      .artist-block.flip .artist-info { order: 0; }
+      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 260px; }
+      .artist-info { padding: 2rem 1.5rem; }
       .reviews { padding: 5rem 1.5rem; }
-      .reviews-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .reviews-grid { grid-template-columns: 1fr; }
       .faq { padding: 5rem 1.5rem; }
       .aftercare { padding: 5rem 1.5rem; }
@@ -262,7 +275,6 @@
       footer { padding: 3rem 1.5rem 2rem; }
       .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
       .footer-bottom { flex-direction: column; gap: 1rem; }
-      nav.scrolled { padding: 1.2rem 1.5rem; }
     }
   </style>
 </head>
@@ -287,11 +299,16 @@
   <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#aftercare" onclick="closeMobile()">Aftercare</a>
   <a href="#location" onclick="closeMobile()">Location</a>
-  <a href="#booking" onclick="closeMobile()">Book Now</a>
+  <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" onclick="closeMobile()">Book Now</a>
 </div>
 
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo">Redemption TenFold</a>
+  <a href="#" class="logo-wrap">
+    <img src="images/logo.png" alt="Redemption TenFold Tattoo" class="logo-img"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+    <span class="logo-fallback">Redemption TenFold</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#artists">Artists</a></li>
     <li><a href="#reviews">Reviews</a></li>
@@ -300,9 +317,7 @@
     <li><a href="#location">Location</a></li>
     <li><a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="nav-book">Book Now</a></li>
   </ul>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- HERO -->
@@ -318,10 +333,7 @@
       <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-ghost-white">Book Your Session</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
 <!-- MARQUEE -->
@@ -351,7 +363,7 @@
     <h2>Built by artists who<br>refuse to <em>stop</em><br>getting better</h2>
     <p>Redemption TenFold came together around one shared principle: every artist under this roof should be pushing the limits of what they're capable of. Not coasting. Not repeating themselves. Pushing.</p>
     <p>We do all styles — black and grey realism, illustrative portraiture, blackwork, color, fine line — and we have artists who've won competitions, been published in national magazines, and earned sponsored pro team placements to prove it.</p>
-    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold" style="margin-top: 1.5rem;">Book on Vagaro</a>
+    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold" style="margin-top:1.5rem;">Book on Vagaro</a>
   </div>
   <div class="phil-stats reveal-right">
     <div class="stat-cell reveal reveal-delay-1"><div class="stat-num counter" data-target="3">0</div><div class="stat-lbl">Pro team sponsorships</div></div>
@@ -366,38 +378,80 @@
   <div class="artists-header">
     <div class="reveal">
       <h2>The <em>Artists</em></h2>
-      <p style="margin-top:1rem;">Each artist at Redemption TenFold has built a career worth sitting for. Browse their work and book directly with the one who speaks to your vision.</p>
+      <p style="margin-top:1rem;">Each artist at Redemption TenFold has built a career worth sitting for. Browse their portfolios and book directly with the one who speaks to your vision.</p>
     </div>
   </div>
 
-  <!-- ADAM ZIMMERMAN -->
-  <div class="artist-block">
-    <div class="artist-portrait">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85" alt="Adam Zimmerman"/>
-      <div class="artist-id-plate">
-        <h3>Adam Zimmerman</h3>
-        <span class="title">Lead Artist · Ink Wars 1v1 Champion</span>
+  <!-- ADAM ZIMMERMAN — portfolio left, info right -->
+  <div class="artist-block reveal">
+    <div class="artist-portfolio">
+      <div class="artist-gallery" data-artist="adam">
+        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Adam's work"/>
       </div>
     </div>
-    <div class="artist-body">
-      <p class="artist-bio"><!-- DROP ADAM'S BIOGRAPHY HERE — replace this placeholder text with his bio when you have it ready -->
-      Adam Zimmerman is one of the most decorated tattoo artists in the Upper Peninsula. Published in CCI Magazine and Carnival of Ink Magazine, sponsored by the Papillon Pro Team, The Squad Pro Team, and Proper Aftercare Pro Team, and crowned Ink Wars 1v1 Champion — Adam brings a competition-level standard to every client who sits in his chair. His work in black and grey realism and illustrative portraiture speaks for itself. Book early. His schedule fills fast.</p>
+    <div class="artist-info">
+      <div class="artist-header">
+        <img class="artist-headshot"
+             src="images/adam-zimmerman.jpg"
+             alt="Adam Zimmerman"
+             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85'"/>
+        <div class="artist-header-text">
+          <h3>Adam Zimmerman</h3>
+          <span class="title">Lead Artist · Ink Wars 1v1 Champion</span>
+        </div>
+      </div>
+      <p class="artist-bio"><!-- DROP ADAM'S FULL BIOGRAPHY HERE -->
+      Adam Zimmerman is one of the most decorated tattoo artists in the Upper Peninsula. Published in CCI Magazine and Carnival of Ink Magazine, sponsored by the Papillon Pro Team, The Squad Pro Team, and Proper Aftercare Pro Team — and crowned Ink Wars 1v1 Champion — Adam brings a competition-level standard to every client who sits in his chair. His specialties include black and grey realism and illustrative portraiture that stops people mid-conversation. Book early. His schedule fills fast.</p>
       <div class="artist-creds">
         <div class="cred">Published in CCI Magazine</div>
         <div class="cred">Published in Carnival of Ink Magazine</div>
         <div class="cred">Ink Wars 1v1 Champion</div>
         <div class="cred">Papillon Pro Team · The Squad Pro Team · Proper Aftercare Pro Team</div>
       </div>
-      <div class="artist-gallery" data-artist="adam">
-        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=400&q=80" alt="Adam's work"/>
-      </div>
       <div class="artist-links">
         <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Adam →</a>
+        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="ig">@redemptiontenfold</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERIC EBBOLE — info left, portfolio right -->
+  <div class="artist-block flip reveal">
+    <div class="artist-portfolio">
+      <div class="artist-gallery" data-artist="eric">
+        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Eric's work"/>
+        <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Eric's work"/>
+        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Eric's work"/>
+        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Eric's work"/>
+        <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Eric's work"/>
+        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Eric's work"/>
+      </div>
+    </div>
+    <div class="artist-info">
+      <div class="artist-header">
+        <img class="artist-headshot"
+             src="images/eric-ebbole.jpg"
+             alt="Eric Ebbole"
+             onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=85'"/>
+        <div class="artist-header-text">
+          <h3>Eric Ebbole</h3>
+          <span class="title">Master Artist · 38+ Years Experience</span>
+        </div>
+      </div>
+      <p class="artist-bio">Eric Ebbole was taught to tattoo at a very early age by his father, Electric Ed Ebbole, and in the fall of 1986 began his career at Gulf Coast Tattoos in Mobile, Alabama. Nearly four decades later, he is one of the most well-traveled and widely respected artists in the industry. His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Growing up alongside legends like Paul Rogers, Jack Armstrong, and Don Nolan gave Eric a foundation few artists ever get — and he's spent his career building on it. He excels in black and grey work and color tattooing across all sizes and genres, with a fluency that comes only from decades of doing this at the highest level.</p>
+      <div class="artist-creds">
+        <div class="cred">38+ years tattooing professionally</div>
+        <div class="cred">Trained alongside Paul Rogers, Jack Armstrong &amp; Don Nolan</div>
+        <div class="cred">Worked with Mike Dorsey, Shaun Anderson &amp; Kore Flatmoe</div>
+        <div class="cred">International convention experience — US, Amsterdam &amp; Germany</div>
+      </div>
+      <div class="artist-links">
+        <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Eric →</a>
         <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="ig">@redemptiontenfold</a>
       </div>
     </div>
@@ -408,9 +462,7 @@
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews-header reveal">
-    <div>
-      <h2>What clients <em>say</em></h2>
-    </div>
+    <div><h2>What clients <em>say</em></h2></div>
     <div class="reviews-meta">
       <div class="reviews-score">5.0</div>
       <div class="reviews-stars">★★★★★</div>
@@ -420,37 +472,28 @@
   <div class="reviews-grid">
     <div class="review-card reveal reveal-delay-1">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Adam is an absolute master of black and grey. I drove in from Green Bay for this piece and it was worth every mile. The detail work is unlike anything I've seen locally — I've had strangers stop me on the street to ask about it."</p>
+      <p class="review-text">"Adam is an absolute master of black and grey. I drove in from Green Bay for this piece and it was worth every mile. The detail work is unlike anything I've seen locally — strangers stop me on the street to ask about it."</p>
       <div class="review-author">
         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" class="review-avatar" alt=""/>
-        <div>
-          <div class="review-name">Jake M.</div>
-          <div class="review-date">2 months ago</div>
-        </div>
+        <div><div class="review-name">Jake M.</div><div class="review-date">2 months ago</div></div>
       </div>
       <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
     <div class="review-card reveal reveal-delay-2">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"I've been tattooed by a lot of artists and this shop operates at a level you'd expect in a major city. The portrait I got is better than the reference photo — that shouldn't even be possible. Don't let the Menominee address fool you."</p>
+      <p class="review-text">"Eric did a full color sleeve section for me and the man is a machine. Decades of experience and it shows in every single line. Calm, precise, zero ego — just pure craft. I'll be back every time."</p>
       <div class="review-author">
         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" class="review-avatar" alt=""/>
-        <div>
-          <div class="review-name">Lexi T.</div>
-          <div class="review-date">3 months ago</div>
-        </div>
+        <div><div class="review-name">Lexi T.</div><div class="review-date">3 months ago</div></div>
       </div>
       <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
     <div class="review-card reveal reveal-delay-3">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Award-winning for a reason. Clean shop, professional crew, and the kind of attention to detail that makes you realize you've been settling everywhere else. I've sent four friends here. Not one complaint among them."</p>
+      <p class="review-text">"Don't let the Menominee address fool you — this studio operates at a level you'd expect in a major city. Award-winning for a reason. I've sent four friends here. Not one complaint among them."</p>
       <div class="review-author">
         <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" class="review-avatar" alt=""/>
-        <div>
-          <div class="review-name">Marcus D.</div>
-          <div class="review-date">5 months ago</div>
-        </div>
+        <div><div class="review-name">Marcus D.</div><div class="review-date">5 months ago</div></div>
       </div>
       <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
@@ -482,7 +525,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>Is a deposit required?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>Yes, a deposit is required to hold your appointment. It applies toward the final cost of your tattoo. The deposit is non-refundable for cancellations but transferable to a rescheduled appointment with adequate notice. Contact us directly for specifics on your booking.</p></div>
+      <div class="faq-a"><p>Yes, a deposit is required to hold your appointment. It applies toward the final cost of your tattoo. The deposit is non-refundable for cancellations but transferable to a rescheduled appointment with adequate notice. Contact us directly for specifics.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>Can I bring reference photos?</h4><span class="faq-icon">+</span></div>
@@ -500,37 +543,34 @@
   <div class="aftercare-header reveal">
     <p class="eyebrow">Post-Session Care</p>
     <h2>Protecting your <em>investment</em></h2>
-    <p style="margin-top:0.75rem; font-size:0.84rem; color:var(--muted); max-width:600px; line-height:1.9;">A great tattoo is a collaboration that continues after you leave the studio. Follow these steps carefully — how you care for the work in the first two weeks determines how it looks for the rest of your life.</p>
+    <p style="margin-top:0.75rem; font-size:0.84rem; color:var(--muted); max-width:600px; line-height:1.9;">How you care for the work in the first two weeks determines how it looks for the rest of your life.</p>
   </div>
   <div class="aftercare-grid">
     <div class="care-card reveal reveal-delay-1">
       <div class="care-step">01</div>
       <h4>First 24 Hours</h4>
-      <p>Leave the bandage or wrap your artist applied in place for 2–4 hours, or up to 24 hours if a Saniderm / second-skin bandage was used. Remove gently under lukewarm running water. Wash with fragrance-free soap using clean hands only — no washcloths or sponges. Pat dry with a clean paper towel. Apply a thin layer of unscented lotion or your artist's recommended ointment.</p>
+      <p>Leave the bandage or wrap in place for 2–4 hours (or up to 24 hours with Saniderm / second-skin). Remove gently under lukewarm running water. Wash with fragrance-free soap using clean hands only. Pat dry with a clean paper towel. Apply a thin layer of unscented lotion or your artist's recommended ointment.</p>
     </div>
     <div class="care-card reveal reveal-delay-2">
       <div class="care-step">02</div>
       <h4>Days 2 – 14</h4>
-      <p>Wash twice daily and apply a thin layer of unscented moisturizer each time. The tattoo will peel and flake — this is normal. Do not pick, scratch, or peel the skin. Wear loose clothing over the area. Avoid submerging the tattoo in water (no baths, pools, hot tubs, or open water). Keep it out of direct sunlight. Minimize heavy sweating over the area when possible.</p>
+      <p>Wash twice daily and apply a thin layer of unscented moisturizer each time. The tattoo will peel and flake — this is normal. Do not pick or scratch. Wear loose clothing over the area. Avoid submerging in water. Keep it out of direct sunlight. Minimize heavy sweating over the area when possible.</p>
     </div>
     <div class="care-card reveal reveal-delay-3">
       <div class="care-step">03</div>
       <h4>Long-Term Care</h4>
-      <p>Once fully healed (typically 3–4 weeks), apply SPF 50+ sunscreen whenever the tattoo will be in the sun. UV exposure is the number one cause of fading. Keep your skin moisturized year-round — hydrated skin holds ink better over time. Avoid prolonged exposure to chlorine or saltwater. Schedule a touch-up 8–10 weeks out if needed.</p>
+      <p>Once fully healed (3–4 weeks), apply SPF 50+ sunscreen whenever the tattoo is exposed to sun — UV is the number one cause of fading. Keep skin moisturized year-round. Avoid prolonged chlorine or saltwater exposure. Schedule a touch-up 8–10 weeks out if needed.</p>
     </div>
   </div>
   <div class="aftercare-warning reveal" style="margin-top:3rem;">
-    <p><strong>Watch for these warning signs:</strong> Some redness and minor swelling in the first 48 hours is normal. If you notice excessive swelling, discharge, a spreading rash, or fever, contact a medical professional — these are signs of infection, not just healing. <strong>Don't hesitate to reach us</strong> at <a href="mailto:Tenfoldtattoo@gmail.com" style="color:var(--gold);text-decoration:none;">Tenfoldtattoo@gmail.com</a> or <a href="tel:+19067926001" style="color:var(--gold);text-decoration:none;">(906) 792-6001</a> if you have any questions about your healing.</p>
+    <p><strong>Watch for these warning signs:</strong> Minor redness and swelling in the first 48 hours is normal. Excessive swelling, discharge, a spreading rash, or fever are signs of infection — seek medical attention promptly. <strong>Don't hesitate to reach us</strong> at <a href="mailto:Tenfoldtattoo@gmail.com" style="color:var(--gold);text-decoration:none;">Tenfoldtattoo@gmail.com</a> or <a href="tel:+19067926001" style="color:var(--gold);text-decoration:none;">(906) 792-6001</a> with any questions about your healing.</p>
   </div>
 </section>
 
 <!-- LOCATION + MAP -->
 <section class="location" id="location">
   <div class="location-map">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2893.0!2d-87.6144!3d45.1077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d54e3b6d6e0a0a1%3A0x0!2s1112+10th+St%2C+Menominee%2C+MI+49858!5e0!3m2!1sen!2sus!4v1700000000001!5m2!1sen!2sus"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2893.0!2d-87.6144!3d45.1077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d54e3b6d6e0a0a1%3A0x0!2s1112+10th+St%2C+Menominee%2C+MI+49858!5e0!3m2!1sen!2sus!4v1700000000001!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
   <div class="location-info">
     <p class="eyebrow reveal">Find Us</p>
@@ -550,10 +590,10 @@
 <section class="booking" id="booking">
   <div class="reveal-left">
     <h2>Ready to go<br><em>tenfold?</em></h2>
-    <p>Whether you have a fully formed concept or just the beginning of an idea, reach out and we'll help you get there. Our artists work with you through the design process — you don't have to show up with everything figured out.</p>
+    <p>Whether you have a fully formed concept or just the beginning of an idea, reach out and we'll help you get there. Our artists work with you through the design — you don't have to show up with everything figured out.</p>
     <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold">Book on Vagaro</a>
   </div>
-  <div class="booking-rows reveal-right">
+  <div class="reveal-right">
     <div class="b-row"><span class="k">Studio</span><span class="v">Redemption TenFold</span></div>
     <div class="b-row"><span class="k">Address</span><span class="v">1112 10th St · Menominee, MI 49858</span></div>
     <div class="b-row"><span class="k">Hours</span><span class="v">Tuesday – Saturday · 10am – 6pm</span></div>
@@ -570,7 +610,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <span class="f-logo">Redemption TenFold</span>
-      <p>A collective of award-winning tattoo artists in Menominee, Michigan. All styles. One standard. Book online at vagaro.com/redemptiontenfold.</p>
+      <p>A collective of award-winning tattoo artists in Menominee, Michigan. All styles. One standard. Book at vagaro.com/redemptiontenfold.</p>
     </div>
     <div class="footer-col">
       <h5>Navigate</h5>
@@ -600,83 +640,63 @@
 </footer>
 
 <script>
-  // Custom cursor
+  // Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
-  function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
-  animateRing();
-  document.querySelectorAll('a, button, .faq-q, .artist-gallery img').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.width = '60px'; ring.style.height = '60px'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.width = '36px'; ring.style.height = '36px'; });
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+  (function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+  document.querySelectorAll('a,button,.faq-q,.artist-gallery img').forEach(el => {
+    el.addEventListener('mouseenter',()=>{ cursor.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.width='60px'; ring.style.height='60px'; });
+    el.addEventListener('mouseleave',()=>{ cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='36px'; ring.style.height='36px'; });
   });
 
   // Nav scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
   // Hero parallax
   const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => { if (window.scrollY < window.innerHeight) { heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`; } });
+  window.addEventListener('scroll', () => { if(window.scrollY < window.innerHeight) heroBg.style.transform=`translateY(${window.scrollY*0.35}px)`; });
 
   // Mobile menu
   document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', closeMobile);
-  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+  function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
 
   // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.08, rootMargin:'0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
 
-  // Counter animation
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !e.target.dataset.done) {
-        e.target.dataset.done = true;
-        const target = parseInt(e.target.dataset.target);
-        const duration = 1800;
-        const start = performance.now();
-        function update(now) {
-          const t = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          e.target.textContent = Math.floor(eased * target) + (target >= 100 ? '+' : '');
-          if (t < 1) requestAnimationFrame(update);
-        }
-        requestAnimationFrame(update);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+  // Counters
+  const cObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if(e.isIntersecting && !e.target.dataset.done){
+      e.target.dataset.done=true;
+      const t=parseInt(e.target.dataset.target), dur=1800, s=performance.now();
+      (function tick(now){ const p=Math.min((now-s)/dur,1), v=1-Math.pow(1-p,3); e.target.textContent=Math.floor(v*t)+(t>2?'+':''); if(p<1) requestAnimationFrame(tick); })(s);
+    }
+  }), {threshold:0.5});
+  document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
 
-  // FAQ accordion
+  // FAQ
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
-      const item = q.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+      const item=q.parentElement, open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!open) item.classList.add('open');
     });
   });
 
   // Lightbox
-  const allGalleryImgs = [];
-  document.querySelectorAll('.artist-gallery img').forEach((img, i) => {
-    allGalleryImgs.push(img.src);
-    img.addEventListener('click', () => openLightbox(i));
-  });
-  let currentLb = 0;
-  const lbImg = document.getElementById('lbImg');
-  const lb = document.getElementById('lightbox');
-  function openLightbox(i) { currentLb = i; lbImg.src = allGalleryImgs[i]; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  document.getElementById('lbClose').addEventListener('click', closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click', () => { currentLb = (currentLb - 1 + allGalleryImgs.length) % allGalleryImgs.length; lbImg.src = allGalleryImgs[currentLb]; });
-  document.getElementById('lbNext').addEventListener('click', () => { currentLb = (currentLb + 1) % allGalleryImgs.length; lbImg.src = allGalleryImgs[currentLb]; });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click(); if (e.key === 'ArrowRight') document.getElementById('lbNext').click(); });
+  const imgs=[]; document.querySelectorAll('.artist-gallery img').forEach((img,i) => { imgs.push(img.src); img.addEventListener('click',()=>openLb(i)); });
+  let cur=0; const lbImg=document.getElementById('lbImg'), lb=document.getElementById('lightbox');
+  function openLb(i){ cur=i; lbImg.src=imgs[i]; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.getElementById('lbPrev').addEventListener('click',()=>{ cur=(cur-1+imgs.length)%imgs.length; lbImg.src=imgs[cur]; });
+  document.getElementById('lbNext').addEventListener('click',()=>{ cur=(cur+1)%imgs.length; lbImg.src=imgs[cur]; });
+  lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') document.getElementById('lbPrev').click(); if(e.key==='ArrowRight') document.getElementById('lbNext').click(); });
 </script>
 </body>
 </html>
