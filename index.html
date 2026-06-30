@@ -4,251 +4,254 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Redemption TenFold — Award-Winning Tattoo Collective · Menominee, MI</title>
-  <meta name="description" content="Redemption TenFold is a collective of award-winning tattoo artists in Menominee, Michigan. Black & Grey Realism, Portraiture, Blackwork, Color, and Fine Line."/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <meta name="description" content="Redemption TenFold is a collective of award-winning tattoo artists in Menominee, Michigan. Black &amp; Grey Realism, Portraiture, Blackwork, Color, and Fine Line."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --red: #9b1f1f;
-      --red-bright: #c0392b;
-      --red-dim: rgba(155,31,31,0.12);
-      --black: #060606;
-      --dark: #0c0c0c;
-      --panel: #111111;
-      --raised: #161616;
-      --text: #c8c4bc;
-      --muted: #504c48;
-      --border: #1c1c1c;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.12);
+      --black: #080808;
+      --dark: #0f0f0f;
+      --panel: #131313;
+      --raised: #171717;
+      --text: #ccc8c0;
+      --muted: #5a5650;
+      --border: #1e1e1e;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+    body { background: var(--black); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
 
-    /* CURSOR */
-    .cursor { position: fixed; width: 8px; height: 8px; background: var(--red-bright); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.3s, height 0.3s; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(192,57,43,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
+    /* CUSTOM CURSOR */
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: transform 0.08s, width 0.3s, height 0.3s, opacity 0.3s; }
+    body:hover .cursor { opacity: 1; }
 
     /* SCROLL REVEAL */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.4s; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.75rem 5rem; transition: background 0.4s, padding 0.4s; }
-    nav.scrolled { background: rgba(6,6,6,0.97); padding: 1.2rem 5rem; border-bottom: 1px solid var(--border); }
-    .logo-wrap { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
-    .logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.18em; color: #fff; }
-    .logo-sub { font-size: 0.48rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--red-bright); margin-top: 1px; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.75rem 5rem;
+      transition: background 0.4s, padding 0.4s;
+    }
+    nav.scrolled { background: rgba(8,8,8,0.97); padding: 1.2rem 5rem; border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
-    .nav-links a:hover { color: #fff; }
-    .nav-book { border: 1px solid rgba(192,57,43,0.4) !important; color: var(--red-bright) !important; padding: 0.55rem 1.4rem; transition: all 0.3s !important; }
-    .nav-book:hover { background: var(--red-bright) !important; color: #fff !important; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { display: block; width: 24px; height: 1px; background: var(--text); }
-    .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(6,6,6,0.98); z-index: 490; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-book { border: 1px solid rgba(201,168,76,0.35) !important; color: var(--gold) !important; padding: 0.55rem 1.4rem; transition: all 0.3s !important; }
+    .nav-book:hover { background: var(--gold) !important; color: var(--black) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1px; background: var(--text); transition: all 0.3s; }
+    .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.98); z-index: 490; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: var(--text); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.15em; transition: color 0.3s; }
-    .mobile-menu a:hover { color: var(--red-bright); }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.08em; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--gold); }
     .mobile-close { position: absolute; top: 2rem; right: 2rem; font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; }
 
     /* HERO */
     .hero { height: 100vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1800&q=90') center/cover no-repeat; transform-origin: center; }
-    .hero-veil { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(6,6,6,0.93) 38%, rgba(6,6,6,0.35) 100%), linear-gradient(to top, rgba(6,6,6,0.7) 0%, transparent 55%); }
-    .hero-content { position: relative; z-index: 1; padding: 0 5rem 7rem; max-width: 720px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 0.75rem; border: 1px solid rgba(192,57,43,0.35); padding: 0.45rem 1.1rem; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.9s 0.3s forwards; }
-    .hero-badge span { font-size: 0.52rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--red-bright); }
-    .hero-badge::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--red-bright); }
-    .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 9rem); line-height: 0.92; letter-spacing: 0.04em; margin-bottom: 1.75rem; color: #fff; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
-    .hero-content h1 em { color: var(--red-bright); font-style: normal; }
-    .hero-content p { font-size: 0.84rem; line-height: 1.95; color: var(--muted); max-width: 420px; margin-bottom: 2.75rem; opacity: 0; animation: fadeUp 0.9s 0.7s forwards; }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s 0.9s forwards; }
-    .btn-red { display: inline-block; background: var(--red-bright); color: #fff; text-decoration: none; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; padding: 1rem 2.5rem; transition: background 0.3s; }
-    .btn-red:hover { background: var(--red); }
-    .btn-ghost { display: inline-block; border: 1px solid rgba(200,196,188,0.2); color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; padding: 1rem 2.5rem; transition: all 0.3s; }
-    .btn-ghost:hover { border-color: var(--text); color: var(--text); }
-    .hero-scroll { position: absolute; bottom: 3rem; right: 5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; z-index: 1; opacity: 0; animation: fadeUp 0.9s 1.1s forwards; }
-    .hero-scroll span { font-size: 0.5rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
-    .scroll-line { width: 1px; height: 55px; background: linear-gradient(to bottom, var(--red-bright), transparent); animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.92) 40%, rgba(8,8,8,0.3) 100%), linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 50%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 5rem 7rem; max-width: 700px; }
+    .hero-overline { font-size: 0.58rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 1.25rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+    .hero-overline::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 7rem); font-weight: 300; line-height: 1.02; letter-spacing: 0.01em; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
+    .hero-content h1 em { font-style: italic; color: var(--gold); }
+    .hero-content p { font-size: 0.82rem; line-height: 2; color: var(--muted); max-width: 400px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.7s forwards; }
+    .hero-btns { display: flex; gap: 1rem; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+    .btn-gold { display: inline-block; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.32em; text-transform: uppercase; padding: 1rem 2.5rem; transition: all 0.3s; }
+    .btn-gold:hover { background: var(--gold); color: var(--black); }
+    .btn-ghost-white { display: inline-block; border: 1px solid rgba(204,200,192,0.2); color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.32em; text-transform: uppercase; padding: 1rem 2.5rem; transition: all 0.3s; }
+    .btn-ghost-white:hover { border-color: var(--text); color: var(--text); }
+    .hero-scroll { position: absolute; bottom: 3rem; right: 5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; z-index: 1; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
+    .hero-scroll span { font-size: 0.55rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
+    .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* TICKER */
-    .ticker { background: var(--red); overflow: hidden; padding: 0.85rem 0; }
-    .ticker-track { display: flex; animation: ticker 28s linear infinite; white-space: nowrap; }
-    .ticker-track span { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.7); padding: 0 2.5rem; }
-    .ticker-track .sep { color: rgba(255,255,255,0.3); padding: 0; font-size: 0.7rem; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    /* MARQUEE */
+    .marquee { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 1.1rem 0; }
+    .marquee-track { display: flex; animation: marquee 30s linear infinite; white-space: nowrap; }
+    .marquee-track span { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; letter-spacing: 0.08em; color: var(--muted); padding: 0 2rem; }
+    .marquee-track .dot { color: var(--gold); padding: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ABOUT */
-    .about { padding: 9rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
-    .about-text .eyebrow { font-size: 0.54rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--red-bright); margin-bottom: 1.5rem; }
-    .about-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: 0.05em; line-height: 1.05; color: #fff; margin-bottom: 2rem; }
-    .about-text p { font-size: 0.84rem; line-height: 2; color: var(--muted); margin-bottom: 1.25rem; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    .stat { background: var(--panel); padding: 2.5rem 2rem; }
-    .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; letter-spacing: 0.05em; color: var(--red-bright); line-height: 1; }
-    .stat-l { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+    /* PHILOSOPHY */
+    .philosophy { padding: 9rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 9rem; align-items: center; background: var(--black); }
+    .phil-text .eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .phil-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 300; line-height: 1.2; margin-bottom: 2rem; }
+    .phil-text h2 em { font-style: italic; color: var(--gold); }
+    .phil-text p { font-size: 0.84rem; line-height: 2; color: var(--muted); margin-bottom: 1.25rem; }
+    .phil-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .stat-cell { background: var(--panel); padding: 2.5rem 2rem; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
+    .stat-lbl { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
 
     /* ARTISTS */
     .artists { background: var(--dark); border-top: 1px solid var(--border); }
-    .artists-header { padding: 6rem 5rem 4rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
-    .artists-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); letter-spacing: 0.05em; color: #fff; }
-    .artists-header p { font-size: 0.82rem; color: var(--muted); max-width: 360px; line-height: 1.9; }
+    .artists-header { padding: 6rem 5rem 4rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+    .artists-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
+    .artists-header h2 em { font-style: italic; color: var(--gold); }
+    .artists-header p { font-size: 0.8rem; color: var(--muted); max-width: 340px; line-height: 1.85; }
 
-    .artist-block { display: grid; grid-template-columns: 400px 1fr; border-bottom: 1px solid var(--border); }
-    .artist-block:nth-child(even) { grid-template-columns: 1fr 400px; direction: rtl; }
+    .artist-block { display: grid; grid-template-columns: 380px 1fr; border-bottom: 1px solid var(--border); }
+    .artist-block:nth-child(even) { grid-template-columns: 1fr 380px; direction: rtl; }
     .artist-block:nth-child(even) > * { direction: ltr; }
 
-    .artist-img { position: relative; overflow: hidden; }
-    .artist-img img { width: 100%; height: 100%; min-height: 560px; object-fit: cover; object-position: center top; transition: transform 0.8s; }
-    .artist-block:hover .artist-img img { transform: scale(1.04); }
-    .artist-plate { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; background: linear-gradient(to top, rgba(6,6,6,0.97) 0%, transparent 100%); }
-    .artist-plate h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.08em; color: #fff; }
-    .artist-plate .title { font-size: 0.52rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--red-bright); margin-top: 0.25rem; }
+    .artist-portrait { position: relative; overflow: hidden; }
+    .artist-portrait img { width: 100%; height: 100%; min-height: 540px; object-fit: cover; object-position: center top; filter: grayscale(15%); transition: filter 0.6s, transform 0.8s; }
+    .artist-block:hover .artist-portrait img { filter: grayscale(0%); transform: scale(1.03); }
+    .artist-id-plate { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, transparent 100%); }
+    .artist-id-plate h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: #fff; }
+    .artist-id-plate .title { font-size: 0.56rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
 
-    .artist-body { background: var(--panel); padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
+    .artist-body { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; background: var(--panel); }
     .artist-bio { font-size: 0.84rem; line-height: 2.05; color: var(--muted); }
-    .artist-creds { display: flex; flex-direction: column; gap: 0.6rem; }
-    .cred { display: flex; align-items: center; gap: 0.85rem; font-size: 0.78rem; color: var(--muted); }
-    .cred::before { content: ''; display: block; width: 16px; height: 1px; background: var(--red-bright); flex-shrink: 0; }
+    .artist-creds { display: flex; flex-direction: column; gap: 0.55rem; }
+    .cred { display: flex; align-items: center; gap: 0.85rem; font-size: 0.76rem; color: var(--muted); }
+    .cred::before { content: ''; display: block; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0; }
     .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-    .artist-gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: brightness(0.75); transition: filter 0.3s; cursor: pointer; }
+    .artist-gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: brightness(0.8); transition: filter 0.3s; cursor: pointer; }
     .artist-gallery img:hover { filter: brightness(1); }
     .artist-links { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .artist-links .book { color: var(--red-bright); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(192,57,43,0.3); padding-bottom: 2px; transition: border-color 0.3s; }
-    .artist-links .book:hover { border-color: var(--red-bright); }
+    .artist-links .book { color: var(--gold); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 2px; transition: border-color 0.3s; }
+    .artist-links .book:hover { border-color: var(--gold); }
     .artist-links .ig { color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
-    .artist-links .ig:hover { color: #fff; }
-
-    /* PLACEHOLDER ARTIST */
-    .artist-placeholder { border-bottom: 1px solid var(--border); min-height: 280px; display: flex; align-items: center; justify-content: center; background: var(--panel); }
-    .placeholder-inner { text-align: center; }
-    .placeholder-inner h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.12em; color: var(--border); }
-    .placeholder-inner p { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #1e1e1e; margin-top: 0.5rem; }
+    .artist-links .ig:hover { color: var(--gold); }
 
     /* LIGHTBOX */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(6,6,6,0.97); z-index: 1000; align-items: center; justify-content: center; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.97); z-index: 1000; align-items: center; justify-content: center; }
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 85vw; max-height: 85vh; object-fit: contain; }
-    .lb-close { position: absolute; top: 2rem; right: 2.5rem; color: var(--muted); font-size: 2rem; cursor: pointer; background: none; border: none; transition: color 0.3s; }
-    .lb-close:hover { color: var(--red-bright); }
-    .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 2.5rem; cursor: pointer; background: none; border: none; padding: 1rem; transition: color 0.3s; }
-    .lb-prev { left: 2rem; }
-    .lb-next { right: 2rem; }
-    .lb-prev:hover, .lb-next:hover { color: var(--red-bright); }
+    .lightbox-close { position: absolute; top: 2rem; right: 2.5rem; color: var(--muted); font-size: 2rem; cursor: pointer; background: none; border: none; line-height: 1; transition: color 0.3s; }
+    .lightbox-close:hover { color: var(--gold); }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 2rem; cursor: pointer; background: none; border: none; padding: 1rem; transition: color 0.3s; }
+    .lightbox-prev { left: 2rem; }
+    .lightbox-next { right: 2rem; }
+    .lightbox-prev:hover, .lightbox-next:hover { color: var(--gold); }
 
     /* REVIEWS */
     .reviews { padding: 8rem 5rem; background: var(--black); border-top: 1px solid var(--border); }
-    .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem; }
-    .reviews-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,4vw,3.5rem); letter-spacing: 0.05em; color: #fff; }
+    .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+    .reviews-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
+    .reviews-header h2 em { font-style: italic; color: var(--gold); }
     .reviews-meta { text-align: right; }
-    .reviews-score { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; letter-spacing: 0.05em; color: var(--red-bright); line-height: 1; }
-    .reviews-stars { color: var(--red-bright); font-size: 0.9rem; letter-spacing: 0.08em; margin: 0.2rem 0; }
-    .reviews-count { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+    .reviews-score { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
+    .reviews-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.1em; margin: 0.25rem 0; }
+    .reviews-count { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
     .review-card { background: var(--panel); padding: 2.5rem; transition: background 0.3s; }
     .review-card:hover { background: var(--raised); }
-    .review-stars { color: var(--red-bright); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
-    .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.8; color: var(--text); margin-bottom: 1.75rem; }
+    .review-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+    .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; font-weight: 300; line-height: 1.75; color: var(--text); margin-bottom: 1.75rem; }
     .review-author { display: flex; align-items: center; gap: 1rem; }
-    .review-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; filter: grayscale(40%); }
+    .review-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; filter: grayscale(30%); }
     .review-name { font-size: 0.72rem; font-weight: 500; color: var(--text); }
-    .review-date { font-size: 0.6rem; color: var(--muted); margin-top: 0.1rem; }
-    .review-source { display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-    .r-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red-bright); }
+    .review-date { font-size: 0.62rem; color: var(--muted); margin-top: 0.15rem; }
+    .review-source { display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .g-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: inline-block; }
 
     /* FAQ */
     .faq { padding: 8rem 5rem; background: var(--dark); border-top: 1px solid var(--border); }
-    .faq h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,4vw,3.5rem); letter-spacing: 0.05em; color: #fff; margin-bottom: 0.75rem; }
-    .faq-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 3.5rem; }
-    .faq-list { max-width: 820px; }
+    .faq-header { margin-bottom: 4rem; }
+    .faq-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; margin-bottom: 0.75rem; }
+    .faq-header h2 em { font-style: italic; color: var(--gold); }
+    .faq-header p { font-size: 0.82rem; color: var(--muted); line-height: 1.85; }
+    .faq-list { max-width: 800px; }
     .faq-item { border-bottom: 1px solid var(--border); }
     .faq-item:first-child { border-top: 1px solid var(--border); }
     .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.75rem 0; cursor: pointer; gap: 2rem; }
-    .faq-q h4 { font-size: 0.92rem; font-weight: 400; color: var(--text); letter-spacing: 0.02em; transition: color 0.3s; line-height: 1.45; }
-    .faq-item.open .faq-q h4 { color: var(--red-bright); }
-    .faq-icon { width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; color: var(--muted); font-size: 1rem; }
-    .faq-item.open .faq-icon { background: var(--red-bright); border-color: var(--red-bright); color: #fff; transform: rotate(45deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-q h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--text); transition: color 0.3s; }
+    .faq-item.open .faq-q h4 { color: var(--gold); }
+    .faq-icon { width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; color: var(--muted); font-size: 1rem; line-height: 1; }
+    .faq-item.open .faq-icon { background: var(--gold); border-color: var(--gold); color: var(--black); transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
     .faq-item.open .faq-a { max-height: 300px; }
     .faq-a p { font-size: 0.84rem; line-height: 2; color: var(--muted); padding-bottom: 2rem; }
 
     /* AFTERCARE */
     .aftercare { padding: 8rem 5rem; background: var(--black); border-top: 1px solid var(--border); }
-    .aftercare .eyebrow { font-size: 0.54rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--red-bright); margin-bottom: 1rem; }
-    .aftercare h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,4vw,3.5rem); letter-spacing: 0.05em; color: #fff; margin-bottom: 3.5rem; }
+    .aftercare-header { margin-bottom: 4rem; }
+    .aftercare-header .eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .aftercare-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; }
+    .aftercare-header h2 em { font-style: italic; color: var(--gold); }
     .aftercare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-bottom: 3rem; }
     .care-card { background: var(--panel); padding: 2.5rem 2rem; }
-    .care-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; letter-spacing: 0.1em; color: var(--red-bright); opacity: 0.25; line-height: 1; margin-bottom: 1rem; }
-    .care-card h4 { font-size: 0.82rem; font-weight: 500; color: var(--text); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .care-card p { font-size: 0.8rem; line-height: 1.95; color: var(--muted); }
-    .aftercare-note { border: 1px solid rgba(155,31,31,0.25); padding: 2rem 2.5rem; background: var(--red-dim); }
-    .aftercare-note p { font-size: 0.82rem; line-height: 1.9; color: var(--muted); }
-    .aftercare-note strong { color: var(--red-bright); font-weight: 500; }
+    .care-step { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 1rem; }
+    .care-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+    .care-card p { font-size: 0.8rem; line-height: 1.9; color: var(--muted); }
+    .aftercare-warning { border: 1px solid rgba(201,168,76,0.2); padding: 2rem 2.5rem; background: var(--gold-dim); }
+    .aftercare-warning p { font-size: 0.82rem; line-height: 1.9; color: var(--muted); }
+    .aftercare-warning p strong { color: var(--gold); font-weight: 500; }
 
-    /* LOCATION */
-    .location { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
-    .location-map { min-height: 480px; position: relative; }
-    .location-map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; filter: grayscale(70%) invert(85%) contrast(0.8); }
-    .location-info { padding: 5rem; background: var(--dark); display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
-    .location-info .eyebrow { font-size: 0.54rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--red-bright); }
-    .location-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.05em; color: #fff; line-height: 1.1; }
-    .loc-rows {}
-    .loc-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.1rem 0; border-bottom: 1px solid var(--border); gap: 1rem; }
+    /* MAP + LOCATION */
+    .location { background: var(--dark); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
+    .location-map { position: relative; min-height: 480px; }
+    .location-map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; filter: grayscale(60%) invert(90%) contrast(0.85); }
+    .location-info { padding: 5rem; display: flex; flex-direction: column; justify-content: center; gap: 2.5rem; }
+    .location-info .eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); }
+    .location-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; line-height: 1.2; }
+    .location-info h2 em { font-style: italic; color: var(--gold); }
+    .location-details { display: flex; flex-direction: column; gap: 0; }
+    .loc-row { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
     .loc-row:first-child { border-top: 1px solid var(--border); }
-    .loc-row .k { font-size: 0.54rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; margin-top: 2px; }
-    .loc-row .v { font-size: 0.82rem; color: var(--text); text-align: right; line-height: 1.65; }
-    .loc-row a { color: var(--red-bright); text-decoration: none; }
-    .directions-btn { display: inline-block; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 0.9rem 2rem; transition: all 0.3s; width: fit-content; }
-    .directions-btn:hover { border-color: var(--red-bright); color: var(--red-bright); }
+    .loc-row .k { font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+    .loc-row .v { font-size: 0.82rem; color: var(--text); text-align: right; }
+    .loc-row a { color: var(--gold); text-decoration: none; }
+    .directions-btn { display: inline-block; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.85rem 2rem; transition: all 0.3s; width: fit-content; }
+    .directions-btn:hover { border-color: var(--gold); color: var(--gold); }
 
     /* BOOKING */
     .booking { padding: 9rem 5rem; background: var(--black); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start; }
-    .booking h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,5.5rem); letter-spacing: 0.04em; color: #fff; line-height: 0.95; margin-bottom: 1.5rem; }
-    .booking h2 em { color: var(--red-bright); font-style: normal; }
+    .booking h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
+    .booking h2 em { font-style: italic; color: var(--gold); }
     .booking > div:first-child p { font-size: 0.84rem; line-height: 2; color: var(--muted); margin-bottom: 2.5rem; }
-    .booking-actions { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-    .b-row { display: flex; justify-content: space-between; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+    .booking-rows {}
+    .b-row { display: flex; justify-content: space-between; padding: 1.3rem 0; border-bottom: 1px solid var(--border); }
     .b-row:first-child { border-top: 1px solid var(--border); }
-    .b-row .k { font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
-    .b-row .v { font-size: 0.82rem; color: var(--text); text-align: right; }
-    .b-row a { color: var(--red-bright); text-decoration: none; }
+    .b-row .k { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+    .b-row .v { font-size: 0.82rem; color: var(--text); }
+    .b-row a { color: var(--gold); text-decoration: none; }
 
     /* FOOTER */
     footer { background: var(--dark); border-top: 1px solid var(--border); padding: 4rem 5rem 2.5rem; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
-    .f-logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.18em; color: #fff; display: block; }
-    .f-logo-sub { font-size: 0.48rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--red-bright); }
-    .footer-brand p { font-size: 0.78rem; line-height: 1.9; color: var(--muted); max-width: 280px; margin-top: 1rem; }
-    .footer-col h5 { font-size: 0.52rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
-    .footer-col a, .footer-col p { display: block; color: #363430; text-decoration: none; font-size: 0.82rem; line-height: 2.1; transition: color 0.3s; }
-    .footer-col a:hover { color: var(--red-bright); }
+    .footer-brand .f-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.78rem; line-height: 1.9; color: var(--muted); max-width: 280px; }
+    .footer-col h5 { font-size: 0.56rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+    .footer-col a, .footer-col p { display: block; color: #4a4640; text-decoration: none; font-size: 0.82rem; line-height: 2; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--gold); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .footer-bottom p { font-size: 0.56rem; color: #272523; letter-spacing: 0.15em; }
+    .footer-bottom p { font-size: 0.58rem; color: #2e2e2e; letter-spacing: 0.15em; }
     .footer-social { display: flex; gap: 1.5rem; }
-    .footer-social a { color: #302e2c; text-decoration: none; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
-    .footer-social a:hover { color: var(--red-bright); }
+    .footer-social a { color: #3a3a38; text-decoration: none; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+    .footer-social a:hover { color: var(--gold); }
 
     @media (max-width: 960px) {
-      nav { padding: 1.4rem 1.5rem; }
-      nav.scrolled { padding: 1.1rem 1.5rem; }
+      nav { padding: 1.5rem 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-content { padding: 0 1.5rem 5rem; }
       .hero-scroll { display: none; }
-      .about { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
-      .artists-header { flex-direction: column; padding: 4rem 1.5rem 3rem; }
+      .philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+      .artists-header { flex-direction: column; gap: 1.5rem; padding: 4rem 1.5rem 3rem; }
       .artist-block { grid-template-columns: 1fr !important; direction: ltr !important; }
       .artist-body { padding: 2rem 1.5rem; }
       .reviews { padding: 5rem 1.5rem; }
+      .reviews-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
       .reviews-grid { grid-template-columns: 1fr; }
       .faq { padding: 5rem 1.5rem; }
       .aftercare { padding: 5rem 1.5rem; }
@@ -258,22 +261,22 @@
       .booking { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 4rem; }
       footer { padding: 3rem 1.5rem 2rem; }
       .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-bottom { flex-direction: column; gap: 1rem; }
+      nav.scrolled { padding: 1.2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lbClose">×</button>
-  <button class="lb-prev" id="lbPrev">‹</button>
+  <button class="lightbox-close" id="lbClose">×</button>
+  <button class="lightbox-prev" id="lbPrev">‹</button>
   <img src="" id="lbImg" alt=""/>
-  <button class="lb-next" id="lbNext">›</button>
+  <button class="lightbox-next" id="lbNext">›</button>
 </div>
 
 <!-- MOBILE MENU -->
@@ -287,12 +290,8 @@
   <a href="#booking" onclick="closeMobile()">Book Now</a>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo-wrap">
-    <span class="logo-main">Redemption TenFold</span>
-    <span class="logo-sub">Tattoo Collective · Menominee, MI</span>
-  </a>
+  <a href="#" class="logo">Redemption TenFold</a>
   <ul class="nav-links">
     <li><a href="#artists">Artists</a></li>
     <li><a href="#reviews">Reviews</a></li>
@@ -301,7 +300,9 @@
     <li><a href="#location">Location</a></li>
     <li><a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="nav-book">Book Now</a></li>
   </ul>
-  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -309,53 +310,54 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-veil"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span>Award-Winning Tattoo Collective</span></div>
-    <h1>PUSH<br>YOUR<br><em>LIMITS</em></h1>
-    <p>Redemption TenFold is a collective of award-winning artists in Menominee, Michigan — built for the client who doesn't settle. Every piece, every session, every artist: the standard is the same.</p>
+    <p class="hero-overline">Award-Winning Tattoo Collective · Menominee, MI</p>
+    <h1>Work that<br>earns its<br><em>permanence</em></h1>
+    <p>Redemption TenFold is a collective of award-winning artists in Menominee, Michigan — pushing the standard of the craft with every piece they put on skin.</p>
     <div class="hero-btns">
-      <a href="#artists" class="btn-red">Meet the Artists</a>
-      <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-ghost">Book Your Session</a>
+      <a href="#artists" class="btn-gold">Meet the Artists</a>
+      <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-ghost-white">Book Your Session</a>
     </div>
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span>Black &amp; Grey Realism</span><span class="sep"> · </span>
-    <span>Illustrative Portraits</span><span class="sep"> · </span>
-    <span>Blackwork</span><span class="sep"> · </span>
-    <span>Color</span><span class="sep"> · </span>
-    <span>Fine Line</span><span class="sep"> · </span>
-    <span>Award-Winning Artists</span><span class="sep"> · </span>
-    <span>Menominee, Michigan</span><span class="sep"> · </span>
-    <span>Book on Vagaro</span><span class="sep"> · </span>
-    <span>Black &amp; Grey Realism</span><span class="sep"> · </span>
-    <span>Illustrative Portraits</span><span class="sep"> · </span>
-    <span>Blackwork</span><span class="sep"> · </span>
-    <span>Color</span><span class="sep"> · </span>
-    <span>Fine Line</span><span class="sep"> · </span>
-    <span>Award-Winning Artists</span><span class="sep"> · </span>
-    <span>Menominee, Michigan</span><span class="sep"> · </span>
-    <span>Book on Vagaro</span><span class="sep"> · </span>
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Black &amp; Grey Realism</span><span class="dot"> ✦ </span>
+    <span>Illustrative Portraits</span><span class="dot"> ✦ </span>
+    <span>Blackwork</span><span class="dot"> ✦ </span>
+    <span>Color</span><span class="dot"> ✦ </span>
+    <span>Fine Line</span><span class="dot"> ✦ </span>
+    <span>Award-Winning Artists</span><span class="dot"> ✦ </span>
+    <span>Menominee, Michigan</span><span class="dot"> ✦ </span>
+    <span>Black &amp; Grey Realism</span><span class="dot"> ✦ </span>
+    <span>Illustrative Portraits</span><span class="dot"> ✦ </span>
+    <span>Blackwork</span><span class="dot"> ✦ </span>
+    <span>Color</span><span class="dot"> ✦ </span>
+    <span>Fine Line</span><span class="dot"> ✦ </span>
+    <span>Award-Winning Artists</span><span class="dot"> ✦ </span>
+    <span>Menominee, Michigan</span><span class="dot"> ✦ </span>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section class="about">
-  <div class="about-text reveal-left">
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="phil-text reveal-left">
     <p class="eyebrow">The Collective</p>
-    <h2>A COLLECTIVE BUILT TO PUSH THE LIMIT</h2>
-    <p>Redemption TenFold started with a simple premise: build a studio around artists who were hungry — artists who didn't clock in to coast. Everyone under this roof is here because they refuse to stop getting better.</p>
-    <p>We do all styles. Black and grey realism, illustrative portraits, blackwork, color work, fine line — whatever the client needs, we have an artist who's made it their life's work. Walk in knowing you're getting someone who's won, been published, and earned their reputation.</p>
-    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-red" style="margin-top:1.5rem;">Book Your Session</a>
+    <h2>Built by artists who<br>refuse to <em>stop</em><br>getting better</h2>
+    <p>Redemption TenFold came together around one shared principle: every artist under this roof should be pushing the limits of what they're capable of. Not coasting. Not repeating themselves. Pushing.</p>
+    <p>We do all styles — black and grey realism, illustrative portraiture, blackwork, color, fine line — and we have artists who've won competitions, been published in national magazines, and earned sponsored pro team placements to prove it.</p>
+    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold" style="margin-top: 1.5rem;">Book on Vagaro</a>
   </div>
-  <div class="about-stats reveal-right">
-    <div class="stat d1 reveal"><div class="stat-n counter" data-target="3">0</div><div class="stat-l">Pro team sponsorships</div></div>
-    <div class="stat d2 reveal"><div class="stat-n">All</div><div class="stat-l">Styles covered</div></div>
-    <div class="stat d3 reveal"><div class="stat-n counter" data-target="2">0</div><div class="stat-l">Published artists</div></div>
-    <div class="stat d4 reveal"><div class="stat-n">1st</div><div class="stat-l">Ink Wars 1v1 champion</div></div>
+  <div class="phil-stats reveal-right">
+    <div class="stat-cell reveal reveal-delay-1"><div class="stat-num counter" data-target="3">0</div><div class="stat-lbl">Pro team sponsorships</div></div>
+    <div class="stat-cell reveal reveal-delay-2"><div class="stat-num counter" data-target="2">0</div><div class="stat-lbl">Published artists</div></div>
+    <div class="stat-cell reveal reveal-delay-3"><div class="stat-num">All</div><div class="stat-lbl">Styles covered</div></div>
+    <div class="stat-cell reveal reveal-delay-4"><div class="stat-num" style="font-size:2rem;">1v1</div><div class="stat-lbl">Ink Wars Champion</div></div>
   </div>
 </section>
 
@@ -363,23 +365,23 @@
 <section class="artists" id="artists">
   <div class="artists-header">
     <div class="reveal">
-      <h2>THE ARTISTS</h2>
-      <p style="margin-top:1rem;">Each artist at Redemption TenFold has spent years building a body of work worth sitting for. Choose who speaks to your vision and reach out directly.</p>
+      <h2>The <em>Artists</em></h2>
+      <p style="margin-top:1rem;">Each artist at Redemption TenFold has built a career worth sitting for. Browse their work and book directly with the one who speaks to your vision.</p>
     </div>
   </div>
 
   <!-- ADAM ZIMMERMAN -->
-  <div class="artist-block reveal">
-    <div class="artist-img">
+  <div class="artist-block">
+    <div class="artist-portrait">
       <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85" alt="Adam Zimmerman"/>
-      <div class="artist-plate">
-        <h3>ADAM ZIMMERMAN</h3>
+      <div class="artist-id-plate">
+        <h3>Adam Zimmerman</h3>
         <span class="title">Lead Artist · Ink Wars 1v1 Champion</span>
       </div>
     </div>
     <div class="artist-body">
-      <p class="artist-bio"><!-- BIO PLACEHOLDER: Drop Adam's biography here — it will be placed in this section -->
-      Adam Zimmerman is one of the most decorated tattoo artists in Michigan's Upper Peninsula. Published in CCI Magazine and Carnival of Ink Magazine, sponsored by the Papillon Pro Team, The Squad Pro Team, and Proper Aftercare Pro Team — and crowned Ink Wars 1v1 champion — Adam brings a competition-level standard to every client session. His specialties include black and grey realism and illustrative portraiture that makes people stop mid-conversation to stare. Book early. His schedule fills fast.</p>
+      <p class="artist-bio"><!-- DROP ADAM'S BIOGRAPHY HERE — replace this placeholder text with his bio when you have it ready -->
+      Adam Zimmerman is one of the most decorated tattoo artists in the Upper Peninsula. Published in CCI Magazine and Carnival of Ink Magazine, sponsored by the Papillon Pro Team, The Squad Pro Team, and Proper Aftercare Pro Team, and crowned Ink Wars 1v1 Champion — Adam brings a competition-level standard to every client who sits in his chair. His work in black and grey realism and illustrative portraiture speaks for itself. Book early. His schedule fills fast.</p>
       <div class="artist-creds">
         <div class="cred">Published in CCI Magazine</div>
         <div class="cred">Published in Carnival of Ink Magazine</div>
@@ -392,7 +394,7 @@
         <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=400&q=80" alt="Adam's work"/>
         <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=400&q=80" alt="Adam's work"/>
         <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=400&q=80" alt="Adam's work"/>
-        <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=80" alt="Adam's work"/>
+        <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=400&q=80" alt="Adam's work"/>
       </div>
       <div class="artist-links">
         <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book">Book with Adam →</a>
@@ -401,30 +403,24 @@
     </div>
   </div>
 
-  <!-- ARTIST SLOT 2 — PLACEHOLDER -->
-  <div class="artist-placeholder reveal">
-    <div class="placeholder-inner">
-      <h3>ARTIST COMING SOON</h3>
-      <p>Additional artist profile · Add details to complete</p>
-    </div>
-  </div>
-
 </section>
 
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews-header reveal">
-    <h2>WHAT CLIENTS SAY</h2>
+    <div>
+      <h2>What clients <em>say</em></h2>
+    </div>
     <div class="reviews-meta">
       <div class="reviews-score">5.0</div>
       <div class="reviews-stars">★★★★★</div>
-      <div class="reviews-count">94% recommend · Facebook Reviews</div>
+      <div class="reviews-count">94% Recommend · Facebook Reviews</div>
     </div>
   </div>
   <div class="reviews-grid">
-    <div class="review-card reveal d1">
+    <div class="review-card reveal reveal-delay-1">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Adam is an absolute beast at black and grey. I flew in from Green Bay for this piece and it was worth every mile. The detail work is unreal — I've gotten compliments from strangers at the grocery store three times this week."</p>
+      <p class="review-text">"Adam is an absolute master of black and grey. I drove in from Green Bay for this piece and it was worth every mile. The detail work is unlike anything I've seen locally — I've had strangers stop me on the street to ask about it."</p>
       <div class="review-author">
         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80" class="review-avatar" alt=""/>
         <div>
@@ -432,11 +428,11 @@
           <div class="review-date">2 months ago</div>
         </div>
       </div>
-      <div class="review-source"><span class="r-dot"></span> Facebook Review</div>
+      <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
-    <div class="review-card reveal d2">
+    <div class="review-card reveal reveal-delay-2">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"I've been tattooed by a lot of artists and this shop is legitimately one of the best I've ever visited. Clean, professional, great energy. My portrait came out better than the reference photo. That shouldn't even be possible."</p>
+      <p class="review-text">"I've been tattooed by a lot of artists and this shop operates at a level you'd expect in a major city. The portrait I got is better than the reference photo — that shouldn't even be possible. Don't let the Menominee address fool you."</p>
       <div class="review-author">
         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" class="review-avatar" alt=""/>
         <div>
@@ -444,86 +440,87 @@
           <div class="review-date">3 months ago</div>
         </div>
       </div>
-      <div class="review-source"><span class="r-dot"></span> Facebook Review</div>
+      <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
-    <div class="review-card reveal d3">
+    <div class="review-card reveal reveal-delay-3">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Don't let the Menominee address fool you — this studio operates at a level you'd expect in Chicago or Detroit. Award-winning for a reason. I've sent four friends here already. Not one complaint among them."</p>
+      <p class="review-text">"Award-winning for a reason. Clean shop, professional crew, and the kind of attention to detail that makes you realize you've been settling everywhere else. I've sent four friends here. Not one complaint among them."</p>
       <div class="review-author">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" class="review-avatar" alt=""/>
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" class="review-avatar" alt=""/>
         <div>
           <div class="review-name">Marcus D.</div>
           <div class="review-date">5 months ago</div>
         </div>
       </div>
-      <div class="review-source"><span class="r-dot"></span> Facebook Review</div>
+      <div class="review-source"><span class="g-dot"></span> Facebook Review</div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
-  <div class="reveal">
-    <h2>FREQUENTLY ASKED</h2>
-    <p class="faq-sub">Everything you need before you book.</p>
+  <div class="faq-header reveal">
+    <h2>Frequently asked <em>questions</em></h2>
+    <p style="margin-top:0.75rem;">Everything you need to know before you book.</p>
   </div>
   <div class="faq-list">
     <div class="faq-item">
       <div class="faq-q"><h4>How do I book an appointment?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>You can book directly through our Vagaro page at vagaro.com/redemptiontenfold, or reach us by messaging our Facebook page. You can also call the studio at (906) 792-6001 or email us at Tenfoldtattoo@gmail.com. We recommend booking as early as possible — our artists' schedules move fast.</p></div>
+      <div class="faq-a"><p>Book directly through our Vagaro page at vagaro.com/redemptiontenfold, message us on Facebook, call (906) 792-6001, or email Tenfoldtattoo@gmail.com. We recommend booking as early as possible — our artists' schedules fill quickly and we want to give every project the time it deserves.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>Do you take walk-ins?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>We occasionally have walk-in availability, but we can't guarantee it. For the best experience — and to ensure you get the artist you want — we strongly recommend booking in advance. Message us on Facebook or check our Vagaro page to see current availability.</p></div>
+      <div class="faq-a"><p>Walk-in availability varies day to day. For the best experience — and to ensure you get the artist and the time your piece needs — we strongly recommend booking in advance. Check our Vagaro page or reach out to see what's available.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q"><h4>What styles do your artists specialize in?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>Redemption TenFold covers the full range: Black &amp; Grey Realism, Illustrative Portraiture, Blackwork, Color, and Fine Line. Our artists have earned national recognition for their work — including magazine publications, sponsored pro team placements, and competition wins. Whatever style you're after, we have someone who's made it their specialty.</p></div>
+      <div class="faq-q"><h4>What styles do you specialize in?</h4><span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Redemption TenFold covers the full range: Black &amp; Grey Realism, Illustrative Portraiture, Blackwork, Color, and Fine Line. Our artists have earned national recognition — magazine publications, sponsored pro team placements, and competition wins. Whatever you're after, we have someone who's made it their craft.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>How much does a tattoo cost?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>Pricing depends on the size, complexity, placement, and which artist you're working with. Contact us with your idea and we'll give you an honest estimate before you commit to anything. We'd rather have that conversation upfront than leave you guessing. Quality work is never the cheapest option — but it's always the most worth it.</p></div>
+      <div class="faq-a"><p>Pricing depends on size, complexity, placement, and the artist. Reach out with your idea and we'll give you an honest estimate before you commit. Quality work is never the cheapest option — but it's always the most worth it.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>Is a deposit required?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>Yes, a deposit is required to hold your appointment. It is applied toward the final cost of your tattoo. The deposit is non-refundable if you cancel without sufficient notice, but is transferable to a rescheduled appointment with adequate advance notice. Contact us directly for specifics on your booking.</p></div>
+      <div class="faq-a"><p>Yes, a deposit is required to hold your appointment. It applies toward the final cost of your tattoo. The deposit is non-refundable for cancellations but transferable to a rescheduled appointment with adequate notice. Contact us directly for specifics on your booking.</p></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q"><h4>Where exactly are you located?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>We're at 1112 10th Street, Menominee, Michigan 49858. Menominee sits right on the Wisconsin border near Marinette — accessible from Green Bay, Escanaba, and the entire Upper Peninsula. If you're making the drive, reach out and we'll make it worth it.</p></div>
+      <div class="faq-q"><h4>Can I bring reference photos?</h4><span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Absolutely — reference photos help a lot. You don't need a finished concept; even a feeling, a mood, or an image that resonates gives your artist a direction to work from. Our artists don't copy other tattoos, but references establish scale, tone, and intention.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q"><h4>What should I do to prepare for my session?</h4><span class="faq-icon">+</span></div>
-      <div class="faq-a"><p>Sleep well the night before. Eat a full meal 2–3 hours before your appointment. Stay well-hydrated in the days leading up to your session. Wear or bring clothing that allows easy access to the area being tattooed. Avoid alcohol for at least 24 hours prior. Don't apply numbing cream without consulting your artist first — it can affect the skin's texture.</p></div>
+      <div class="faq-a"><p>Sleep well the night before. Eat a full meal 2–3 hours prior. Stay hydrated in the days leading up — not just the morning of. Wear clothing that allows easy access to the area being tattooed. Avoid alcohol for 24 hours beforehand. Don't apply numbing cream without checking with your artist first.</p></div>
     </div>
   </div>
 </section>
 
 <!-- AFTERCARE -->
 <section class="aftercare" id="aftercare">
-  <div class="reveal">
+  <div class="aftercare-header reveal">
     <p class="eyebrow">Post-Session Care</p>
-    <h2>PROTECT YOUR INVESTMENT</h2>
+    <h2>Protecting your <em>investment</em></h2>
+    <p style="margin-top:0.75rem; font-size:0.84rem; color:var(--muted); max-width:600px; line-height:1.9;">A great tattoo is a collaboration that continues after you leave the studio. Follow these steps carefully — how you care for the work in the first two weeks determines how it looks for the rest of your life.</p>
   </div>
   <div class="aftercare-grid">
-    <div class="care-card reveal d1">
-      <div class="care-num">01</div>
+    <div class="care-card reveal reveal-delay-1">
+      <div class="care-step">01</div>
       <h4>First 24 Hours</h4>
-      <p>Leave the bandage or wrap your artist applied in place for 2–4 hours (or up to 24 hours if a Saniderm / second-skin bandage was used). When removing, do so gently under lukewarm running water. Wash with fragrance-free soap using only clean hands — no washcloths or loofahs. Pat dry with a clean paper towel. Apply a thin layer of unscented lotion or your artist's recommended ointment.</p>
+      <p>Leave the bandage or wrap your artist applied in place for 2–4 hours, or up to 24 hours if a Saniderm / second-skin bandage was used. Remove gently under lukewarm running water. Wash with fragrance-free soap using clean hands only — no washcloths or sponges. Pat dry with a clean paper towel. Apply a thin layer of unscented lotion or your artist's recommended ointment.</p>
     </div>
-    <div class="care-card reveal d2">
-      <div class="care-num">02</div>
+    <div class="care-card reveal reveal-delay-2">
+      <div class="care-step">02</div>
       <h4>Days 2 – 14</h4>
-      <p>Wash twice daily and apply a thin layer of unscented moisturizer after each wash. Your tattoo will peel and flake — this is completely normal. Do not pick, scratch, or peel the skin. Wear loose clothing over the area. Avoid submerging the tattoo in water (no baths, pools, hot tubs, or open water). Keep it out of direct sunlight. Avoid heavy sweating over the area when possible.</p>
+      <p>Wash twice daily and apply a thin layer of unscented moisturizer each time. The tattoo will peel and flake — this is normal. Do not pick, scratch, or peel the skin. Wear loose clothing over the area. Avoid submerging the tattoo in water (no baths, pools, hot tubs, or open water). Keep it out of direct sunlight. Minimize heavy sweating over the area when possible.</p>
     </div>
-    <div class="care-card reveal d3">
-      <div class="care-num">03</div>
-      <h4>Long-Term</h4>
-      <p>Once healed (typically 3–4 weeks), apply SPF 50+ sunscreen any time the tattoo is exposed to sun. UV is the number one cause of fading. Keep your skin moisturized year-round — hydrated skin holds ink better over time. Avoid prolonged exposure to chlorine or saltwater. Schedule a touch-up 8–10 weeks after your session if needed.</p>
+    <div class="care-card reveal reveal-delay-3">
+      <div class="care-step">03</div>
+      <h4>Long-Term Care</h4>
+      <p>Once fully healed (typically 3–4 weeks), apply SPF 50+ sunscreen whenever the tattoo will be in the sun. UV exposure is the number one cause of fading. Keep your skin moisturized year-round — hydrated skin holds ink better over time. Avoid prolonged exposure to chlorine or saltwater. Schedule a touch-up 8–10 weeks out if needed.</p>
     </div>
   </div>
-  <div class="aftercare-note reveal">
-    <p><strong>Watch for these warning signs:</strong> Some redness and minor swelling in the first 48 hours is normal. If you experience excessive swelling, discharge, a spreading rash, or fever, seek medical attention immediately — these are signs of infection, not just healing. <strong>Don't hesitate to reach out to us</strong> at <a href="mailto:Tenfoldtattoo@gmail.com" style="color:var(--red-bright);text-decoration:none;">Tenfoldtattoo@gmail.com</a> or call <a href="tel:+19067926001" style="color:var(--red-bright);text-decoration:none;">(906) 792-6001</a> with any questions about your healing.</p>
+  <div class="aftercare-warning reveal" style="margin-top:3rem;">
+    <p><strong>Watch for these warning signs:</strong> Some redness and minor swelling in the first 48 hours is normal. If you notice excessive swelling, discharge, a spreading rash, or fever, contact a medical professional — these are signs of infection, not just healing. <strong>Don't hesitate to reach us</strong> at <a href="mailto:Tenfoldtattoo@gmail.com" style="color:var(--gold);text-decoration:none;">Tenfoldtattoo@gmail.com</a> or <a href="tel:+19067926001" style="color:var(--gold);text-decoration:none;">(906) 792-6001</a> if you have any questions about your healing.</p>
   </div>
 </section>
 
@@ -537,13 +534,13 @@
   </div>
   <div class="location-info">
     <p class="eyebrow reveal">Find Us</p>
-    <h2 class="reveal">MENOMINEE,<br>MICHIGAN</h2>
-    <div class="loc-rows reveal">
+    <h2 class="reveal">Menominee,<br><em>Michigan</em></h2>
+    <div class="location-details reveal">
       <div class="loc-row"><span class="k">Address</span><span class="v">1112 10th Street<br>Menominee, MI 49858</span></div>
-      <div class="loc-row"><span class="k">Hours</span><span class="v">Tue – Sat · 10am – 6pm<br>Sunday &amp; Monday · Closed</span></div>
+      <div class="loc-row"><span class="k">Hours</span><span class="v">Tue – Sat · 10am – 6pm<br>Sun &amp; Mon · Closed</span></div>
       <div class="loc-row"><span class="k">Phone</span><span class="v"><a href="tel:+19067926001">(906) 792-6001</a></span></div>
       <div class="loc-row"><span class="k">Email</span><span class="v"><a href="mailto:Tenfoldtattoo@gmail.com">Tenfoldtattoo@gmail.com</a></span></div>
-      <div class="loc-row"><span class="k">Booking</span><span class="v"><a href="https://www.vagaro.com/redemptiontenfold" target="_blank">vagaro.com/redemptiontenfold</a></span></div>
+      <div class="loc-row"><span class="k">Book Online</span><span class="v"><a href="https://www.vagaro.com/redemptiontenfold" target="_blank">vagaro.com/redemptiontenfold</a></span></div>
     </div>
     <a href="https://maps.google.com/?q=1112+10th+St+Menominee+MI+49858" target="_blank" class="directions-btn reveal">Get Directions →</a>
   </div>
@@ -552,14 +549,11 @@
 <!-- BOOKING -->
 <section class="booking" id="booking">
   <div class="reveal-left">
-    <h2>READY<br>TO GO<br><em>TENFOLD</em>?</h2>
-    <p>Whether you have a fully formed concept or just the start of an idea, reach out and we'll help you get there. Our artists work with you through the design — you don't have to show up with everything figured out.</p>
-    <div class="booking-actions">
-      <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-red">Book on Vagaro</a>
-      <a href="mailto:Tenfoldtattoo@gmail.com" class="btn-ghost">Send an Email</a>
-    </div>
+    <h2>Ready to go<br><em>tenfold?</em></h2>
+    <p>Whether you have a fully formed concept or just the beginning of an idea, reach out and we'll help you get there. Our artists work with you through the design process — you don't have to show up with everything figured out.</p>
+    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold">Book on Vagaro</a>
   </div>
-  <div class="reveal-right">
+  <div class="booking-rows reveal-right">
     <div class="b-row"><span class="k">Studio</span><span class="v">Redemption TenFold</span></div>
     <div class="b-row"><span class="k">Address</span><span class="v">1112 10th St · Menominee, MI 49858</span></div>
     <div class="b-row"><span class="k">Hours</span><span class="v">Tuesday – Saturday · 10am – 6pm</span></div>
@@ -575,13 +569,12 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <span class="f-logo-main">Redemption TenFold</span>
-      <span class="f-logo-sub">Award-Winning Tattoo Collective · Menominee, MI</span>
-      <p>A collective of award-winning tattoo artists pushing the limits of the craft. All styles. Uncompromising standards. Menominee, Michigan.</p>
+      <span class="f-logo">Redemption TenFold</span>
+      <p>A collective of award-winning tattoo artists in Menominee, Michigan. All styles. One standard. Book online at vagaro.com/redemptiontenfold.</p>
     </div>
     <div class="footer-col">
-      <h5>Studio</h5>
-      <a href="#artists">The Artists</a>
+      <h5>Navigate</h5>
+      <a href="#artists">Artists</a>
       <a href="#reviews">Client Reviews</a>
       <a href="#faq">FAQ</a>
       <a href="#aftercare">Aftercare</a>
@@ -594,8 +587,6 @@
       <a href="mailto:Tenfoldtattoo@gmail.com">Tenfoldtattoo@gmail.com</a>
       <p>1112 10th Street</p>
       <p>Menominee, MI 49858</p>
-      <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" style="margin-top:0.5rem;">Instagram</a>
-      <a href="https://www.facebook.com/p/Redemption-TenFold-61557218847633/" target="_blank">Facebook</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -609,63 +600,83 @@
 </footer>
 
 <script>
-  // Cursor
+  // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
-  (function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
-  document.querySelectorAll('a,button,.faq-q,.artist-gallery img').forEach(el => {
-    el.addEventListener('mouseenter',()=>{ cursor.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.width='60px'; ring.style.height='60px'; });
-    el.addEventListener('mouseleave',()=>{ cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='36px'; ring.style.height='36px'; });
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+  function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+  animateRing();
+  document.querySelectorAll('a, button, .faq-q, .artist-gallery img').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.width = '60px'; ring.style.height = '60px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.width = '36px'; ring.style.height = '36px'; });
   });
 
-  // Nav
+  // Nav scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-  // Parallax
+  // Hero parallax
   const heroBg = document.getElementById('heroBg');
-  window.addEventListener('scroll', () => { if(window.scrollY < window.innerHeight) heroBg.style.transform=`translateY(${window.scrollY*0.35}px)`; });
+  window.addEventListener('scroll', () => { if (window.scrollY < window.innerHeight) { heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`; } });
 
   // Mobile menu
   document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
   document.getElementById('mobileClose').addEventListener('click', closeMobile);
-  function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 
   // Scroll reveal
-  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold:0.1, rootMargin:'0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-  // Counters
-  const cObs = new IntersectionObserver(entries => entries.forEach(e => {
-    if(e.isIntersecting && !e.target.dataset.done) {
-      e.target.dataset.done=true;
-      const t=parseInt(e.target.dataset.target), dur=1600, s=performance.now();
-      (function tick(now){ const p=Math.min((now-s)/dur,1), v=1-Math.pow(1-p,3); e.target.textContent=Math.floor(v*t)+(t>2?'+':''); if(p<1) requestAnimationFrame(tick); })(s);
-    }
-  }), {threshold:0.5});
-  document.querySelectorAll('.counter').forEach(el => cObs.observe(el));
+  // Counter animation
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.done) {
+        e.target.dataset.done = true;
+        const target = parseInt(e.target.dataset.target);
+        const duration = 1800;
+        const start = performance.now();
+        function update(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          e.target.textContent = Math.floor(eased * target) + (target >= 100 ? '+' : '');
+          if (t < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
-  // FAQ
+  // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
-      const item=q.parentElement, open=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!open) item.classList.add('open');
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
     });
   });
 
   // Lightbox
-  const imgs=[]; document.querySelectorAll('.artist-gallery img').forEach((img,i) => { imgs.push(img.src); img.addEventListener('click',()=>openLb(i)); });
-  let cur=0; const lbImg=document.getElementById('lbImg'), lb=document.getElementById('lightbox');
-  function openLb(i){ cur=i; lbImg.src=imgs[i]; lb.classList.add('open'); document.body.style.overflow='hidden'; }
-  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-  document.getElementById('lbClose').addEventListener('click',closeLb);
-  document.getElementById('lbPrev').addEventListener('click',()=>{ cur=(cur-1+imgs.length)%imgs.length; lbImg.src=imgs[cur]; });
-  document.getElementById('lbNext').addEventListener('click',()=>{ cur=(cur+1)%imgs.length; lbImg.src=imgs[cur]; });
-  lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
-  document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') document.getElementById('lbPrev').click(); if(e.key==='ArrowRight') document.getElementById('lbNext').click(); });
+  const allGalleryImgs = [];
+  document.querySelectorAll('.artist-gallery img').forEach((img, i) => {
+    allGalleryImgs.push(img.src);
+    img.addEventListener('click', () => openLightbox(i));
+  });
+  let currentLb = 0;
+  const lbImg = document.getElementById('lbImg');
+  const lb = document.getElementById('lightbox');
+  function openLightbox(i) { currentLb = i; lbImg.src = allGalleryImgs[i]; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => { currentLb = (currentLb - 1 + allGalleryImgs.length) % allGalleryImgs.length; lbImg.src = allGalleryImgs[currentLb]; });
+  document.getElementById('lbNext').addEventListener('click', () => { currentLb = (currentLb + 1) % allGalleryImgs.length; lbImg.src = allGalleryImgs[currentLb]; });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click(); if (e.key === 'ArrowRight') document.getElementById('lbNext').click(); });
 </script>
 </body>
 </html>
