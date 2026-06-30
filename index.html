@@ -140,17 +140,18 @@
     .artist-identity .book-btn { border: 1px solid rgba(201,168,76,0.4); color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 0.7rem 1.75rem; white-space: nowrap; transition: all 0.3s; flex-shrink: 0; }
     .artist-identity .book-btn:hover { background: var(--gold); color: var(--black); }
 
-    /* Zone 2 — Bio + Gallery */
-    .artist-body { display: grid; grid-template-columns: minmax(0, 1fr) 360px; border-bottom: 1px solid var(--border); overflow: hidden; }
-    .artist-bio-section { padding: 2.5rem 2.75rem; background: var(--black); border-right: 1px solid var(--border); overflow: hidden; min-width: 0; }
-    .artist-bio-section p { font-size: 0.83rem; line-height: 2; color: var(--muted); margin-bottom: 1.2rem; }
+    /* Zone 2 — Bio (compact 2-col) */
+    .artist-bio-section { padding: 2.75rem 4rem; background: var(--black); border-bottom: 1px solid var(--border); column-count: 2; column-gap: 4rem; }
+    .artist-bio-section p { font-size: 0.84rem; line-height: 2.05; color: var(--muted); margin-bottom: 1.1rem; break-inside: avoid; }
     .artist-bio-section p:last-child { margin-bottom: 0; }
-    .artist-gallery-wrap { background: var(--black); overflow: hidden; width: 360px; flex-shrink: 0; display: flex; flex-direction: column; }
-    .gallery-portfolio-link { display: block; text-align: center; padding: 0.85rem 1rem; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-top: 1px solid var(--border); background: var(--panel); transition: background 0.3s, color 0.3s; flex-shrink: 0; }
+
+    /* Zone 3 — Full-width large photo grid */
+    .artist-gallery-wrap { background: var(--black); border-bottom: 1px solid var(--border); }
+    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .artist-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: brightness(0.75); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; }
+    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
+    .gallery-portfolio-link { display: block; text-align: center; padding: 1rem; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-top: 1px solid var(--border); background: var(--panel); transition: background 0.3s, color 0.3s; }
     .gallery-portfolio-link:hover { background: var(--gold); color: var(--black); }
-    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3px; height: 100%; min-height: 360px; }
-    .artist-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
-    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.05); }
 
     /* Zone 3 — Credentials + links footer */
     .artist-footer { display: flex; align-items: flex-start; gap: 3rem; padding: 1.75rem 4rem; background: var(--panel); flex-wrap: wrap; }
@@ -295,9 +296,8 @@
       .artists-header { flex-direction: column; padding: 4rem 1.5rem 3rem; }
       .artist-identity { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
       .artist-identity .book-btn { width: 100%; text-align: center; }
-      .artist-body { grid-template-columns: 1fr; }
-      .artist-bio-section { padding: 2rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
-      .artist-gallery { grid-template-columns: repeat(3, 1fr); min-height: 200px; }
+      .artist-bio-section { padding: 2rem 1.5rem; column-count: 1; }
+      .artist-gallery { grid-template-columns: repeat(2, 1fr); }
       .artist-footer { padding: 1.5rem; flex-direction: column; gap: 1.5rem; }
       .artist-links { flex-wrap: wrap; gap: 1rem; }
       .reviews { padding: 5rem 1.5rem; }
@@ -471,26 +471,27 @@
       <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Adam →</a>
     </div>
 
-    <!-- Zone 2: Bio + Gallery -->
-    <div class="artist-body">
-      <div class="artist-bio-section">
-        <p>Adam Zimmerman is the owner and lead artist of Redemption Tenfold Tattoo in Menominee, Michigan. Known for his versatility, Adam has built a reputation for creating custom tattoos that balance technical precision with bold artistic vision. Whether he's producing highly detailed black and grey realism, striking illustrative pieces, blackwork, horror-inspired imagery, portraits, or large-scale custom projects, his focus remains the same — creating tattoos that are built to last and designed specifically for the individual wearing them.</p>
-        <p>Tattooing has always been more than simply applying ink to skin. For Adam, every project begins with understanding the client's story, ideas, and goals before transforming them into artwork that is both visually powerful and personally meaningful. His ability to work comfortably across multiple styles allows each tattoo to be approached on its own merits rather than forcing every client into a single artistic niche.</p>
-        <p>Adam is also experienced in tattooing over scars and trauma-affected skin, helping clients reclaim confidence through thoughtful, customized artwork. These projects require patience, technical knowledge, and careful planning — qualities that have become a defining part of his work.</p>
-        <p>His dedication to the craft has earned recognition throughout the tattoo community. Adam is an award-winning tattoo artist whose work has been featured in <strong style="color:var(--text);font-weight:500;">CCI Magazine</strong> and <strong style="color:var(--text);font-weight:500;">Carnival of Ink Magazine</strong>, and he regularly tattoos at nationally recognized conventions, including events hosted by <strong style="color:var(--text);font-weight:500;">Villain Arts</strong>. He has also been selected to represent several respected professional teams and industry sponsors, reflecting the quality of both his artwork and professionalism.</p>
-        <p>At Redemption Tenfold Tattoo, Adam has created a studio built around craftsmanship, creativity, and client experience. Every tattoo is designed with longevity, readability, and strong composition in mind, ensuring that each piece not only looks impressive when it leaves the studio but continues to age well for years to come.</p>
-        <p>Whether you're planning your first tattoo, a full sleeve, a realism portrait, a scar cover-up, or a large custom project, Adam approaches every appointment with the same commitment to quality, collaboration, and creating artwork that clients are proud to wear for a lifetime.</p>
+    <!-- Zone 2: Bio -->
+    <div class="artist-bio-section">
+      <p>Adam Zimmerman is the owner and lead artist of Redemption Tenfold Tattoo in Menominee, Michigan. Known for his versatility, Adam has built a reputation for creating custom tattoos that balance technical precision with bold artistic vision. Whether he's producing highly detailed black and grey realism, striking illustrative pieces, blackwork, horror-inspired imagery, portraits, or large-scale custom projects, his focus remains the same — creating tattoos that are built to last and designed specifically for the individual wearing them.</p>
+      <p>Tattooing has always been more than simply applying ink to skin. For Adam, every project begins with understanding the client's story, ideas, and goals before transforming them into artwork that is both visually powerful and personally meaningful. His ability to work comfortably across multiple styles allows each tattoo to be approached on its own merits rather than forcing every client into a single artistic niche.</p>
+      <p>Adam is also experienced in tattooing over scars and trauma-affected skin, helping clients reclaim confidence through thoughtful, customized artwork. These projects require patience, technical knowledge, and careful planning — qualities that have become a defining part of his work.</p>
+      <p>His dedication to the craft has earned recognition throughout the tattoo community. Adam is an award-winning tattoo artist whose work has been featured in <strong style="color:var(--text);font-weight:500;">CCI Magazine</strong> and <strong style="color:var(--text);font-weight:500;">Carnival of Ink Magazine</strong>, and he regularly tattoos at nationally recognized conventions, including events hosted by <strong style="color:var(--text);font-weight:500;">Villain Arts</strong>. He has also been selected to represent several respected professional teams and industry sponsors, reflecting the quality of both his artwork and professionalism.</p>
+      <p>At Redemption Tenfold Tattoo, Adam has created a studio built around craftsmanship, creativity, and client experience. Every tattoo is designed with longevity, readability, and strong composition in mind, ensuring that each piece not only looks impressive when it leaves the studio but continues to age well for years to come.</p>
+      <p>Whether you're planning your first tattoo, a full sleeve, a realism portrait, a scar cover-up, or a large custom project, Adam approaches every appointment with the same commitment to quality, collaboration, and creating artwork that clients are proud to wear for a lifetime.</p>
+    </div>
+
+    <!-- Zone 3: Full-width gallery -->
+    <div class="artist-gallery-wrap">
+      <div class="artist-gallery" data-artist="adam">
+        <img src="images/adam-1.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=900&q=85'"/>
+        <img src="images/adam-2.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1604881991720-f91add269bed?w=900&q=85'"/>
+        <img src="images/adam-3.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=900&q=85'"/>
+        <img src="images/adam-4.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=85'"/>
+        <img src="images/adam-5.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1542856204-00101eb6def4?w=900&q=85'"/>
+        <img src="images/adam-6.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=900&q=85'"/>
       </div>
-      <div class="artist-gallery-wrap">
-        <div class="artist-gallery" data-artist="adam">
-          <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Adam's work"/>
-          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Adam's work"/>
-          <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Adam's work"/>
-          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Adam's work"/>
-          <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Adam's work"/>
-          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Adam's work"/>
-        </div>
-      </div>
+      <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="gallery-portfolio-link">View Full Portfolio → @adam_zimmer_tattoos</a>
     </div>
 
     <!-- Zone 3: Credentials + Links -->
@@ -526,26 +527,27 @@
       <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Eric →</a>
     </div>
 
-    <!-- Zone 2: Bio + Gallery -->
-    <div class="artist-body">
-      <div class="artist-bio-section">
-        <p>Eric Ebbole was introduced to tattooing by his father, Electric Ed Ebbole, learning the craft at an early age before launching his professional career in the fall of 1986 at Gulf Coast Tattoos in Mobile, Alabama. What began as a family trade quickly became a lifelong calling — and nearly four decades later, Eric stands as one of the most traveled, most respected, and most technically complete tattoo artists working today.</p>
-        <p>His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Along the way he built relationships with some of the most influential figures in the industry, including Paul Rogers, Jack Armstrong, Don Nolan, Mike Dorsey, Shaun Anderson, and Kore Flatmoe. That depth of exposure — different markets, different styles, different schools of thought — shaped an artist with genuine range and no blind spots.</p>
-        <p>Eric works confidently in black and grey and full color across all sizes and genres. Whether the piece calls for sweeping realism, tightly executed traditional work, or something entirely custom, he approaches it with the same calm precision that comes only from four decades of doing this at a high level. His fluency across styles means clients aren't forced into a box — he works with the vision, not against it.</p>
-        <p>In 1995, Eric co-founded Artrageous Ink alongside David Theeke and Rob Jensen, helping build a studio that became one of the most respected shops in the region. His presence at Redemption TenFold brings that same founding-artist energy — a master of the craft who still shows up every day to push himself and the people around him.</p>
-        <p>If you're looking for an artist with the kind of experience that can't be faked, the kind that comes from tattooing through every trend and outlasting every wave, Eric Ebbole is that artist. Book early. He's worth the wait.</p>
+    <!-- Zone 2: Bio -->
+    <div class="artist-bio-section">
+      <p>Eric Ebbole was introduced to tattooing by his father, Electric Ed Ebbole, learning the craft at an early age before launching his professional career in the fall of 1986 at Gulf Coast Tattoos in Mobile, Alabama. What began as a family trade quickly became a lifelong calling — and nearly four decades later, Eric stands as one of the most traveled, most respected, and most technically complete tattoo artists working today.</p>
+      <p>His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Along the way he built relationships with some of the most influential figures in the industry, including Paul Rogers, Jack Armstrong, Don Nolan, Mike Dorsey, Shaun Anderson, and Kore Flatmoe. That depth of exposure — different markets, different styles, different schools of thought — shaped an artist with genuine range and no blind spots.</p>
+      <p>Eric works confidently in black and grey and full color across all sizes and genres. Whether the piece calls for sweeping realism, tightly executed traditional work, or something entirely custom, he approaches it with the same calm precision that comes only from four decades of doing this at a high level. His fluency across styles means clients aren't forced into a box — he works with the vision, not against it.</p>
+      <p>In 1995, Eric co-founded Artrageous Ink alongside David Theeke and Rob Jensen, helping build a studio that became one of the most respected shops in the region. His presence at Redemption TenFold brings that same founding-artist energy — a master of the craft who still shows up every day to push himself and the people around him.</p>
+      <p>If you're looking for an artist with the kind of experience that can't be faked, the kind that comes from tattooing through every trend and outlasting every wave, Eric Ebbole is that artist. Book early. He's worth the wait.</p>
+    </div>
+
+    <!-- Zone 3: Full-width gallery -->
+    <div class="artist-gallery-wrap">
+      <div class="artist-gallery" data-artist="eric">
+        <img src="images/eric-1.jpg" alt="Rhino portrait — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=85'"/>
+        <img src="images/eric-2.jpg" alt="Lady Justice — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1542856204-00101eb6def4?w=900&q=85'"/>
+        <img src="images/eric-3.jpg" alt="Chest piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=900&q=85'"/>
+        <img src="images/eric-4.jpg" alt="Angel &amp; devil leg pieces — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1604881991720-f91add269bed?w=900&q=85'"/>
+        <img src="images/eric-5.jpg" alt="Four Horsemen back piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=900&q=85'"/>
+        <img src="images/eric-6.jpg" alt="Eric Ebbole tattoo work" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=900&q=85'"/>
       </div>
-      <div class="artist-gallery-wrap">
-        <div class="artist-gallery" data-artist="eric">
-          <img src="images/eric-1.jpg" alt="Rhino portrait — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85'"/>
-          <img src="images/eric-2.jpg" alt="Lady Justice — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85'"/>
-          <img src="images/eric-3.jpg" alt="Chest piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85'"/>
-          <img src="images/eric-4.jpg" alt="Angel &amp; devil leg pieces — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85'"/>
-          <img src="images/eric-5.jpg" alt="Four Horsemen back piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85'"/>
-          <img src="images/eric-6.jpg" alt="Eric Ebbole tattoo work" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85'"/>
-        </div>
-        <a href="https://photos.app.goo.gl/Q1a75FdypFjDn97VA" target="_blank" class="gallery-portfolio-link">View Full Portfolio →</a>
-      </div>
+      <a href="https://photos.app.goo.gl/Q1a75FdypFjDn97VA" target="_blank" class="gallery-portfolio-link">View Full Portfolio → Google Photos</a>
+    </div>
     </div>
 
     <!-- Zone 3: Credentials + Links -->
