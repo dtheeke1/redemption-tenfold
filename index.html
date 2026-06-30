@@ -141,12 +141,12 @@
     .artist-identity .book-btn:hover { background: var(--gold); color: var(--black); }
 
     /* Zone 2 — Bio + Gallery */
-    .artist-body { display: grid; grid-template-columns: 1fr 420px; border-bottom: 1px solid var(--border); }
-    .artist-bio-section { padding: 3.5rem 4rem; background: var(--black); border-right: 1px solid var(--border); }
-    .artist-bio-section p { font-size: 0.86rem; line-height: 2.1; color: var(--muted); margin-bottom: 1.4rem; }
+    .artist-body { display: grid; grid-template-columns: minmax(0, 1fr) 360px; border-bottom: 1px solid var(--border); overflow: hidden; }
+    .artist-bio-section { padding: 2.5rem 2.75rem; background: var(--black); border-right: 1px solid var(--border); overflow: hidden; min-width: 0; }
+    .artist-bio-section p { font-size: 0.83rem; line-height: 2; color: var(--muted); margin-bottom: 1.2rem; }
     .artist-bio-section p:last-child { margin-bottom: 0; }
-    .artist-gallery-wrap { background: var(--black); overflow: hidden; }
-    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3px; height: 100%; }
+    .artist-gallery-wrap { background: var(--black); overflow: hidden; width: 360px; flex-shrink: 0; }
+    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3px; height: 100%; min-height: 360px; }
     .artist-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
     .artist-gallery img:hover { filter: brightness(1); transform: scale(1.05); }
 
