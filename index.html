@@ -145,7 +145,9 @@
     .artist-bio-section { padding: 2.5rem 2.75rem; background: var(--black); border-right: 1px solid var(--border); overflow: hidden; min-width: 0; }
     .artist-bio-section p { font-size: 0.83rem; line-height: 2; color: var(--muted); margin-bottom: 1.2rem; }
     .artist-bio-section p:last-child { margin-bottom: 0; }
-    .artist-gallery-wrap { background: var(--black); overflow: hidden; width: 360px; flex-shrink: 0; }
+    .artist-gallery-wrap { background: var(--black); overflow: hidden; width: 360px; flex-shrink: 0; display: flex; flex-direction: column; }
+    .gallery-portfolio-link { display: block; text-align: center; padding: 0.85rem 1rem; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-top: 1px solid var(--border); background: var(--panel); transition: background 0.3s, color 0.3s; flex-shrink: 0; }
+    .gallery-portfolio-link:hover { background: var(--gold); color: var(--black); }
     .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 3px; height: 100%; min-height: 360px; }
     .artist-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; filter: brightness(0.68); transition: filter 0.35s, transform 0.45s; cursor: pointer; display: block; }
     .artist-gallery img:hover { filter: brightness(1); transform: scale(1.05); }
@@ -535,13 +537,14 @@
       </div>
       <div class="artist-gallery-wrap">
         <div class="artist-gallery" data-artist="eric">
-          <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85" alt="Eric's work"/>
-          <img src="https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85" alt="Eric's work"/>
-          <img src="https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85" alt="Eric's work"/>
-          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85" alt="Eric's work"/>
-          <img src="https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85" alt="Eric's work"/>
-          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85" alt="Eric's work"/>
+          <img src="images/eric-1.jpg" alt="Rhino portrait — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=85'"/>
+          <img src="images/eric-2.jpg" alt="Lady Justice — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1542856204-00101eb6def4?w=600&q=85'"/>
+          <img src="images/eric-3.jpg" alt="Chest piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=600&q=85'"/>
+          <img src="images/eric-4.jpg" alt="Angel &amp; devil leg pieces — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=85'"/>
+          <img src="images/eric-5.jpg" alt="Four Horsemen back piece — Eric Ebbole" onerror="this.src='https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=600&q=85'"/>
+          <img src="images/eric-6.jpg" alt="Eric Ebbole tattoo work" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=600&q=85'"/>
         </div>
+        <a href="https://photos.app.goo.gl/Q1a75FdypFjDn97VA" target="_blank" class="gallery-portfolio-link">View Full Portfolio →</a>
       </div>
     </div>
 
@@ -555,7 +558,7 @@
         <div class="cred">Black &amp; grey · Color · All styles</div>
       </div>
       <div class="artist-links">
-        <a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="portfolio-link">Portfolio → @redemptiontenfold</a>
+        <a href="https://photos.app.goo.gl/Q1a75FdypFjDn97VA" target="_blank" class="portfolio-link">Full Portfolio → Google Photos</a>
         <a href="mailto:Ebboleeric1@gmail.com">Ebboleeric1@gmail.com</a>
       </div>
     </div>
