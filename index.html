@@ -142,16 +142,16 @@
 
     /* Zone 2 — Bio (compact 2-col) */
     .artist-bio-section { padding: 2.75rem 4rem; background: var(--black); border-bottom: 1px solid var(--border); column-count: 2; column-gap: 4rem; }
-    .artist-bio-section p { font-size: 0.84rem; line-height: 2.05; color: var(--muted); margin-bottom: 1.1rem; break-inside: avoid; }
+    .artist-bio-section p { font-size: 0.88rem; line-height: 2.05; color: var(--text); margin-bottom: 1.1rem; break-inside: avoid; }
     .artist-bio-section p:last-child { margin-bottom: 0; }
 
     /* Zone 3 — Full-width large photo grid */
     .artist-gallery-wrap { background: var(--black); border-bottom: 1px solid var(--border); }
     .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .artist-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: brightness(0.75); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; }
+    .artist-gallery img { width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #0a0a0a; filter: brightness(0.88); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; }
     .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
-    .gallery-portfolio-link { display: block; text-align: center; padding: 1rem; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-top: 1px solid var(--border); background: var(--panel); transition: background 0.3s, color 0.3s; }
-    .gallery-portfolio-link:hover { background: var(--gold); color: var(--black); }
+    .gallery-portfolio-link { display: block; text-align: center; padding: 2rem 2rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--black); text-decoration: none; background: var(--gold); transition: background 0.3s, color 0.3s, letter-spacing 0.3s; }
+    .gallery-portfolio-link:hover { background: #e8c05a; letter-spacing: 0.38em; }
 
     /* Zone 3 — Credentials + links footer */
     .artist-footer { display: flex; align-items: flex-start; gap: 3rem; padding: 1.75rem 4rem; background: var(--panel); flex-wrap: wrap; }
@@ -569,29 +569,6 @@
 
 </section>
 
-<!-- VIDEO -->
-<section class="studio-video" id="video">
-  <div class="video-inner">
-    <div class="video-text reveal-left">
-      <p class="eyebrow">In the Studio</p>
-      <h2>Watch the <em>work</em></h2>
-      <p>See what it looks like inside Redemption TenFold — the focus, the process, and the standard we hold ourselves to on every single piece.</p>
-    </div>
-    <div class="video-embed reveal-right">
-      <div class="video-frame">
-        <iframe
-          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F61557218847633%2Fvideos%2F2201398533991818&width=800&show_text=false&height=450&appId"
-          width="800" height="450"
-          style="border:none;overflow:hidden"
-          scrolling="no" frameborder="0"
-          allowfullscreen="true"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="reviews-header reveal">
@@ -716,25 +693,6 @@
       <div class="loc-row"><span class="k">Book Online</span><span class="v"><a href="https://www.vagaro.com/redemptiontenfold" target="_blank">vagaro.com/redemptiontenfold</a></span></div>
     </div>
     <a href="https://maps.google.com/?q=1112+10th+St+Menominee+MI+49858" target="_blank" class="directions-btn reveal">Get Directions →</a>
-  </div>
-</section>
-
-<!-- BOOKING -->
-<section class="booking" id="booking">
-  <div class="reveal-left">
-    <h2>Ready to go<br><em>tenfold?</em></h2>
-    <p>Whether you have a fully formed concept or just the beginning of an idea, reach out and we'll help you get there. Our artists work with you through the design — you don't have to show up with everything figured out.</p>
-    <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="btn-gold">Book on Vagaro</a>
-  </div>
-  <div class="reveal-right">
-    <div class="b-row"><span class="k">Studio</span><span class="v">Redemption TenFold</span></div>
-    <div class="b-row"><span class="k">Address</span><span class="v">1112 10th St · Menominee, MI 49858</span></div>
-    <div class="b-row"><span class="k">Hours</span><span class="v">Tuesday – Saturday · 10am – 6pm</span></div>
-    <div class="b-row"><span class="k">Phone</span><a href="tel:+19067926001" class="v">(906) 792-6001</a></div>
-    <div class="b-row"><span class="k">Email</span><a href="mailto:Tenfoldtattoo@gmail.com" class="v">Tenfoldtattoo@gmail.com</a></div>
-    <div class="b-row"><span class="k">Book Online</span><a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="v">vagaro.com/redemptiontenfold</a></div>
-    <div class="b-row"><span class="k">Instagram</span><a href="https://www.instagram.com/redemptiontenfold/" target="_blank" class="v">@redemptiontenfold</a></div>
-    <div class="b-row"><span class="k">Facebook</span><a href="https://www.facebook.com/p/Redemption-TenFold-61557218847633/" target="_blank" class="v">Redemption TenFold</a></div>
   </div>
 </section>
 
