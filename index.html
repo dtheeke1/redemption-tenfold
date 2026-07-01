@@ -146,11 +146,11 @@
     .artist-bio-section p:last-child { margin-bottom: 0; }
 
     /* Zone 3 — Full-width large photo grid */
-    .artist-gallery-wrap { background: var(--black); border-bottom: 1px solid var(--border); }
-    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .artist-gallery-wrap { background: var(--black); border-bottom: 1px solid var(--border); padding: 2.5rem 4rem; }
+    .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .artist-gallery.four-col { grid-template-columns: repeat(4, 1fr); }
-    .artist-gallery img { width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #0a0a0a; filter: brightness(0.88); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; }
-    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
+    .artist-gallery img { width: 100%; height: 280px; object-fit: cover; object-position: center; filter: brightness(0.9); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; border-radius: 2px; }
+    .artist-gallery img:hover { filter: brightness(1); transform: scale(1.02); }
     .gallery-portfolio-link { display: block; text-align: center; padding: 2rem 2rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--black); text-decoration: none; background: var(--gold); transition: background 0.3s, color 0.3s, letter-spacing 0.3s; }
     .gallery-portfolio-link:hover { background: #e8c05a; letter-spacing: 0.38em; }
 
@@ -254,11 +254,11 @@
     .location-details { display: flex; flex-direction: column; }
     .loc-row { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
     .loc-row:first-child { border-top: 1px solid var(--border); }
-    .loc-row .k { font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
-    .loc-row .v { font-size: 0.82rem; color: var(--text); text-align: right; line-height: 1.65; }
+    .loc-row .k { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .loc-row .v { font-size: 0.95rem; color: var(--text); text-align: right; line-height: 1.65; font-weight: 400; }
     .loc-row a { color: var(--gold); text-decoration: none; }
-    .directions-btn { display: inline-block; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.85rem 2rem; transition: all 0.3s; width: fit-content; }
-    .directions-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .directions-btn { display: inline-block; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.5rem; transition: all 0.3s; width: fit-content; font-weight: 500; }
+    .directions-btn:hover { background: var(--gold); color: var(--black); }
 
     /* BOOKING */
     .booking { padding: 9rem 5rem; background: var(--black); border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start; }
@@ -277,41 +277,54 @@
     .footer-brand .f-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 1rem; }
     .footer-brand p { font-size: 0.88rem; line-height: 1.9; color: var(--text); max-width: 280px; }
     .footer-col h5 { font-size: 0.56rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
-    .footer-col a, .footer-col p { display: block; color: #4a4640; text-decoration: none; font-size: 0.82rem; line-height: 2; transition: color 0.3s; }
+    .footer-col a, .footer-col p { display: block; color: var(--text); text-decoration: none; font-size: 0.88rem; line-height: 2; transition: color 0.3s; }
     .footer-col a:hover { color: var(--gold); }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); }
-    .footer-bottom p { font-size: 0.58rem; color: #2e2e2e; letter-spacing: 0.15em; }
+    .footer-bottom p { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; }
     .footer-social { display: flex; gap: 1.5rem; }
-    .footer-social a { color: #3a3a38; text-decoration: none; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+    .footer-social a { color: var(--text); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
     .footer-social a:hover { color: var(--gold); }
 
     @media (max-width: 960px) {
       nav { padding: 1rem 1.5rem; }
       nav.scrolled { padding: 0.75rem 1.5rem; }
-      .logo-img { height: 52px; }
+      .logo-name { font-size: 1rem; letter-spacing: 0.3em; }
+      .logo-sub { font-size: 0.42rem; letter-spacing: 0.1em; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-content { padding: 0 1.5rem 5rem; }
+      .hero-content h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
       .hero-scroll { display: none; }
-      .philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
-      .artists-header { flex-direction: column; padding: 4rem 1.5rem 3rem; }
-      .artist-identity { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+      .philosophy { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .about { padding: 4rem 1.5rem; }
+      .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
+      .artists-header { flex-direction: column; padding: 3rem 1.5rem 2rem; }
+      .artist-identity { padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
       .artist-identity .book-btn { width: 100%; text-align: center; }
-      .artist-bio-section { padding: 2rem 1.5rem; column-count: 1; }
-      .artist-gallery { grid-template-columns: repeat(2, 1fr); }
+      .artist-bio-section { padding: 1.5rem; column-count: 1; }
+      .artist-gallery-wrap { padding: 1.5rem; }
+      .artist-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .artist-gallery.four-col { grid-template-columns: repeat(2, 1fr); }
+      .artist-gallery img { height: 180px; }
       .artist-footer { padding: 1.5rem; flex-direction: column; gap: 1.5rem; }
       .artist-links { flex-wrap: wrap; gap: 1rem; }
-      .reviews { padding: 5rem 1.5rem; }
+      .reviews { padding: 4rem 1.5rem; }
+      .reviews-header { flex-direction: column; align-items: flex-start; }
+      .reviews-meta { text-align: left; }
       .reviews-grid { grid-template-columns: 1fr; }
-      .faq { padding: 5rem 1.5rem; }
-      .aftercare { padding: 5rem 1.5rem; }
+      .faq { padding: 4rem 1.5rem; }
+      .aftercare { padding: 4rem 1.5rem; }
       .aftercare-grid { grid-template-columns: 1fr; }
       .location { grid-template-columns: 1fr; }
-      .location-info { padding: 3rem 1.5rem; }
-      .booking { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 4rem; }
+      .location-map { min-height: 300px; }
+      .location-map iframe { min-height: 300px; }
+      .location-info { padding: 2.5rem 1.5rem; }
+      .loc-row { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+      .loc-row .v { text-align: left; }
       footer { padding: 3rem 1.5rem 2rem; }
       .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .footer-bottom { flex-direction: column; gap: 1rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-social { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
