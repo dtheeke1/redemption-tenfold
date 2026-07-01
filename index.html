@@ -788,14 +788,22 @@
     });
   });
 
-  // Lightbox
-  const imgs=[]; document.querySelectorAll('.artist-gallery img').forEach((img,i) => { imgs.push(img.src); img.addEventListener('click',()=>openLb(i)); });
-  let cur=0; const lbImg=document.getElementById('lbImg'), lb=document.getElementById('lightbox');
-  function openLb(i){ cur=i; lbImg.src=imgs[i]; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  // Lightbox — scoped per gallery so artists don't mix
+  let lbImgs=[], lbCur=0;
+  const lbImg=document.getElementById('lbImg'), lb=document.getElementById('lightbox');
+  function initLightbox(){
+    document.querySelectorAll('.artist-gallery').forEach(gallery => {
+      const imgs=Array.from(gallery.querySelectorAll('img'));
+      imgs.forEach((img,i)=>{
+        img.onclick=()=>{ lbImgs=imgs.map(m=>m.src); lbCur=i; lbImg.src=lbImgs[i]; lb.classList.add('open'); document.body.style.overflow='hidden'; };
+      });
+    });
+  }
+  initLightbox();
   function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('lbClose').addEventListener('click',closeLb);
-  document.getElementById('lbPrev').addEventListener('click',()=>{ cur=(cur-1+imgs.length)%imgs.length; lbImg.src=imgs[cur]; });
-  document.getElementById('lbNext').addEventListener('click',()=>{ cur=(cur+1)%imgs.length; lbImg.src=imgs[cur]; });
+  document.getElementById('lbPrev').addEventListener('click',()=>{ lbCur=(lbCur-1+lbImgs.length)%lbImgs.length; lbImg.src=lbImgs[lbCur]; });
+  document.getElementById('lbNext').addEventListener('click',()=>{ lbCur=(lbCur+1)%lbImgs.length; lbImg.src=lbImgs[lbCur]; });
   lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
   document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLb(); if(e.key==='ArrowLeft') document.getElementById('lbPrev').click(); if(e.key==='ArrowRight') document.getElementById('lbNext').click(); });
 </script>
@@ -918,15 +926,7 @@
     }
 
     // Re-init lightbox after gallery update
-    const allImgs = [];
-    document.querySelectorAll('.artist-gallery img').forEach((img, i) => {
-      allImgs.push(img.src);
-      img.addEventListener('click', () => {
-        let cur = i;
-        const lbImg = document.getElementById('lbImg'), lb = document.getElementById('lightbox');
-        lbImg.src = allImgs[cur]; lb.classList.add('open'); document.body.style.overflow = 'hidden';
-      });
-    });
+    initLightbox();
   } catch(e) { /* silently fail — static HTML remains */ }
 
   function set(id, text) { const el = document.getElementById(id); if (el) el.textContent = text; }
