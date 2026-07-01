@@ -43,6 +43,22 @@
   .login-hint a { color: var(--gold); text-decoration: none; }
   #login-error { color: #e74c3c; font-size: 0.82rem; margin-bottom: 1rem; min-height: 1rem; }
 
+  /* ── SETUP OVERLAY ─────────────────────────────────────── */
+  #setup-screen {
+    display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.95);
+    align-items: center; justify-content: center; z-index: 999;
+  }
+  #setup-screen.open { display: flex; }
+  .setup-box { width: 480px; background: var(--panel); border: 1px solid var(--border); padding: 2.5rem; }
+  .setup-box h2 { font-size: 1.1rem; color: var(--text); font-weight: 400; margin-bottom: 0.5rem; }
+  .setup-box p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
+  .setup-box ol { font-size: 0.82rem; color: var(--muted); line-height: 2; margin: 0 0 1.5rem 1.25rem; }
+  .setup-box ol a { color: var(--gold); text-decoration: none; }
+  .setup-box label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .setup-box input { width: 100%; background: var(--black); border: 1px solid var(--border); color: var(--text); padding: 0.8rem 1rem; font-size: 0.88rem; outline: none; border-radius: 2px; font-family: monospace; margin-bottom: 1rem; }
+  .setup-box input:focus { border-color: var(--gold); }
+  #setup-error { color: #e74c3c; font-size: 0.8rem; margin-bottom: 0.75rem; min-height: 1rem; }
+
   /* ── LAYOUT ─────────────────────────────────────── */
   #app { display: none; min-height: 100vh; }
   .admin-layout { display: flex; min-height: 100vh; }
@@ -189,13 +205,29 @@
     <div class="login-title">Studio Admin</div>
     <div id="login-error"></div>
     <div class="field">
-      <label for="pat-input">GitHub Personal Access Token</label>
-      <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+      <label for="pw-input">Password</label>
+      <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password" />
     </div>
     <button class="btn-login" onclick="doLogin()">Sign In</button>
-    <p class="login-hint">
-      Need a token? <a href="https://github.com/settings/tokens/new?scopes=repo&description=Redemption+TenFold+CMS" target="_blank">Create one here</a> — select <strong>repo</strong> scope, click Generate.
-    </p>
+  </div>
+</div>
+
+<!-- ── FIRST-TIME SETUP ──────────────────────────────────────── -->
+<div id="setup-screen">
+  <div class="setup-box">
+    <h2>One-Time Setup</h2>
+    <p>This device hasn't been set up yet. You only do this once — after this, just use the password.</p>
+    <ol>
+      <li>Go to <a href="https://github.com/settings/tokens/new?description=Redemption+TenFold+CMS&scopes=repo" target="_blank">github.com → Settings → Tokens</a></li>
+      <li>Note field: <strong>Redemption TenFold CMS</strong></li>
+      <li>Expiration: <strong>No expiration</strong></li>
+      <li>Check the <strong>repo</strong> box</li>
+      <li>Click <strong>Generate token</strong> — copy the result</li>
+    </ol>
+    <div id="setup-error"></div>
+    <label for="setup-pat">Paste GitHub Token</label>
+    <input type="password" id="setup-pat" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+    <button class="btn-login" onclick="doSetup()">Save &amp; Continue</button>
   </div>
 </div>
 
@@ -511,18 +543,66 @@ let   contentSha = '';
 let   styles = [];
 
 // ── AUTH ──────────────────────────────────────────────────
+const PW_HASH = '8d75ed7cd43c595b4ef0658059f8bda6335ff07a50f2b5c5cf87dd00653a57c8'; // SHA-256 of "Redemption2025"
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
 async function doLogin() {
-  const pat = document.getElementById('pat-input').value.trim();
-  if (!pat) { showLoginError('Please enter your GitHub token.'); return; }
+  const pw = document.getElementById('pw-input').value;
+  if (!pw) { showLoginError('Please enter the password.'); return; }
   const errEl = document.getElementById('login-error');
-  errEl.textContent = 'Verifying...';
+  errEl.textContent = 'Checking...';
+  const hash = await sha256(pw);
+  if (hash !== PW_HASH) { showLoginError('Incorrect password.'); return; }
+  errEl.textContent = '';
+
+  PAT = localStorage.getItem('rtf_pat') || '';
+  if (!PAT) {
+    // First time on this device — need token setup
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('setup-screen').classList.add('open');
+    return;
+  }
+  await loadAndEnter();
+}
+
+async function doSetup() {
+  const pat = document.getElementById('setup-pat').value.trim();
+  if (!pat) { document.getElementById('setup-error').textContent = 'Please paste your GitHub token.'; return; }
+  document.getElementById('setup-error').textContent = 'Verifying...';
   try {
     const res = await fetch(`${API}/repos/${REPO}/contents/content.json`, {
       headers: { Authorization: `token ${pat}`, Accept: 'application/vnd.github.v3+json' }
     });
-    if (!res.ok) throw new Error('Invalid token or repo not found.');
+    if (!res.ok) throw new Error('Token invalid or repo not found. Check the token has "repo" scope.');
     PAT = pat;
-    sessionStorage.setItem('rtf_pat', pat);
+    localStorage.setItem('rtf_pat', pat);
+    document.getElementById('setup-screen').classList.remove('open');
+    const data = await res.json();
+    contentSha = data.sha;
+    content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    document.getElementById('app').style.display = 'block';
+    populateForms();
+  } catch(e) {
+    document.getElementById('setup-error').textContent = e.message;
+  }
+}
+
+async function loadAndEnter() {
+  try {
+    const res = await fetch(`${API}/repos/${REPO}/contents/content.json`, {
+      headers: { Authorization: `token ${PAT}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) {
+      // Token expired or revoked — force re-setup
+      localStorage.removeItem('rtf_pat');
+      showLoginError('Session expired. Please sign in again.');
+      document.getElementById('login-screen').style.display = 'flex';
+      return;
+    }
     const data = await res.json();
     contentSha = data.sha;
     content = JSON.parse(atob(data.content.replace(/\n/g,'')));
@@ -539,14 +619,14 @@ function showLoginError(msg) {
 }
 
 function doLogout() {
-  sessionStorage.removeItem('rtf_pat');
   PAT = ''; content = {}; contentSha = '';
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('pat-input').value = '';
+  document.getElementById('pw-input').value = '';
 }
 
-document.getElementById('pat-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('setup-pat').addEventListener('keydown', e => { if (e.key === 'Enter') doSetup(); });
 
 // ── NAV ──────────────────────────────────────────────────
 const sectionTitles = { hours: 'Hours & Contact', about: 'About the Studio', faq: 'FAQ', adam: 'Adam Zimmerman', eric: 'Eric Ebbole' };
@@ -946,14 +1026,7 @@ function esc(s) {
   return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── AUTO LOGIN (session restore) ──────────────────────────────────────────────────
-(async function init() {
-  const savedPat = sessionStorage.getItem('rtf_pat');
-  if (savedPat) {
-    document.getElementById('pat-input').value = savedPat;
-    await doLogin();
-  }
-})();
+// ── AUTO LOGIN removed — password required every session ──────────────────────────
 </script>
 </body>
 </html>
