@@ -583,7 +583,7 @@ async function doSetup() {
     document.getElementById('setup-screen').classList.remove('open');
     const data = await res.json();
     contentSha = data.sha;
-    content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    content = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
     document.getElementById('app').style.display = 'block';
     populateForms();
   } catch(e) {
@@ -605,7 +605,7 @@ async function loadAndEnter() {
     }
     const data = await res.json();
     contentSha = data.sha;
-    content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    content = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     populateForms();
