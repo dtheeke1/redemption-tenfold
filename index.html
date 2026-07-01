@@ -67,7 +67,7 @@
     .hero-overline::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
     .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 6vw, 7rem); font-weight: 300; line-height: 1.02; letter-spacing: 0.01em; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
     .hero-content h1 em { font-style: italic; color: var(--gold); }
-    .hero-content p { font-size: 0.82rem; line-height: 2; color: var(--muted); max-width: 400px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.7s forwards; }
+    .hero-content p { font-size: 0.88rem; line-height: 2; color: var(--text); max-width: 400px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.7s forwards; }
     .hero-btns { display: flex; gap: 1rem; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
     .btn-gold { display: inline-block; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.32em; text-transform: uppercase; padding: 1rem 2.5rem; transition: all 0.3s; }
     .btn-gold:hover { background: var(--gold); color: var(--black); }
@@ -91,7 +91,7 @@
     .phil-text .eyebrow { font-size: 0.56rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
     .phil-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 300; line-height: 1.2; margin-bottom: 2rem; }
     .phil-text h2 em { font-style: italic; color: var(--gold); }
-    .phil-text p { font-size: 0.84rem; line-height: 2; color: var(--muted); margin-bottom: 1.25rem; }
+    .phil-text p { font-size: 0.88rem; line-height: 2; color: var(--text); margin-bottom: 1.25rem; }
     .phil-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
     .stat-cell { background: var(--panel); padding: 2.5rem 2rem; }
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); line-height: 1; }
@@ -105,7 +105,7 @@
     .about-intro { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 300; line-height: 1.55; color: var(--text); margin-bottom: 3.5rem; max-width: 820px; }
     .about-intro em { font-style: italic; color: var(--gold); }
     .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 5rem; margin-bottom: 3.5rem; }
-    .about-body p { font-size: 0.86rem; line-height: 2.1; color: var(--muted); }
+    .about-body p { font-size: 0.88rem; line-height: 2.1; color: var(--text); }
     .about-styles { margin-bottom: 3.5rem; }
     .about-styles h4 { font-size: 0.56rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
     .style-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -114,7 +114,7 @@
     .about-closing { border-top: 1px solid var(--border); padding-top: 3rem; }
     .about-closing blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.2vw, 1.85rem); font-style: italic; font-weight: 300; line-height: 1.5; color: var(--text); margin-bottom: 0.75rem; }
     .about-closing blockquote em { color: var(--gold); font-style: normal; }
-    .about-closing p { font-size: 0.82rem; color: var(--muted); line-height: 1.9; }
+    .about-closing p { font-size: 0.88rem; color: var(--text); line-height: 1.9; }
     @media (max-width: 960px) {
       .about { padding: 5rem 1.5rem; }
       .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -226,7 +226,7 @@
     .faq-item.open .faq-icon { background: var(--gold); border-color: var(--gold); color: var(--black); transform: rotate(45deg); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .faq-item.open .faq-a { max-height: 300px; }
-    .faq-a p { font-size: 0.84rem; line-height: 2; color: var(--muted); padding-bottom: 2rem; }
+    .faq-a p { font-size: 0.88rem; line-height: 2; color: var(--text); padding-bottom: 2rem; }
 
     /* AFTERCARE */
     .aftercare { padding: 8rem 5rem; background: var(--black); border-top: 1px solid var(--border); }
@@ -238,9 +238,9 @@
     .care-card { background: var(--panel); padding: 2.5rem 2rem; }
     .care-step { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 1rem; }
     .care-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
-    .care-card p { font-size: 0.8rem; line-height: 1.9; color: var(--muted); }
+    .care-card p { font-size: 0.88rem; line-height: 1.9; color: var(--text); }
     .aftercare-warning { border: 1px solid rgba(201,168,76,0.2); padding: 2rem 2.5rem; background: var(--gold-dim); }
-    .aftercare-warning p { font-size: 0.82rem; line-height: 1.9; color: var(--muted); }
+    .aftercare-warning p { font-size: 0.88rem; line-height: 1.9; color: var(--text); }
     .aftercare-warning p strong { color: var(--gold); font-weight: 500; }
 
     /* LOCATION */
@@ -275,7 +275,7 @@
     footer { background: var(--dark); border-top: 1px solid var(--border); padding: 4rem 5rem 2.5rem; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
     .footer-brand .f-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.4em; text-transform: uppercase; display: block; margin-bottom: 1rem; }
-    .footer-brand p { font-size: 0.78rem; line-height: 1.9; color: var(--muted); max-width: 280px; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.9; color: var(--text); max-width: 280px; }
     .footer-col h5 { font-size: 0.56rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
     .footer-col a, .footer-col p { display: block; color: #4a4640; text-decoration: none; font-size: 0.82rem; line-height: 2; transition: color 0.3s; }
     .footer-col a:hover { color: var(--gold); }
@@ -383,15 +383,15 @@
     <span>Blackwork</span><span class="dot"> ✦ </span>
     <span>Color</span><span class="dot"> ✦ </span>
     <span>Fine Line</span><span class="dot"> ✦ </span>
+    <span>Traditional</span><span class="dot"> ✦ </span>
     <span>Award-Winning Artists</span><span class="dot"> ✦ </span>
-    <span>Menominee, Michigan</span><span class="dot"> ✦ </span>
     <span>Black &amp; Grey Realism</span><span class="dot"> ✦ </span>
     <span>Illustrative Portraits</span><span class="dot"> ✦ </span>
     <span>Blackwork</span><span class="dot"> ✦ </span>
     <span>Color</span><span class="dot"> ✦ </span>
     <span>Fine Line</span><span class="dot"> ✦ </span>
+    <span>Traditional</span><span class="dot"> ✦ </span>
     <span>Award-Winning Artists</span><span class="dot"> ✦ </span>
-    <span>Menominee, Michigan</span><span class="dot"> ✦ </span>
   </div>
 </div>
 
