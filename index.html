@@ -42,9 +42,9 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1rem 4rem; transition: background 0.4s, padding 0.4s; }
     nav.scrolled { background: rgba(8,8,8,0.97); padding: 0.75rem 4rem; border-bottom: 1px solid var(--border); }
     .logo-wrap { display: flex; align-items: center; text-decoration: none; }
-    .logo-img { height: 70px; width: auto; object-fit: contain; transition: height 0.4s; }
-    nav.scrolled .logo-img { height: 52px; }
-    .logo-fallback { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); display: none; }
+.logo-text { display: flex; flex-direction: column; gap: 0.2rem; }
+    .logo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); line-height: 1; }
+    .logo-sub { font-size: 0.5rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55); line-height: 1; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover { color: #fff; }
@@ -60,7 +60,7 @@
 
     /* HERO */
     .hero { height: 100vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1800&q=90') center/cover no-repeat; }
+    .hero-bg { position: absolute; inset: 0; background: url('images/adam-hero.jpg') center/cover no-repeat; }
     .hero-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.93) 40%, rgba(8,8,8,0.3) 100%), linear-gradient(to top, rgba(8,8,8,0.65) 0%, transparent 50%); }
     .hero-content { position: relative; z-index: 1; padding: 0 5rem 7rem; max-width: 700px; }
     .hero-overline { font-size: 0.58rem; letter-spacing: 0.55em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 1.25rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
@@ -343,9 +343,10 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo-wrap">
-    <img src="images/logo.png" alt="Redemption TenFold Tattoo" class="logo-img"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
-    <span class="logo-fallback">Redemption TenFold</span>
+    <div class="logo-text">
+      <span class="logo-name">Redemption TenFold</span>
+      <span class="logo-sub">Award-Winning Tattoo Collective &nbsp;·&nbsp; Menominee, MI</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
