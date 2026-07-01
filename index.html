@@ -148,6 +148,7 @@
     /* Zone 3 — Full-width large photo grid */
     .artist-gallery-wrap { background: var(--black); border-bottom: 1px solid var(--border); }
     .artist-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .artist-gallery.four-col { grid-template-columns: repeat(4, 1fr); }
     .artist-gallery img { width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #0a0a0a; filter: brightness(0.88); transition: filter 0.4s, transform 0.5s; cursor: pointer; display: block; }
     .artist-gallery img:hover { filter: brightness(1); transform: scale(1.03); }
     .gallery-portfolio-link { display: block; text-align: center; padding: 2rem 2rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--black); text-decoration: none; background: var(--gold); transition: background 0.3s, color 0.3s, letter-spacing 0.3s; }
@@ -483,13 +484,14 @@
 
     <!-- Zone 3: Full-width gallery -->
     <div class="artist-gallery-wrap">
-      <div class="artist-gallery" data-artist="adam">
-        <img src="images/adam-1.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1590246815117-cf3c1e11c26e?w=900&q=85'"/>
-        <img src="images/adam-2.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1604881991720-f91add269bed?w=900&q=85'"/>
-        <img src="images/adam-3.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1531389282328-b0f24f94b6c9?w=900&q=85'"/>
-        <img src="images/adam-4.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=85'"/>
-        <img src="images/adam-5.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1542856204-00101eb6def4?w=900&q=85'"/>
-        <img src="images/adam-6.jpg" alt="Adam Zimmerman tattoo work" onerror="this.src='https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=900&q=85'"/>
+      <div class="artist-gallery four-col" data-artist="adam">
+        <img src="images/adam-p1.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p2.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p3.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p4.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p5.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p6.jpg" alt="Adam Zimmerman tattoo work"/>
+        <img src="images/adam-p7.jpg" alt="Adam Zimmerman tattoo work"/>
       </div>
       <a href="https://www.instagram.com/adam_zimmer_tattoos/" target="_blank" class="gallery-portfolio-link">View Full Portfolio → @adam_zimmer_tattoos</a>
     </div>
