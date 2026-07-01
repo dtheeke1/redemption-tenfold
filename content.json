@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "subtext": "Redemption TenFold is a collective of award-winning artists in Menominee, Michigan — pushing the standard of the craft with every piece they put on skin."
+  },
+  "about": {
+    "paragraphs": [
+      "Located in Menominee, Michigan, Redemption Tenfold was built around one simple idea: create a studio where artistry, professionalism, and client experience matter just as much as the finished tattoo. From your first consultation to your final session, our goal is to provide an experience that's comfortable, collaborative, and focused entirely on creating artwork you'll be proud to wear for the rest of your life.",
+      "We specialize in custom tattooing, not cookie-cutter designs. Every project begins with a conversation. Whether you arrive with a fully developed concept or only a rough idea, we work alongside you to create artwork that's unique to you, your story, and your vision.",
+      "We also understand that tattoos can represent healing as much as self-expression. Whether you're covering scars, honoring someone you've lost, celebrating a milestone, or marking the beginning of a new chapter, we're honored to create artwork that carries lasting personal meaning.",
+      "Cleanliness, safety, and professionalism are the foundation of everything we do. We maintain strict health standards, use high-quality equipment and materials, and take the time to educate every client on proper aftercare so their tattoo heals as beautifully as it was created."
+    ],
+    "styles": ["Black & Grey Realism","Color Realism","Illustrative","Portraits","Blackwork","Fine Line","Chicano","Horror","Japanese","Large-Scale Sleeves","Custom Compositions","Scar Cover-Ups"],
+    "closing_body": "Redemption Tenfold is home to award-winning artists whose work has been recognized through industry publications, convention appearances, and professional sponsorships. But while we're proud of those accomplishments, they're not what define us. What matters most is the trust our clients place in us and the relationships we build one tattoo at a time."
+  },
+  "hours": {
+    "open": "Tue – Sat · 10am – 6pm",
+    "closed": "Sun & Mon · Closed"
+  },
+  "contact": {
+    "phone": "(906) 792-6001",
+    "email": "Tenfoldtattoo@gmail.com",
+    "address_line1": "1112 10th Street",
+    "address_line2": "Menominee, MI 49858",
+    "vagaro": "https://www.vagaro.com/redemptiontenfold",
+    "instagram": "https://www.instagram.com/redemptiontenfold/",
+    "facebook": "https://www.facebook.com/p/Redemption-TenFold-61557218847633/"
+  },
+  "adam": {
+    "name": "Adam Zimmerman",
+    "title": "Owner & Lead Artist · Ink Wars 1v1 Champion",
+    "bio_paragraphs": [
+      "Adam Zimmerman is the owner and lead artist of Redemption Tenfold Tattoo in Menominee, Michigan. Known for his versatility, Adam has built a reputation for creating custom tattoos that balance technical precision with bold artistic vision. Whether he's producing highly detailed black and grey realism, striking illustrative pieces, blackwork, horror-inspired imagery, portraits, or large-scale custom projects, his focus remains the same — creating tattoos that are built to last and designed specifically for the individual wearing them.",
+      "Tattooing has always been more than simply applying ink to skin. For Adam, every project begins with understanding the client's story, ideas, and goals before transforming them into artwork that is both visually powerful and personally meaningful. His ability to work comfortably across multiple styles allows each tattoo to be approached on its own merits rather than forcing every client into a single artistic niche.",
+      "Adam is also experienced in tattooing over scars and trauma-affected skin, helping clients reclaim confidence through thoughtful, customized artwork. These projects require patience, technical knowledge, and careful planning — qualities that have become a defining part of his work.",
+      "His dedication to the craft has earned recognition throughout the tattoo community. Adam is an award-winning tattoo artist whose work has been featured in CCI Magazine and Carnival of Ink Magazine, and he regularly tattoos at nationally recognized conventions, including events hosted by Villain Arts. He has also been selected to represent several respected professional teams and industry sponsors, reflecting the quality of both his artwork and professionalism.",
+      "At Redemption Tenfold Tattoo, Adam has created a studio built around craftsmanship, creativity, and client experience. Every tattoo is designed with longevity, readability, and strong composition in mind, ensuring that each piece not only looks impressive when it leaves the studio but continues to age well for years to come.",
+      "Whether you're planning your first tattoo, a full sleeve, a realism portrait, a scar cover-up, or a large custom project, Adam approaches every appointment with the same commitment to quality, collaboration, and creating artwork that clients are proud to wear for a lifetime."
+    ],
+    "creds": [
+      "Featured in CCI Magazine & Carnival of Ink Magazine",
+      "Ink Wars 1v1 Champion",
+      "Villain Arts Convention Artist",
+      "Papillon · The Squad · Proper Aftercare Pro Teams",
+      "Scar & trauma skin specialist"
+    ],
+    "portfolio_url": "https://www.instagram.com/adam_zimmer_tattoos/",
+    "portfolio_label": "View Full Portfolio → @adam_zimmer_tattoos",
+    "photos": ["images/adam-p1.jpg","images/adam-p2.jpg","images/adam-p3.jpg","images/adam-p4.jpg","images/adam-p5.jpg","images/adam-p6.jpg","images/adam-p7.jpg"]
+  },
+  "eric": {
+    "name": "Eric Ebbole",
+    "title": "Master Artist · 38+ Years in the Industry",
+    "bio_paragraphs": [
+      "Eric Ebbole was introduced to tattooing by his father, Electric Ed Ebbole, learning the craft at an early age before launching his professional career in the fall of 1986 at Gulf Coast Tattoos in Mobile, Alabama. What began as a family trade quickly became a lifelong calling — and nearly four decades later, Eric stands as one of the most traveled, most respected, and most technically complete tattoo artists working today.",
+      "His career has taken him to studios and conventions across Atlanta, Florida, California, Minnesota, Ohio, Texas, Amsterdam, and Germany. Along the way he built relationships with some of the most influential figures in the industry, including Paul Rogers, Jack Armstrong, Don Nolan, Mike Dorsey, Shaun Anderson, and Kore Flatmoe. That depth of exposure — different markets, different styles, different schools of thought — shaped an artist with genuine range and no blind spots.",
+      "Eric works confidently in black and grey and full color across all sizes and genres. Whether the piece calls for sweeping realism, tightly executed traditional work, or something entirely custom, he approaches it with the same calm precision that comes only from four decades of doing this at a high level. His fluency across styles means clients aren't forced into a box — he works with the vision, not against it.",
+      "In 1995, Eric co-founded Artrageous Ink alongside David Theeke and Rob Jensen, helping build a studio that became one of the most respected shops in the region. His presence at Redemption TenFold brings that same founding-artist energy — a master of the craft who still shows up every day to push himself and the people around him.",
+      "If you're looking for an artist with the kind of experience that can't be faked, the kind that comes from tattooing through every trend and outlasting every wave, Eric Ebbole is that artist. Book early. He's worth the wait."
+    ],
+    "creds": [
+      "38+ years tattooing professionally",
+      "Co-founder, Artrageous Ink (1995)",
+      "Trained alongside Paul Rogers, Jack Armstrong & Don Nolan",
+      "International experience — US, Amsterdam & Germany",
+      "Black & grey · Color · All styles"
+    ],
+    "portfolio_url": "https://photos.app.goo.gl/Q1a75FdypFjDn97VA",
+    "portfolio_label": "View Full Portfolio → Google Photos",
+    "email": "Ebboleeric1@gmail.com",
+    "photos": ["images/eric-1.jpg","images/eric-2.jpg","images/eric-3.jpg","images/eric-4.jpg","images/eric-5.jpg"]
+  },
+  "faq": [
+    {"q": "How do I book an appointment?", "a": "Book directly through our Vagaro page at vagaro.com/redemptiontenfold, message us on Facebook, call (906) 792-6001, or email Tenfoldtattoo@gmail.com. We recommend booking as early as possible — our artists' schedules fill quickly and we want to give every project the time it deserves."},
+    {"q": "Do you take walk-ins?", "a": "Walk-in availability varies day to day. For the best experience — and to ensure you get the artist and the time your piece needs — we strongly recommend booking in advance. Check our Vagaro page or reach out to see what's available."},
+    {"q": "What styles do you specialize in?", "a": "Redemption TenFold covers the full range: Black & Grey Realism, Illustrative Portraiture, Blackwork, Color, and Fine Line. Our artists have earned national recognition — magazine publications, sponsored pro team placements, and competition wins. Whatever you're after, we have someone who's made it their craft."},
+    {"q": "How much does a tattoo cost?", "a": "Pricing depends on size, complexity, placement, and the artist. Reach out with your idea and we'll give you an honest estimate before you commit. Quality work is never the cheapest option — but it's always the most worth it."},
+    {"q": "Is a deposit required?", "a": "Yes, a deposit is required to hold your appointment. It applies toward the final cost of your tattoo. The deposit is non-refundable for cancellations but transferable to a rescheduled appointment with adequate notice. Contact us directly for specifics."},
+    {"q": "Can I bring reference photos?", "a": "Absolutely — reference photos help a lot. You don't need a finished concept; even a feeling, a mood, or an image that resonates gives your artist a direction to work from. Our artists don't copy other tattoos, but references establish scale, tone, and intention."},
+    {"q": "What should I do to prepare for my session?", "a": "Sleep well the night before. Eat a full meal 2–3 hours prior. Stay hydrated in the days leading up — not just the morning of. Wear clothing that allows easy access to the area being tattooed. Avoid alcohol for 24 hours beforehand. Don't apply numbing cream without checking with your artist first."}
+  ]
+}

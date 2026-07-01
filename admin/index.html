@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Redemption TenFold</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-dim: rgba(201,168,76,0.15);
+    --black: #080808;
+    --panel: #111;
+    --panel2: #181818;
+    --border: #222;
+    --text: #ccc8c0;
+    --muted: #666;
+    --red: #c0392b;
+    --green: #27ae60;
+  }
+
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--black); color: var(--text); min-height: 100vh; font-size: 14px; }
+
+  /* ── LOGIN ─────────────────────────────────────── */
+  #login-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; background: var(--black);
+  }
+  .login-box {
+    width: 420px; background: var(--panel); border: 1px solid var(--border);
+    padding: 3rem; text-align: center;
+  }
+  .login-logo { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .login-title { font-size: 1.4rem; color: var(--text); margin-bottom: 2rem; font-weight: 300; }
+  .login-box label { display: block; text-align: left; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .login-box input { width: 100%; background: var(--black); border: 1px solid var(--border); color: var(--text); padding: 0.85rem 1rem; font-size: 0.95rem; outline: none; margin-bottom: 1.5rem; border-radius: 2px; font-family: monospace; }
+  .login-box input:focus { border-color: var(--gold); }
+  .login-box .field { margin-bottom: 1.25rem; }
+  .btn-login { width: 100%; background: var(--gold); color: var(--black); border: none; padding: 0.95rem; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .btn-login:hover { opacity: 0.85; }
+  .login-hint { font-size: 0.78rem; color: var(--muted); margin-top: 1.5rem; line-height: 1.6; }
+  .login-hint a { color: var(--gold); text-decoration: none; }
+  #login-error { color: #e74c3c; font-size: 0.82rem; margin-bottom: 1rem; min-height: 1rem; }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  #app { display: none; min-height: 100vh; }
+  .admin-layout { display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ─────────────────────────────────────── */
+  .sidebar {
+    width: 230px; flex-shrink: 0; background: var(--panel); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; overflow-y: auto;
+  }
+  .sidebar-brand { padding: 1.5rem 1.25rem 1rem; border-bottom: 1px solid var(--border); }
+  .sidebar-brand .brand-name { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+  .sidebar-brand .brand-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+  .sidebar-nav { padding: 1rem 0; flex: 1; }
+  .nav-section-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); padding: 1rem 1.25rem 0.4rem; }
+  .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1.25rem; color: var(--muted); cursor: pointer; transition: all 0.2s; font-size: 0.88rem; border-left: 2px solid transparent; }
+  .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+  .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: var(--gold-dim); }
+  .nav-icon { width: 16px; text-align: center; opacity: 0.7; }
+  .sidebar-footer { padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
+  .btn-logout { width: 100%; background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 0.6rem; font-size: 0.75rem; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; border-radius: 2px; }
+  .btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── MAIN CONTENT ─────────────────────────────────────── */
+  .main-content { margin-left: 230px; flex: 1; display: flex; flex-direction: column; }
+  .topbar {
+    background: var(--panel); border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;
+  }
+  .topbar-title { font-size: 1rem; color: var(--text); font-weight: 400; }
+  .topbar-actions { display: flex; gap: 0.75rem; align-items: center; }
+  #save-status { font-size: 0.78rem; color: var(--muted); }
+  .btn-save {
+    background: var(--gold); color: var(--black); border: none; padding: 0.6rem 1.75rem;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; cursor: pointer;
+    transition: opacity 0.2s; border-radius: 2px;
+  }
+  .btn-save:hover { opacity: 0.85; }
+  .btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .page-body { padding: 2rem; max-width: 960px; }
+
+  /* ── SECTIONS ─────────────────────────────────────── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title { font-size: 1.1rem; color: var(--text); font-weight: 400; margin-bottom: 0.4rem; }
+  .section-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.6; }
+
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 1.5rem; }
+  .card-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .card-header h3 { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .card-body { padding: 1.25rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group:last-child { margin-bottom: 0; }
+  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    padding: 0.7rem 0.9rem; font-size: 0.9rem; outline: none; border-radius: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { min-height: 90px; line-height: 1.6; }
+  .form-group textarea.tall { min-height: 140px; }
+
+  /* ── STYLES TAGS ─────────────────────────────────────── */
+  .tags-editor { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem; background: var(--panel2); border: 1px solid var(--border); border-radius: 2px; min-height: 52px; align-items: center; }
+  .tag-chip { display: flex; align-items: center; gap: 0.4rem; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--text); padding: 0.3rem 0.7rem; border-radius: 20px; font-size: 0.82rem; }
+  .tag-chip button { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; line-height: 1; padding: 0; transition: color 0.2s; }
+  .tag-chip button:hover { color: var(--red); }
+  .tag-add { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+  .tag-add input { flex: 1; background: var(--panel2); border: 1px solid var(--border); color: var(--text); padding: 0.55rem 0.8rem; font-size: 0.88rem; border-radius: 2px; outline: none; }
+  .tag-add input:focus { border-color: var(--gold); }
+  .btn-sm { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
+  .btn-sm:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-sm.danger:hover { border-color: var(--red); color: var(--red); }
+
+  /* ── FAQ ─────────────────────────────────────── */
+  .faq-item { background: var(--panel2); border: 1px solid var(--border); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+  .faq-item-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .faq-num { font-size: 0.72rem; color: var(--muted); min-width: 20px; margin-top: 0.2rem; }
+  .faq-item-header input { flex: 1; background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; font-size: 0.9rem; border-radius: 2px; outline: none; font-family: inherit; }
+  .faq-item-header input:focus { border-color: var(--gold); }
+  .faq-item textarea { width: 100%; background: var(--panel); border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; font-size: 0.85rem; border-radius: 2px; outline: none; font-family: inherit; min-height: 80px; resize: vertical; line-height: 1.6; }
+  .faq-item textarea:focus { border-color: var(--gold); }
+  .faq-item-actions { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+  .btn-add-faq { display: flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px dashed var(--border); color: var(--muted); padding: 0.75rem 1.25rem; font-size: 0.82rem; cursor: pointer; border-radius: 2px; width: 100%; justify-content: center; transition: all 0.2s; margin-top: 0.75rem; }
+  .btn-add-faq:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── CREDS ─────────────────────────────────────── */
+  .cred-item { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .cred-item input { flex: 1; background: var(--panel2); border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.8rem; font-size: 0.88rem; border-radius: 2px; outline: none; font-family: inherit; }
+  .cred-item input:focus { border-color: var(--gold); }
+  .btn-del { background: none; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; cursor: pointer; border-radius: 2px; font-size: 1rem; transition: all 0.2s; flex-shrink: 0; }
+  .btn-del:hover { border-color: var(--red); color: var(--red); }
+  .btn-add-cred { background: transparent; border: 1px dashed var(--border); color: var(--muted); padding: 0.5rem 1rem; font-size: 0.78rem; cursor: pointer; border-radius: 2px; transition: all 0.2s; margin-top: 0.25rem; }
+  .btn-add-cred:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── PHOTO GRID ─────────────────────────────────────── */
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+  .photo-thumb { position: relative; aspect-ratio: 1; background: var(--panel2); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-thumb .photo-del { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.15); color: #fff; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .photo-thumb .photo-del:hover { background: var(--red); }
+  .photo-thumb .photo-name { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); padding: 0.25rem 0.4rem; font-size: 0.65rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .photo-upload-zone {
+    border: 2px dashed var(--border); border-radius: 3px; padding: 2rem;
+    text-align: center; cursor: pointer; transition: all 0.2s; background: var(--panel2);
+  }
+  .photo-upload-zone:hover, .photo-upload-zone.drag-over { border-color: var(--gold); background: var(--gold-dim); }
+  .photo-upload-zone p { font-size: 0.85rem; color: var(--muted); }
+  .photo-upload-zone span { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.35rem; }
+  .photo-upload-zone input[type=file] { display: none; }
+  .upload-progress { display: none; margin-top: 0.75rem; }
+  .upload-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .upload-bar-fill { height: 100%; background: var(--gold); width: 0; transition: width 0.3s; }
+  .upload-msg { font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
+
+  /* ── TOAST ─────────────────────────────────────── */
+  #toast {
+    position: fixed; bottom: 2rem; right: 2rem; background: var(--panel);
+    border: 1px solid var(--border); padding: 0.85rem 1.5rem; border-radius: 3px;
+    font-size: 0.85rem; color: var(--text); z-index: 999; display: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  #toast.success { border-color: var(--green); color: var(--green); }
+  #toast.error { border-color: var(--red); color: #e74c3c; }
+
+  /* ── MISC ─────────────────────────────────────── */
+  .divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+  .inline-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.5; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 0.35rem; }
+  .status-dot.live { background: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ──────────────────────────────────────── -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Redemption TenFold</div>
+    <div class="login-title">Studio Admin</div>
+    <div id="login-error"></div>
+    <div class="field">
+      <label for="pat-input">GitHub Personal Access Token</label>
+      <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+    </div>
+    <button class="btn-login" onclick="doLogin()">Sign In</button>
+    <p class="login-hint">
+      Need a token? <a href="https://github.com/settings/tokens/new?scopes=repo&description=Redemption+TenFold+CMS" target="_blank">Create one here</a> — select <strong>repo</strong> scope, click Generate.
+    </p>
+  </div>
+</div>
+
+<!-- ── APP ──────────────────────────────────────── -->
+<div id="app">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-name">Redemption TenFold</div>
+        <div class="brand-sub">Content Manager</div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section-label">Studio</div>
+        <div class="nav-item active" onclick="showSection('hours')" data-section="hours">
+          <span class="nav-icon">⏰</span> Hours & Contact
+        </div>
+        <div class="nav-item" onclick="showSection('about')" data-section="about">
+          <span class="nav-icon">🏛</span> About the Studio
+        </div>
+        <div class="nav-item" onclick="showSection('faq')" data-section="faq">
+          <span class="nav-icon">❓</span> FAQ
+        </div>
+        <div class="nav-section-label">Artists</div>
+        <div class="nav-item" onclick="showSection('adam')" data-section="adam">
+          <span class="nav-icon">✦</span> Adam Zimmerman
+        </div>
+        <div class="nav-item" onclick="showSection('eric')" data-section="eric">
+          <span class="nav-icon">✦</span> Eric Ebbole
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <div style="font-size:0.7rem;color:var(--muted);margin-bottom:0.75rem;">
+          <span class="status-dot live"></span>Changes publish in ~60 sec
+        </div>
+        <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+      </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="main-content">
+      <div class="topbar">
+        <span class="topbar-title" id="section-title">Hours & Contact</span>
+        <div class="topbar-actions">
+          <span id="save-status"></span>
+          <button class="btn-save" id="save-btn" onclick="saveContent()">Save Changes</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+
+        <!-- ── HOURS & CONTACT ── -->
+        <div class="section active" id="section-hours">
+          <div class="section-title">Hours & Contact</div>
+          <div class="section-desc">Update your studio hours and contact information. Changes go live in about 60 seconds.</div>
+
+          <div class="card">
+            <div class="card-header"><h3>Studio Hours</h3></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Open Days / Hours</label>
+                  <input type="text" id="hours-open" placeholder="Tue – Sat · 10am – 6pm" />
+                </div>
+                <div class="form-group">
+                  <label>Closed Days</label>
+                  <input type="text" id="hours-closed" placeholder="Sun & Mon · Closed" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Contact Info</h3></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="text" id="contact-phone" placeholder="(906) 792-6001" />
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="contact-email" placeholder="Tenfoldtattoo@gmail.com" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Address Line 1</label>
+                  <input type="text" id="contact-addr1" placeholder="1112 10th Street" />
+                </div>
+                <div class="form-group">
+                  <label>Address Line 2</label>
+                  <input type="text" id="contact-addr2" placeholder="Menominee, MI 49858" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Vagaro Booking URL</label>
+                <input type="url" id="contact-vagaro" placeholder="https://www.vagaro.com/redemptiontenfold" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Instagram URL</label>
+                  <input type="url" id="contact-instagram" />
+                </div>
+                <div class="form-group">
+                  <label>Facebook URL</label>
+                  <input type="url" id="contact-facebook" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ABOUT ── -->
+        <div class="section" id="section-about">
+          <div class="section-title">About the Studio</div>
+          <div class="section-desc">Edit the studio description, specialties, and closing statement shown on the home page.</div>
+
+          <div class="card">
+            <div class="card-header"><h3>Hero Subtext</h3></div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Headline paragraph (below the main title)</label>
+                <textarea id="hero-subtext"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>About Paragraphs</h3></div>
+            <div class="card-body" id="about-paragraphs-container">
+              <!-- rendered by JS -->
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Style Tags</h3>
+              <span style="font-size:0.75rem;color:var(--muted);">Click × to remove</span>
+            </div>
+            <div class="card-body">
+              <div class="tags-editor" id="styles-tags"></div>
+              <div class="tag-add">
+                <input type="text" id="style-new-input" placeholder="Add a style..." onkeydown="if(event.key==='Enter'){addStyleTag();}" />
+                <button class="btn-sm" onclick="addStyleTag()">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Closing Statement</h3></div>
+            <div class="card-body">
+              <div class="form-group">
+                <textarea id="about-closing" class="tall"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── FAQ ── -->
+        <div class="section" id="section-faq">
+          <div class="section-title">FAQ</div>
+          <div class="section-desc">Edit, reorder, add, or remove frequently asked questions.</div>
+
+          <div class="card">
+            <div class="card-header"><h3>Questions & Answers</h3></div>
+            <div class="card-body" id="faq-container">
+              <!-- rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ADAM ── -->
+        <div class="section" id="section-adam">
+          <div class="section-title">Adam Zimmerman</div>
+          <div class="section-desc">Edit Adam's bio, credentials, portfolio link, and manage his portfolio photos.</div>
+
+          <div class="card">
+            <div class="card-header"><h3>Artist Info</h3></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" id="adam-name" />
+                </div>
+                <div class="form-group">
+                  <label>Title / Subtitle</label>
+                  <input type="text" id="adam-title" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Portfolio URL</label>
+                  <input type="url" id="adam-portfolio-url" />
+                </div>
+                <div class="form-group">
+                  <label>Portfolio Button Label</label>
+                  <input type="text" id="adam-portfolio-label" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Bio Paragraphs</h3></div>
+            <div class="card-body" id="adam-bio-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Credentials / Accolades</h3></div>
+            <div class="card-body" id="adam-creds-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Portfolio Photos</h3>
+              <span style="font-size:0.75rem;color:var(--muted);" id="adam-photo-count"></span>
+            </div>
+            <div class="card-body">
+              <div class="photo-grid" id="adam-photos"></div>
+              <div class="photo-upload-zone" id="adam-upload-zone" onclick="document.getElementById('adam-file-input').click()" ondragover="dragOver(event,'adam')" ondragleave="dragLeave(event,'adam')" ondrop="dropFiles(event,'adam')">
+                <input type="file" id="adam-file-input" accept="image/*" multiple onchange="uploadPhotos(event,'adam')" />
+                <p>Drop photos here or click to browse</p>
+                <span>JPG, PNG, WEBP supported</span>
+              </div>
+              <div class="upload-progress" id="adam-upload-progress">
+                <div class="upload-bar"><div class="upload-bar-fill" id="adam-bar"></div></div>
+                <div class="upload-msg" id="adam-upload-msg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ERIC ── -->
+        <div class="section" id="section-eric">
+          <div class="section-title">Eric Ebbole</div>
+          <div class="section-desc">Edit Eric's bio, credentials, portfolio link, and manage his portfolio photos.</div>
+
+          <div class="card">
+            <div class="card-header"><h3>Artist Info</h3></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" id="eric-name" />
+                </div>
+                <div class="form-group">
+                  <label>Title / Subtitle</label>
+                  <input type="text" id="eric-title" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Portfolio URL</label>
+                  <input type="url" id="eric-portfolio-url" />
+                </div>
+                <div class="form-group">
+                  <label>Portfolio Button Label</label>
+                  <input type="text" id="eric-portfolio-label" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Eric's Email (for booking inquiries)</label>
+                <input type="email" id="eric-email" />
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Bio Paragraphs</h3></div>
+            <div class="card-body" id="eric-bio-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3>Credentials / Accolades</h3></div>
+            <div class="card-body" id="eric-creds-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Portfolio Photos</h3>
+              <span style="font-size:0.75rem;color:var(--muted);" id="eric-photo-count"></span>
+            </div>
+            <div class="card-body">
+              <div class="photo-grid" id="eric-photos"></div>
+              <div class="photo-upload-zone" id="eric-upload-zone" onclick="document.getElementById('eric-file-input').click()" ondragover="dragOver(event,'eric')" ondragleave="dragLeave(event,'eric')" ondrop="dropFiles(event,'eric')">
+                <input type="file" id="eric-file-input" accept="image/*" multiple onchange="uploadPhotos(event,'eric')" />
+                <p>Drop photos here or click to browse</p>
+                <span>JPG, PNG, WEBP supported</span>
+              </div>
+              <div class="upload-progress" id="eric-upload-progress">
+                <div class="upload-bar"><div class="upload-bar-fill" id="eric-bar"></div></div>
+                <div class="upload-msg" id="eric-upload-msg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /page-body -->
+    </div><!-- /main-content -->
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const REPO  = 'dtheeke1/redemption-tenfold';
+const API   = 'https://api.github.com';
+let   PAT   = '';
+let   content = {};
+let   contentSha = '';
+let   styles = [];
+
+// ── AUTH ──────────────────────────────────────────────────
+async function doLogin() {
+  const pat = document.getElementById('pat-input').value.trim();
+  if (!pat) { showLoginError('Please enter your GitHub token.'); return; }
+  const errEl = document.getElementById('login-error');
+  errEl.textContent = 'Verifying...';
+  try {
+    const res = await fetch(`${API}/repos/${REPO}/contents/content.json`, {
+      headers: { Authorization: `token ${pat}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) throw new Error('Invalid token or repo not found.');
+    PAT = pat;
+    sessionStorage.setItem('rtf_pat', pat);
+    const data = await res.json();
+    contentSha = data.sha;
+    content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    populateForms();
+  } catch(e) {
+    showLoginError(e.message);
+  }
+}
+
+function showLoginError(msg) {
+  document.getElementById('login-error').textContent = msg;
+}
+
+function doLogout() {
+  sessionStorage.removeItem('rtf_pat');
+  PAT = ''; content = {}; contentSha = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pat-input').value = '';
+}
+
+document.getElementById('pat-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// ── NAV ──────────────────────────────────────────────────
+const sectionTitles = { hours: 'Hours & Contact', about: 'About the Studio', faq: 'FAQ', adam: 'Adam Zimmerman', eric: 'Eric Ebbole' };
+
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  document.querySelector(`[data-section="${name}"]`).classList.add('active');
+  document.getElementById('section-title').textContent = sectionTitles[name];
+}
+
+// ── POPULATE ──────────────────────────────────────────────────
+function populateForms() {
+  const c = content;
+
+  // Hours & Contact
+  v('hours-open', c.hours?.open);
+  v('hours-closed', c.hours?.closed);
+  v('contact-phone', c.contact?.phone);
+  v('contact-email', c.contact?.email);
+  v('contact-addr1', c.contact?.address_line1);
+  v('contact-addr2', c.contact?.address_line2);
+  v('contact-vagaro', c.contact?.vagaro);
+  v('contact-instagram', c.contact?.instagram);
+  v('contact-facebook', c.contact?.facebook);
+
+  // Hero
+  v('hero-subtext', c.hero?.subtext);
+
+  // About paragraphs
+  renderParas('about-paragraphs-container', c.about?.paragraphs || [], 'about-para');
+
+  // Styles
+  styles = [...(c.about?.styles || [])];
+  renderStyleTags();
+
+  // Closing
+  v('about-closing', c.about?.closing_body);
+
+  // FAQ
+  renderFAQ();
+
+  // Adam
+  v('adam-name', c.adam?.name);
+  v('adam-title', c.adam?.title);
+  v('adam-portfolio-url', c.adam?.portfolio_url);
+  v('adam-portfolio-label', c.adam?.portfolio_label);
+  renderParas('adam-bio-container', c.adam?.bio_paragraphs || [], 'adam-bio-para');
+  renderCreds('adam-creds-container', c.adam?.creds || [], 'adam');
+  renderPhotos('adam', c.adam?.photos || []);
+
+  // Eric
+  v('eric-name', c.eric?.name);
+  v('eric-title', c.eric?.title);
+  v('eric-portfolio-url', c.eric?.portfolio_url);
+  v('eric-portfolio-label', c.eric?.portfolio_label);
+  v('eric-email', c.eric?.email);
+  renderParas('eric-bio-container', c.eric?.bio_paragraphs || [], 'eric-bio-para');
+  renderCreds('eric-creds-container', c.eric?.creds || [], 'eric');
+  renderPhotos('eric', c.eric?.photos || []);
+}
+
+function v(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined) el.value = val;
+}
+
+function renderParas(containerId, paras, prefix) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = paras.map((p, i) => `
+    <div class="form-group">
+      <label>Paragraph ${i + 1}</label>
+      <textarea class="tall" id="${prefix}-${i}">${esc(p)}</textarea>
+    </div>
+  `).join('') + `
+    <button class="btn-sm" onclick="addPara('${containerId}','${prefix}')">+ Add paragraph</button>
+  `;
+}
+
+function addPara(containerId, prefix) {
+  const el = document.getElementById(containerId);
+  const existing = el.querySelectorAll('textarea').length;
+  const div = document.createElement('div');
+  div.className = 'form-group';
+  div.innerHTML = `<label>Paragraph ${existing + 1}</label><textarea class="tall" id="${prefix}-${existing}"></textarea>`;
+  el.insertBefore(div, el.lastElementChild);
+}
+
+function renderCreds(containerId, creds, artist) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = creds.map((c, i) => `
+    <div class="cred-item" id="${artist}-cred-row-${i}">
+      <input type="text" id="${artist}-cred-${i}" value="${esc(c)}" />
+      <button class="btn-del" onclick="removeCred('${artist}',${i})" title="Remove">×</button>
+    </div>
+  `).join('') + `
+    <button class="btn-add-cred" onclick="addCred('${containerId}','${artist}')">+ Add credential</button>
+  `;
+}
+
+function addCred(containerId, artist) {
+  const el = document.getElementById(containerId);
+  const existing = el.querySelectorAll('.cred-item').length;
+  const div = document.createElement('div');
+  div.className = 'cred-item';
+  div.id = `${artist}-cred-row-${existing}`;
+  div.innerHTML = `<input type="text" id="${artist}-cred-${existing}" placeholder="New credential..." /><button class="btn-del" onclick="removeCred('${artist}',${existing})" title="Remove">×</button>`;
+  el.insertBefore(div, el.lastElementChild);
+}
+
+function removeCred(artist, i) {
+  const row = document.getElementById(`${artist}-cred-row-${i}`);
+  if (row) row.remove();
+}
+
+// ── STYLES ──────────────────────────────────────────────────
+function renderStyleTags() {
+  const el = document.getElementById('styles-tags');
+  el.innerHTML = styles.map((s, i) => `
+    <div class="tag-chip">
+      <span>${esc(s)}</span>
+      <button onclick="removeStyle(${i})" title="Remove">×</button>
+    </div>
+  `).join('');
+}
+
+function removeStyle(i) { styles.splice(i, 1); renderStyleTags(); }
+
+function addStyleTag() {
+  const input = document.getElementById('style-new-input');
+  const val = input.value.trim();
+  if (!val) return;
+  styles.push(val);
+  input.value = '';
+  renderStyleTags();
+}
+
+// ── FAQ ──────────────────────────────────────────────────
+function renderFAQ() {
+  const el = document.getElementById('faq-container');
+  const items = content.faq || [];
+  el.innerHTML = items.map((f, i) => faqRow(i, f.q, f.a)).join('') + `
+    <button class="btn-add-faq" onclick="addFAQItem()">+ Add question</button>
+  `;
+}
+
+function faqRow(i, q, a) {
+  return `
+    <div class="faq-item" id="faq-item-${i}">
+      <div class="faq-item-header">
+        <span class="faq-num">${i + 1}.</span>
+        <input type="text" id="faq-q-${i}" value="${esc(q)}" placeholder="Question..." />
+        <button class="btn-del" onclick="removeFAQ(${i})" title="Remove">×</button>
+      </div>
+      <textarea id="faq-a-${i}" placeholder="Answer...">${esc(a)}</textarea>
+    </div>
+  `;
+}
+
+function addFAQItem() {
+  const el = document.getElementById('faq-container');
+  const count = el.querySelectorAll('.faq-item').length;
+  const div = document.createElement('div');
+  div.innerHTML = faqRow(count, '', '');
+  el.insertBefore(div.firstElementChild, el.lastElementChild);
+}
+
+function removeFAQ(i) {
+  const item = document.getElementById('faq-item-' + i);
+  if (item) item.remove();
+}
+
+// ── PHOTOS ──────────────────────────────────────────────────
+function renderPhotos(artist, photos) {
+  const grid = document.getElementById(`${artist}-photos`);
+  const countEl = document.getElementById(`${artist}-photo-count`);
+  countEl.textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
+  grid.innerHTML = photos.map((src, i) => {
+    const name = src.split('/').pop();
+    return `
+      <div class="photo-thumb" id="${artist}-photo-${i}">
+        <img src="../${src}" onerror="this.style.opacity=0.2" />
+        <button class="photo-del" onclick="removePhoto('${artist}','${src}',${i})" title="Remove">×</button>
+        <div class="photo-name">${name}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function removePhoto(artist, src, i) {
+  if (!confirm(`Remove ${src.split('/').pop()} from the portfolio? (The file stays in GitHub — only removed from the website display.)`)) return;
+  const photos = content[artist].photos.filter(p => p !== src);
+  content[artist].photos = photos;
+  renderPhotos(artist, photos);
+  toast('Photo removed — save to publish.', 'success');
+}
+
+function dragOver(e, artist) {
+  e.preventDefault();
+  document.getElementById(`${artist}-upload-zone`).classList.add('drag-over');
+}
+function dragLeave(e, artist) {
+  document.getElementById(`${artist}-upload-zone`).classList.remove('drag-over');
+}
+function dropFiles(e, artist) {
+  e.preventDefault();
+  dragLeave(e, artist);
+  uploadFileList(e.dataTransfer.files, artist);
+}
+function uploadPhotos(e, artist) { uploadFileList(e.target.files, artist); }
+
+async function uploadFileList(files, artist) {
+  if (!files.length) return;
+  const prog = document.getElementById(`${artist}-upload-progress`);
+  const bar  = document.getElementById(`${artist}-bar`);
+  const msg  = document.getElementById(`${artist}-upload-msg`);
+  prog.style.display = 'block';
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    msg.textContent = `Uploading ${file.name} (${i+1}/${files.length})…`;
+    bar.style.width = `${((i+1)/files.length)*100}%`;
+    try {
+      const b64 = await toBase64(file);
+      const path = `images/${file.name}`;
+      // Check if file already exists (to get SHA for update)
+      let sha = undefined;
+      try {
+        const chk = await ghFetch(`contents/${path}`);
+        if (chk.sha) sha = chk.sha;
+      } catch(e) {}
+
+      const body = { message: `Upload ${file.name} via admin`, content: b64 };
+      if (sha) body.sha = sha;
+
+      await fetch(`${API}/repos/${REPO}/contents/${path}`, {
+        method: 'PUT',
+        headers: { Authorization: `token ${PAT}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const imgSrc = `images/${file.name}`;
+      if (!content[artist].photos.includes(imgSrc)) {
+        content[artist].photos.push(imgSrc);
+      }
+    } catch(e) {
+      toast(`Failed to upload ${file.name}: ${e.message}`, 'error');
+    }
+  }
+
+  prog.style.display = 'none';
+  renderPhotos(artist, content[artist].photos);
+  toast(`${files.length} photo${files.length > 1 ? 's' : ''} uploaded — save to publish.`, 'success');
+  document.getElementById(`${artist}-file-input`).value = '';
+}
+
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── COLLECT & SAVE ──────────────────────────────────────────────────
+function collectContent() {
+  // Hours & Contact
+  content.hours = {
+    open:   g('hours-open'),
+    closed: g('hours-closed')
+  };
+  content.contact = {
+    phone:        g('contact-phone'),
+    email:        g('contact-email'),
+    address_line1: g('contact-addr1'),
+    address_line2: g('contact-addr2'),
+    vagaro:       g('contact-vagaro'),
+    instagram:    g('contact-instagram'),
+    facebook:     g('contact-facebook')
+  };
+
+  // Hero
+  content.hero = { subtext: g('hero-subtext') };
+
+  // About paragraphs
+  content.about = content.about || {};
+  content.about.paragraphs = collectParas('about-para');
+  content.about.styles = [...styles];
+  content.about.closing_body = g('about-closing');
+
+  // FAQ
+  const faqItems = document.querySelectorAll('.faq-item');
+  content.faq = [];
+  faqItems.forEach(item => {
+    const idx = item.id.replace('faq-item-','');
+    const q = document.getElementById(`faq-q-${idx}`)?.value?.trim();
+    const a = document.getElementById(`faq-a-${idx}`)?.value?.trim();
+    if (q) content.faq.push({ q, a: a || '' });
+  });
+
+  // Adam
+  content.adam.name          = g('adam-name');
+  content.adam.title         = g('adam-title');
+  content.adam.portfolio_url = g('adam-portfolio-url');
+  content.adam.portfolio_label = g('adam-portfolio-label');
+  content.adam.bio_paragraphs = collectParas('adam-bio-para');
+  content.adam.creds          = collectCreds('adam');
+
+  // Eric
+  content.eric.name          = g('eric-name');
+  content.eric.title         = g('eric-title');
+  content.eric.portfolio_url = g('eric-portfolio-url');
+  content.eric.portfolio_label = g('eric-portfolio-label');
+  content.eric.email         = g('eric-email');
+  content.eric.bio_paragraphs = collectParas('eric-bio-para');
+  content.eric.creds          = collectCreds('eric');
+}
+
+function collectParas(prefix) {
+  const paras = [];
+  let i = 0;
+  while(true) {
+    const el = document.getElementById(`${prefix}-${i}`);
+    if (!el) break;
+    const val = el.value.trim();
+    if (val) paras.push(val);
+    i++;
+  }
+  return paras;
+}
+
+function collectCreds(artist) {
+  const creds = [];
+  let i = 0;
+  while(true) {
+    const el = document.getElementById(`${artist}-cred-${i}`);
+    if (!el) break;
+    const val = el.value.trim();
+    if (val) creds.push(val);
+    i++;
+  }
+  return creds;
+}
+
+function g(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+async function saveContent() {
+  collectContent();
+  const btn = document.getElementById('save-btn');
+  const status = document.getElementById('save-status');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  status.textContent = '';
+  try {
+    const json = JSON.stringify(content, null, 2);
+    const b64  = btoa(unescape(encodeURIComponent(json)));
+    const res  = await fetch(`${API}/repos/${REPO}/contents/content.json`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${PAT}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Update site content via admin', content: b64, sha: contentSha })
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || 'Save failed');
+    }
+    const data = await res.json();
+    contentSha = data.content.sha;
+    toast('Saved! Site will update in ~60 seconds.', 'success');
+    status.textContent = 'Saved ' + new Date().toLocaleTimeString();
+  } catch(e) {
+    toast('Error: ' + e.message, 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Save Changes';
+}
+
+async function ghFetch(path) {
+  const res = await fetch(`${API}/repos/${REPO}/${path}`, {
+    headers: { Authorization: `token ${PAT}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  return res.json();
+}
+
+// ── TOAST ──────────────────────────────────────────────────
+function toast(msg, type = '') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = type;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 4000);
+}
+
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── AUTO LOGIN (session restore) ──────────────────────────────────────────────────
+(async function init() {
+  const savedPat = sessionStorage.getItem('rtf_pat');
+  if (savedPat) {
+    document.getElementById('pat-input').value = savedPat;
+    await doLogin();
+  }
+})();
+</script>
+</body>
+</html>
