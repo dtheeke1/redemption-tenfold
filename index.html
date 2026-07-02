@@ -129,10 +129,10 @@
     .artist-card { border-bottom: 1px solid var(--border); }
 
     /* Zone 1 — Identity bar */
-    .artist-identity { display: flex; align-items: center; gap: 2rem; padding: 2rem 4rem; background: var(--panel); border-bottom: 1px solid var(--border); }
+    .artist-identity { display: flex; align-items: center; justify-content: space-between; padding: 2rem 4rem; background: var(--panel); border-bottom: 1px solid var(--border); }
+    .artist-identity-center { display: flex; align-items: center; gap: 1.5rem; }
     .artist-headshot { width: 88px; height: 88px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid rgba(201,168,76,0.4); filter: grayscale(15%); flex-shrink: 0; transition: filter 0.4s, border-color 0.4s; }
     .artist-card:hover .artist-headshot { filter: grayscale(0%); border-color: var(--gold); }
-    .artist-id-text { flex: 1; }
     .artist-id-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
     .artist-id-text .artist-title { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; display: block; font-weight: 500; }
     .artist-identity .book-btn { border: 1px solid rgba(201,168,76,0.4); color: var(--gold); text-decoration: none; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 0.7rem 1.75rem; white-space: nowrap; transition: all 0.3s; flex-shrink: 0; }
@@ -297,8 +297,9 @@
       .about { padding: 4rem 1.5rem; }
       .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
       .artists-header { flex-direction: column; padding: 3rem 1.5rem 2rem; }
-      .artist-identity { padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
-      .artist-identity .book-btn { width: 100%; text-align: center; }
+      .artist-identity { padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+      .artist-identity-center { order: -1; width: 100%; justify-content: center; }
+      .artist-identity .book-btn { flex: 1; text-align: center; }
       .artist-bio-section { padding: 1.5rem; column-count: 1; }
       .artist-gallery-wrap { padding: 1.5rem; }
       .artist-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -469,15 +470,17 @@
 
     <!-- Zone 1: Identity -->
     <div class="artist-identity">
-      <img class="artist-headshot"
-           src="images/adamz.jpg"
-           alt="Adam Zimmerman"
-           onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85'"/>
-      <div class="artist-id-text">
-        <h3 id="adam-name-h3">Adam Zimmerman</h3>
-        <span class="artist-title" id="adam-title-span">Owner &amp; Lead Artist · Ink Wars 1v1 Champion</span>
-      </div>
       <a href="mailto:Tenfoldtattoo@gmail.com" class="book-btn">Contact Adam →</a>
+      <div class="artist-identity-center">
+        <img class="artist-headshot"
+             src="images/adamz.jpg"
+             alt="Adam Zimmerman"
+             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85'"/>
+        <div class="artist-id-text">
+          <h3 id="adam-name-h3">Adam Zimmerman</h3>
+          <span class="artist-title" id="adam-title-span">Owner &amp; Lead Artist · Ink Wars 1v1 Champion</span>
+        </div>
+      </div>
       <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Adam →</a>
     </div>
 
@@ -526,15 +529,17 @@
 
     <!-- Zone 1: Identity -->
     <div class="artist-identity">
-      <img class="artist-headshot"
-           src="images/eric-ebbole.jpg"
-           alt="Eric Ebbole"
-           onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=85'"/>
-      <div class="artist-id-text">
-        <h3 id="eric-name-h3">Eric Ebbole</h3>
-        <span class="artist-title" id="eric-title-span">Master Artist · 38+ Years in the Industry</span>
-      </div>
       <a href="mailto:Ebboleeric1@gmail.com" class="book-btn">Contact Eric →</a>
+      <div class="artist-identity-center">
+        <img class="artist-headshot"
+             src="images/eric-ebbole.jpg"
+             alt="Eric Ebbole"
+             onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=85'"/>
+        <div class="artist-id-text">
+          <h3 id="eric-name-h3">Eric Ebbole</h3>
+          <span class="artist-title" id="eric-title-span">Master Artist · 38+ Years in the Industry</span>
+        </div>
+      </div>
       <a href="https://www.vagaro.com/redemptiontenfold" target="_blank" class="book-btn">Book with Eric →</a>
     </div>
 
