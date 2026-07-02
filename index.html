@@ -129,8 +129,10 @@
     .artist-card { border-bottom: 1px solid var(--border); }
 
     /* Zone 1 — Identity bar */
-    .artist-identity { display: flex; align-items: center; justify-content: space-between; padding: 2rem 4rem; background: var(--panel); border-bottom: 1px solid var(--border); }
-    .artist-identity-center { display: flex; align-items: center; gap: 1.5rem; }
+    .artist-identity { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 2rem 4rem; background: var(--panel); border-bottom: 1px solid var(--border); }
+    .artist-identity .book-btn:first-child { justify-self: center; }
+    .artist-identity .book-btn:last-child { justify-self: center; }
+    .artist-identity-center { display: flex; align-items: center; gap: 1.5rem; justify-content: center; }
     .artist-headshot { width: 88px; height: 88px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid rgba(201,168,76,0.4); filter: grayscale(15%); flex-shrink: 0; transition: filter 0.4s, border-color 0.4s; }
     .artist-card:hover .artist-headshot { filter: grayscale(0%); border-color: var(--gold); }
     .artist-id-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
