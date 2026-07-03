@@ -299,9 +299,9 @@
       .about { padding: 4rem 1.5rem; }
       .about-body { grid-template-columns: 1fr; gap: 1.5rem; }
       .artists-header { flex-direction: column; padding: 3rem 1.5rem 2rem; }
-      .artist-identity { padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-      .artist-identity-center { order: -1; width: 100%; justify-content: center; }
-      .artist-identity .book-btn { flex: 1; text-align: center; }
+      .artist-identity { display: flex; flex-direction: column; align-items: center; padding: 1.5rem 1.25rem; gap: 1.25rem; }
+      .artist-identity-center { justify-content: center; }
+      .artist-identity .book-btn { width: 100%; text-align: center; max-width: 320px; }
       .artist-bio-section { padding: 1.5rem; column-count: 1; }
       .artist-gallery-wrap { padding: 1.5rem; }
       .artist-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
