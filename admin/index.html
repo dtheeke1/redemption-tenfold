@@ -252,6 +252,9 @@
         <div class="nav-item" onclick="showSection('faq')" data-section="faq">
           <span class="nav-icon">❓</span> FAQ
         </div>
+        <div class="nav-item" onclick="showSection('qrcode')" data-section="qrcode">
+          <span class="nav-icon">◈</span> QR Code
+        </div>
         <div class="nav-section-label">Artists</div>
         <div class="nav-item" onclick="showSection('adam')" data-section="adam">
           <span class="nav-icon">✦</span> Adam Zimmerman
@@ -384,6 +387,19 @@
               <div class="form-group">
                 <textarea id="about-closing" class="tall"></textarea>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── QR CODE ── -->
+        <div class="section" id="section-qrcode">
+          <div class="section-title">QR Code</div>
+          <div class="section-desc">Download the QR code linking to redemptiontenfold.com for print, signage, or sharing.</div>
+          <div class="card">
+            <div class="card-header"><h3>redemptiontenfold.com</h3></div>
+            <div class="card-body" style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding:2rem;">
+              <canvas id="qr-canvas" style="border:8px solid #fff;border-radius:4px;"></canvas>
+              <button class="btn-save" onclick="downloadQR()" style="max-width:240px;">⬇ Download QR Code (PNG)</button>
             </div>
           </div>
         </div>
@@ -629,7 +645,7 @@ document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key
 document.getElementById('setup-pat').addEventListener('keydown', e => { if (e.key === 'Enter') doSetup(); });
 
 // ── NAV ──────────────────────────────────────────────────
-const sectionTitles = { hours: 'Hours & Contact', about: 'About the Studio', faq: 'FAQ', adam: 'Adam Zimmerman', eric: 'Eric Ebbole' };
+const sectionTitles = { hours: 'Hours & Contact', about: 'About the Studio', faq: 'FAQ', adam: 'Adam Zimmerman', eric: 'Eric Ebbole', qrcode: 'QR Code' };
 
 function showSection(name) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1027,6 +1043,29 @@ function esc(s) {
 }
 
 // ── AUTO LOGIN removed — password required every session ──────────────────────────
+
+// ── QR CODE ──────────────────────────────────────────────────
+function generateQR() {
+  const canvas = document.getElementById('qr-canvas');
+  if (!canvas) return;
+  QRCode.toCanvas(canvas, 'https://redemptiontenfold.com', { width: 280, margin: 2, color: { dark: '#000000', light: '#ffffff' } });
+}
+
+function downloadQR() {
+  const canvas = document.getElementById('qr-canvas');
+  const link = document.createElement('a');
+  link.download = 'redemption-tenfold-qr.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// Generate QR when section is shown
+const _origShowSection = showSection;
+showSection = function(name) {
+  _origShowSection(name);
+  if (name === 'qrcode') generateQR();
+};
 </script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </body>
 </html>
